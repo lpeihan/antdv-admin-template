@@ -1,0 +1,23 @@
+export default {
+  common: {
+    copied: 'Copied',
+    login: 'Login',
+    logout: 'Logout',
+  },
+  accountSettings: 'Account Settings',
+  username: 'Username',
+  password: 'Password',
+  remember: 'Remember me',
+  dashboard: 'Dashboard',
+  analysis: 'Analysis',
+  basicTable: 'Basic Table',
+  table: 'Table',
+  user: 'User',
+  totalUser: 'Total User',
+  visit: 'Visit',
+  totalVisit: 'Total Visit',
+  download: 'Download',
+  totalDownload: 'Total Download',
+  use: 'Use',
+  totalUse: 'Total Use',
+};

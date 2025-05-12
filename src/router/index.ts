@@ -1,0 +1,52 @@
+import NProgress from 'nprogress';
+import { createRouter, createWebHashHistory } from 'vue-router';
+
+import routes from './routes';
+
+import 'nprogress/nprogress.css';
+// import { useStore } from '@/store';
+import { hasRole, isLogin } from '@/utils/auth';
+
+NProgress.configure({ showSpinner: false });
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+
+    return { top: 0 };
+  },
+});
+
+router.beforeEach(async (to, from, next) => {
+  NProgress.start();
+
+  if (isLogin()) {
+    // if (!useStore().userInfo) {
+    //   await useStore().fetchUserInfo();
+    // }
+
+    if (to.meta && to.meta.roles && !hasRole(to.meta.roles)) {
+      next('/404');
+      return;
+    }
+
+    next();
+  } else {
+    if (to.path !== '/user/login') {
+      next('/user/login');
+      return;
+    }
+
+    next();
+  }
+});
+
+router.afterEach(() => {
+  NProgress.done();
+});
+
+export default router;

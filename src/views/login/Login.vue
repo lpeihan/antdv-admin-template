@@ -79,9 +79,9 @@ const onFinish = async () => {
 <style lang="less" scoped>
 .login-page {
   display: flex;
-  height: 100vh;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
 
   .login-form {
     width: 400px;

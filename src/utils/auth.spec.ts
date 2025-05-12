@@ -8,7 +8,7 @@ jest.mock('@/store', () => ({
 
 describe('auth', () => {
   describe('hasRole', () => {
-    it('should return true when the user has the matching role.', () => {
+    it('should return true when the user has the matching role', () => {
       const mockStore = {
         userInfo: {
           roles: ['admin'],

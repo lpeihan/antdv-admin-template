@@ -53,10 +53,7 @@ export const useStore = defineStore('store', {
       this.themeColor = themeColor;
 
       storage.setItem('themeColor', this.themeColor);
-      document.documentElement.style.setProperty(
-        '--primary-color',
-        this.themeColor,
-      );
+      document.documentElement.style.setProperty('--primary-color', this.themeColor);
     },
     async connectWallet() {
       const walletAddress = await connectWallet();
@@ -73,9 +70,7 @@ export const useStore = defineStore('store', {
   getters: {
     isDarkTheme: (state) => state.theme === Theme.Dark,
     ownerWallet: (state) => {
-      const config = state.systemConfig.find(
-        (item) => item.paramName === '质押钱包',
-      );
+      const config = state.systemConfig.find((item) => item.paramName === '质押钱包');
 
       return config?.parmaValue || '';
     },

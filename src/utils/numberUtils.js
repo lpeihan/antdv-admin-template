@@ -1,4 +1,3 @@
- 
 import { Decimal } from 'decimal.js';
 
 Decimal.set({
@@ -12,7 +11,6 @@ Decimal.set({
   crypto: false,
 });
 
- 
 let _seed = null;
 
 /**

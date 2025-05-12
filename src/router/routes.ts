@@ -1,8 +1,4 @@
-import {
-  ProfileOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from '@ant-design/icons-vue';
+import { ProfileOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 const routes = [

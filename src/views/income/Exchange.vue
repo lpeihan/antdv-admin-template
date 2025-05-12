@@ -1,17 +1,9 @@
 <template>
   <div class="basic-table-page">
     <a-card>
-      <a-form
-        layout="inline"
-        :model="searchParams"
-        class="basic-table-form"
-        @finish="handleSearch"
-      >
+      <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
         <a-form-item label="钱包地址" name="approvalAddr">
-          <a-input
-            v-model:value="searchParams.approvalAddr"
-            placeholder="请输入钱包地址"
-          />
+          <a-input v-model:value="searchParams.approvalAddr" placeholder="请输入钱包地址" />
         </a-form-item>
 
         <a-form-item>

@@ -9,17 +9,9 @@
       <div class="login-form">
         <img src="@/assets/images/logo.png" alt="logo" width="48" />
 
-        <a-form
-          :model="form"
-          name="basic"
-          autocomplete="off"
-          @finish="onFinish"
-        >
+        <a-form :model="form" name="basic" autocomplete="off" @finish="onFinish">
           <a-form-item name="username" :rules="{ required: true, message: '' }">
-            <a-input
-              v-model:value="form.username"
-              :placeholder="$t('username')"
-            >
+            <a-input v-model:value="form.username" :placeholder="$t('username')">
               <template #prefix>
                 <UserOutlined />
               </template>
@@ -27,10 +19,7 @@
           </a-form-item>
 
           <a-form-item name="password" :rules="{ required: true, message: '' }">
-            <a-input-password
-              v-model:value="form.password"
-              :placeholder="$t('password')"
-            >
+            <a-input-password v-model:value="form.password" :placeholder="$t('password')">
               <template #prefix>
                 <LockOutlined />
               </template>

@@ -1,21 +1,12 @@
 <template>
   <a-card>
-    <a-table
-      :columns="columns"
-      :data-source="state.dataSource"
-      :loading="state.loading"
-    >
+    <a-table :columns="columns" :data-source="state.dataSource" :loading="state.loading">
       <template #bodyCell="{ column, record }">
         <template v-if="['parmaValue'].includes(column.dataIndex)">
-          <a-input
-            v-model:value="record[column.dataIndex]"
-            style="width: 400px"
-          />
+          <a-input v-model:value="record[column.dataIndex]" style="width: 400px" />
         </template>
         <template v-else-if="column.dataIndex === 'actions'">
-          <a-button type="primary" size="small" @click="handleUpdate(record)">
-            更新
-          </a-button>
+          <a-button type="primary" size="small" @click="handleUpdate(record)">更新</a-button>
         </template>
       </template>
     </a-table>
@@ -70,12 +61,9 @@ const fetchSystemConfig = async () => {
   state.loading = false;
   state.dataSource = res.data
     .filter((item) =>
-      [
-        '质押钱包',
-        '质押每日收益率（%）',
-        '余额活动收益率（%）',
-        'telegfam链接',
-      ].includes(item.paramName),
+      ['质押钱包', '质押每日收益率（%）', '余额活动收益率（%）', 'telegfam链接'].includes(
+        item.paramName,
+      ),
     )
     .map((item, index) => ({
       ...item,

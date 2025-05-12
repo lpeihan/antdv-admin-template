@@ -31,10 +31,7 @@
         @click="store.setTheme(store.isDarkTheme ? Theme.Light : Theme.Dark)"
       />
 
-      <icon
-        :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined"
-        @click="toggle"
-      />
+      <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
 
       <a-dropdown>
         <template #overlay>
@@ -147,16 +144,16 @@ const navigateTo = (breadcrumb) => {
 <style lang="less" scoped>
 .ant-layout-header {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 16px;
   line-height: normal;
   background: var(--white);
-  justify-content: space-between;
-  align-items: center;
 
   .layout-header-wrapper {
     display: flex;
-    align-items: center;
     gap: 4px;
+    align-items: center;
 
     .breadcrumb {
       margin-left: 10px;

@@ -29,8 +29,7 @@ export async function connectWallet() {
       throw new Error(error);
     }
   } else {
-    const errorMessage =
-      'Ethereum wallet is not installed. Please install MetaMask!';
+    const errorMessage = 'Ethereum wallet is not installed. Please install MetaMask!';
 
     message.error(errorMessage);
     throw new Error(errorMessage);
@@ -60,9 +59,7 @@ export const transferUsdt = async (toAddress, amount) => {
     const contract = new web3.eth.Contract(config.UsdtAbi, config.UsdtAddress);
 
     amount = movePointRight(amount.toString(), USDT_DECIMALS);
-    const result = await contract.methods
-      .transfer(toAddress, amount)
-      .send({ from: walletAddress });
+    const result = await contract.methods.transfer(toAddress, amount).send({ from: walletAddress });
 
     console.log('🚀 ~ transferUsdt ~ result:', result);
     return result;

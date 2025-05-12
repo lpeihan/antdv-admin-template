@@ -46,10 +46,7 @@ const getMenuData = (items = [], parentKeys = [], selectedKey) => {
       };
 
       if (item.children && !item.hideChildrenInMenu) {
-        newItem.children = getMenuData(item.children, [
-          ...parentKeys,
-          item.path,
-        ]);
+        newItem.children = getMenuData(item.children, [...parentKeys, item.path]);
       } else {
         getMenuData(
           item.children,

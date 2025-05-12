@@ -5,10 +5,7 @@ import { ref } from 'vue';
 import { i18n } from '@/locales';
 
 export const useClipboard = () => {
-  const copyToClipboard = async (
-    value = '',
-    successText = i18n.global.t('common.copied'),
-  ) => {
+  const copyToClipboard = async (value = '', successText = i18n.global.t('common.copied')) => {
     const source = ref(value);
     const { copy } = _useClipboard({ source });
 

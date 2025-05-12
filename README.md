@@ -14,7 +14,9 @@ pnpm run build
 # lint
 pnpm run lint
 # deploy
-pnpm run deploy
+pnpm run deploy:development
+# chmod +x
+chmod +x ./scripts/deploy.sh
 ```
 
 ## tools

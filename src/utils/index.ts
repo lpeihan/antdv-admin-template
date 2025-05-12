@@ -11,9 +11,7 @@ export function formatDate(date, format = 'YYYY-MM-DD HH:mm:ss') {
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function getQueryString(name, url) {
-  const res = (url || location.href).match(
-    new RegExp('[?&]' + name + '=([^&#]+)', 'i'),
-  );
+  const res = (url || location.href).match(new RegExp('[?&]' + name + '=([^&#]+)', 'i'));
 
   if (res === null || res.length < 1) {
     return null;
@@ -57,8 +55,6 @@ export function formatWalletAddress(walletAddress) {
   }
 
   return (
-    walletAddress.substring(0, 7) +
-    '......' +
-    walletAddress.substring(walletAddress.length - 7)
+    walletAddress.substring(0, 7) + '......' + walletAddress.substring(walletAddress.length - 7)
   );
 }

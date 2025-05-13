@@ -140,6 +140,7 @@ class numberUtils {
     try {
       return new Decimal(a).comparedTo(new Decimal(b));
     } catch (error) {
+      console.error(error);
       return null;
     }
   }
@@ -148,6 +149,7 @@ class numberUtils {
     try {
       return Decimal.min(...values);
     } catch (error) {
+      console.error(error);
       return null;
     }
   }
@@ -156,6 +158,7 @@ class numberUtils {
     try {
       return Decimal.max(...values);
     } catch (error) {
+      console.error(error);
       return null;
     }
   }

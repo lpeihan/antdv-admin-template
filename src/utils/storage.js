@@ -14,7 +14,8 @@ function serialize(val) {
 function deserialize(val) {
   try {
     return JSON.parse(val);
-  } catch (_error) {
+  } catch (error) {
+    console.error(error);
     return val || undefined;
   }
 }

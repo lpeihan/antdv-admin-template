@@ -14,7 +14,7 @@ const DEFAULT_LANG = 'zh-CN';
 // https://github.com/lokalise/i18n-ally/tree/main/locales
 export const SUPPORTED_LOCALES = [
   { name: '简体中文', value: 'zh-CN' },
-  // { name: 'English', value: 'en' },
+  { name: 'English', value: 'en' },
 ];
 
 export function getLocale() {

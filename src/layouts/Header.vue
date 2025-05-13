@@ -48,10 +48,10 @@
       <a-dropdown>
         <template #overlay>
           <a-menu>
-            <!-- <a-menu-item @click="$router.push('/accountSettings')">
+            <a-menu-item @click="$router.push('/accountSettings')">
               <SettingOutlined />
               {{ t('accountSettings') }}
-            </a-menu-item> -->
+            </a-menu-item>
             <a-menu-item @click="store.logout">
               <LogoutOutlined />
               {{ t('common.logout') }}
@@ -73,7 +73,7 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ReloadOutlined,
-  // SettingOutlined,
+  SettingOutlined,
 } from '@ant-design/icons-vue';
 import { useFullscreen } from '@vueuse/core';
 import { theme } from 'ant-design-vue';

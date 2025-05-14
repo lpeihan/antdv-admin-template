@@ -7,7 +7,7 @@
 <style lang="less" scoped>
 .user-layout {
   height: 100vh;
-  background: url('@/assets/images/bg.png') no-repeat center center;
-  background-size: cover;
+  background: #f0f2f5 url('@/assets/images/background.svg') no-repeat center center;
+  background-size: 100%;
 }
 </style>

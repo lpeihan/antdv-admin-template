@@ -2,13 +2,15 @@
   <a-config-provider
     :theme="{
       algorithm: theme.defaultAlgorithm,
-      token: { controlHeight: 40 },
+      token: { controlHeight: 42 },
     }"
   >
     <div class="login-page">
       <div class="login-form">
-        <img src="@/assets/images/logo.png" alt="logo" width="48" />
-
+        <div class="logo-wrapper">
+          <img src="@/assets/images/logo.png" alt="logo" width="48" />
+          <span class="logo-text">Antdv Admin</span>
+        </div>
         <a-form :model="form" name="basic" autocomplete="off" @finish="onFinish">
           <a-form-item name="username" :rules="{ required: true, message: '' }">
             <a-input v-model:value="form.username" :placeholder="$t('username')">
@@ -34,7 +36,7 @@
 
           <a-form-item>
             <a-button type="primary" html-type="submit" block>
-              {{ $t('login') }}
+              {{ $t('common.login') }}
             </a-button>
           </a-form-item>
         </a-form>
@@ -85,14 +87,21 @@ const onFinish = async () => {
 
   .login-form {
     width: 400px;
-    padding: 40px 0;
-    text-align: center;
-    background: rgb(255 255 255 / 20%);
-    border-radius: 2px;
-    backdrop-filter: blur(5px);
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .logo-text {
+        margin-left: 20px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
 
     .ant-form {
-      width: 300px;
+      width: 400px;
       margin: 40px auto 0;
 
       .ant-checkbox-wrapper {
@@ -101,6 +110,10 @@ const onFinish = async () => {
 
       .anticon {
         color: rgb(0 0 0 / 65%);
+      }
+
+      .ant-btn {
+        font-size: 15px;
       }
     }
   }

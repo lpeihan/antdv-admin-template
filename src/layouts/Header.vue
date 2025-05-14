@@ -26,24 +26,7 @@
     </div>
 
     <div class="layout-header-wrapper">
-      <icon
-        :icon="store.isDarkTheme ? 'brightness' : 'moon-stars'"
-        @click="store.setTheme(store.isDarkTheme ? Theme.Light : Theme.Dark)"
-      />
-
-      <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
-
-      <a-dropdown>
-        <template #overlay>
-          <a-menu :selectedKeys="[locale]" @click="({ key }) => setLocale(key)">
-            <a-menu-item v-for="item in SUPPORTED_LOCALES" :key="item.value">
-              {{ item.name }}
-            </a-menu-item>
-          </a-menu>
-        </template>
-
-        <icon :icon="GlobalOutlined" />
-      </a-dropdown>
+      <HeaderSettings />
 
       <a-dropdown>
         <template #overlay>
@@ -54,7 +37,7 @@
             </a-menu-item>
             <a-menu-item @click="store.logout">
               <LogoutOutlined />
-              {{ t('logout') }}
+              {{ t('common.logout') }}
             </a-menu-item>
           </a-menu>
         </template>
@@ -66,24 +49,20 @@
 
 <script setup>
 import {
-  FullscreenExitOutlined,
-  FullscreenOutlined,
-  GlobalOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ReloadOutlined,
   SettingOutlined,
 } from '@ant-design/icons-vue';
-import { useFullscreen } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
-import { setLocale, SUPPORTED_LOCALES } from '@/locales';
+import HeaderSettings from './HeaderSettings.vue';
+
 import { useStore } from '@/store';
-import { Theme } from '@/utils/constants';
 
 const props = defineProps({
   handleCollapse: {
@@ -101,8 +80,7 @@ const { useToken } = theme;
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
-const { locale, t } = useI18n();
-const { isFullscreen, toggle } = useFullscreen();
+const { t } = useI18n();
 const { token } = useToken();
 
 const userInfo = computed(() => store.userInfo || {});

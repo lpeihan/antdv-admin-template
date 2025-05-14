@@ -1,11 +1,15 @@
 <template>
   <a-config-provider
     :theme="{
-      algorithm: theme.defaultAlgorithm,
+      algorithm: store.isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
       token: { controlHeight: 42 },
     }"
   >
     <div class="login-page">
+      <div class="settings-wrapper">
+        <HeaderSettings />
+      </div>
+
       <div class="login-form">
         <div class="logo-wrapper">
           <img src="@/assets/images/logo.png" alt="logo" width="48" />
@@ -53,6 +57,7 @@ import { theme } from 'ant-design-vue';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
+import HeaderSettings from '@/layouts/HeaderSettings.vue';
 import { useStore } from '@/store';
 
 const store = useStore();
@@ -78,6 +83,15 @@ const onFinish = async () => {
   justify-content: center;
   height: 100vh;
 
+  .settings-wrapper {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+  }
+
   .login-form {
     .logo-wrapper {
       display: flex;
@@ -94,10 +108,6 @@ const onFinish = async () => {
     .ant-form {
       width: 400px;
       margin: 40px auto 0;
-
-      .anticon {
-        color: rgb(0 0 0 / 65%);
-      }
 
       .ant-btn {
         font-size: 15px;

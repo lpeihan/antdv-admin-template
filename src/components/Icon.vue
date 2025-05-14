@@ -1,6 +1,6 @@
 <template>
   <a-button
-    class="icon-wrapper"
+    class="icon-component"
     v-bind="$attrs"
     type="text"
     shape="circle"
@@ -25,7 +25,7 @@ defineEmits(['click']);
 </script>
 
 <style lang="less" scoped>
-.icon-wrapper {
+.icon-component {
   display: inline-flex;
   align-items: center;
   justify-content: center;

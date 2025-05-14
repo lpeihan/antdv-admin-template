@@ -1,7 +1,7 @@
 <template>
   <div class="basic-layout">
     <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="state.collapsed" width="256px" :theme="store.theme">
+      <a-layout-sider v-model:collapsed="state.collapsed" width="256px" :theme="themeStore.theme">
         <div class="logo-wrapper" @click="$router.push('/')">
           <img src="@/assets/images/logo.png" alt="logo" />
         </div>
@@ -25,10 +25,10 @@ import { reactive } from 'vue';
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
-import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 import storage from '@/utils/storage';
 
-const store = useStore();
+const themeStore = useThemeStore();
 
 const state = reactive({ collapsed: storage.getItem('collapsed') || false });
 

@@ -22,13 +22,13 @@
 
       <a-form-item label="主题颜色">
         <div class="theme-color-list">
-          <a-tooltip v-for="item in THEME_COLOR_LIST" :key="item.name" :title="item.name">
+          <a-tooltip v-for="item in themeStore.themeColorList" :key="item.name" :title="item.name">
             <div
               class="theme-color-item"
               :style="{ background: item.color }"
-              @click="store.setColorPrimary(item.color)"
+              @click="themeStore.setColorPrimary(item.color)"
             >
-              <svg-icon v-if="item.color === store.colorPrimary" name="check" />
+              <svg-icon v-if="item.color === themeStore.colorPrimary" name="check" />
             </div>
           </a-tooltip>
         </div>
@@ -67,10 +67,11 @@ import { message } from 'ant-design-vue';
 import { computed, reactive, ref } from 'vue';
 
 import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 import { sleep } from '@/utils';
-import { THEME_COLOR_LIST } from '@/utils/constants';
 
 const store = useStore();
+const themeStore = useThemeStore();
 
 const changePasswordForm = reactive({
   oldPassword: 'password',

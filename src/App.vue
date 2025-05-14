@@ -10,15 +10,15 @@ import { computed, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { getAntdLocale } from '@/locales';
-import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 
 const { locale } = useI18n();
-const store = useStore();
+const themeStore = useThemeStore();
 
 const themeConfig = computed(() => ({
-  algorithm: store.isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
+  algorithm: themeStore.isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
   token: {
-    colorPrimary: store.colorPrimary,
+    colorPrimary: themeStore.colorPrimary,
     controlHeight: 34,
   },
 }));

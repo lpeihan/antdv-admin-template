@@ -5,7 +5,7 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 import { i18n } from '@/locales';
 import router from '@/router';
-import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 
 import 'ant-design-vue/dist/reset.css';
 import '@/styles/index.less';
@@ -18,8 +18,9 @@ const bootstrap = () => {
 
   app.use(Antd).use(i18n).use(pinia).use(router);
 
-  const store = useStore();
-  store.initTheme();
+  const themeStore = useThemeStore();
+  themeStore.initTheme();
+  themeStore.initColorPrimary();
 
   app.mount('#app');
 };

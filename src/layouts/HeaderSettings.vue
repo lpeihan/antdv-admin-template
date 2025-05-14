@@ -1,7 +1,7 @@
 <template>
   <icon
-    :icon="store.isDarkTheme ? 'brightness' : 'moon-stars'"
-    @click="store.setTheme(store.isDarkTheme ? Theme.Light : Theme.Dark)"
+    :icon="themeStore.isDarkTheme ? 'brightness' : 'moon-stars'"
+    @click="themeStore.setTheme(themeStore.isDarkTheme ? 'light' : 'dark')"
   />
 
   <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
@@ -25,10 +25,9 @@ import { useFullscreen } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
-import { useStore } from '@/store';
-import { Theme } from '@/utils/constants';
+import { useThemeStore } from '@/store/theme';
 
-const store = useStore();
+const themeStore = useThemeStore();
 const { locale } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
 </script>

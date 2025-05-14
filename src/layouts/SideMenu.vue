@@ -3,7 +3,7 @@
     v-model:selectedKeys="state.selectedKeys"
     v-model:openKeys="state.openKeys"
     mode="inline"
-    :theme="store.theme"
+    :theme="themeStore.theme"
     :items="state.menuData"
     style="border: none"
     @select="handleSelect"
@@ -16,14 +16,14 @@ import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
 import routes from '@/router/routes';
-import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 import { hasRole } from '@/utils/auth';
 
 const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};
 
 const { locale, t } = useI18n();
-const store = useStore();
+const themeStore = useThemeStore();
 const route = useRoute();
 const router = useRouter();
 

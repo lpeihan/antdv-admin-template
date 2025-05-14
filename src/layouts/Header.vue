@@ -1,7 +1,7 @@
 <template>
   <a-layout-header
     :style="{
-      background: store.isDarkTheme ? token.colorBgContainer : 'var(--white)',
+      background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--white)',
     }"
   >
     <div class="layout-header-wrapper">
@@ -63,6 +63,7 @@ import { useRoute, useRouter } from 'vue-router';
 import HeaderSettings from './HeaderSettings.vue';
 
 import { useStore } from '@/store';
+import { useThemeStore } from '@/store/theme';
 
 const props = defineProps({
   handleCollapse: {
@@ -80,6 +81,7 @@ const { useToken } = theme;
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
+const themeStore = useThemeStore();
 const { t } = useI18n();
 const { token } = useToken();
 

@@ -11,6 +11,7 @@
           <img src="@/assets/images/logo.png" alt="logo" width="48" />
           <span class="logo-text">Antdv Admin</span>
         </div>
+
         <a-form :model="form" name="basic" autocomplete="off" @finish="onFinish">
           <a-form-item name="username" :rules="{ required: true, message: '' }">
             <a-input v-model:value="form.username" :placeholder="$t('username')">
@@ -28,17 +29,19 @@
             </a-input-password>
           </a-form-item>
 
-          <a-form-item name="remember">
+          <div class="remember-me">
             <a-checkbox v-model:checked="form.remember">
               {{ $t('remember') }}
             </a-checkbox>
-          </a-form-item>
 
-          <a-form-item>
-            <a-button type="primary" html-type="submit" block>
-              {{ $t('common.login') }}
-            </a-button>
-          </a-form-item>
+            <a>
+              {{ $t('common.forgotPassword') }}
+            </a>
+          </div>
+
+          <a-button type="primary" html-type="submit" block>
+            {{ $t('common.login') }}
+          </a-button>
         </a-form>
       </div>
     </div>
@@ -51,28 +54,18 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { useStore } from '@/store';
-import storage from '@/utils/storage';
 
 const store = useStore();
 const router = useRouter();
 
 const form = reactive({
-  username: storage.getItem('username') || '',
-  password: storage.getItem('password') || '',
-  remember: !!storage.getItem('username'),
-  verifyCode: 0,
+  username: 'User',
+  password: '123456',
+  remember: true,
 });
 
 const onFinish = async () => {
   await store.login(form);
-
-  if (form.remember) {
-    storage.setItem('username', form.username);
-    storage.setItem('password', form.password);
-  } else {
-    storage.removeItem('username');
-    storage.removeItem('password');
-  }
 
   router.push('/');
 };
@@ -86,17 +79,15 @@ const onFinish = async () => {
   height: 100vh;
 
   .login-form {
-    width: 400px;
-
     .logo-wrapper {
       display: flex;
+      gap: 12px;
       align-items: center;
       justify-content: center;
 
       .logo-text {
-        margin-left: 20px;
-        font-size: 24px;
-        font-weight: bold;
+        font-size: 20px;
+        font-weight: 600;
       }
     }
 
@@ -104,16 +95,23 @@ const onFinish = async () => {
       width: 400px;
       margin: 40px auto 0;
 
-      .ant-checkbox-wrapper {
-        color: var(--primary-color);
-      }
-
       .anticon {
         color: rgb(0 0 0 / 65%);
       }
 
       .ant-btn {
         font-size: 15px;
+      }
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 32px 0;
+
+      a {
+        color: var(--primary-color);
       }
     }
   }

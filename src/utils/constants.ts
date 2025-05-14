@@ -1,5 +1,4 @@
-export const CODE_SUCCESS = '0000';
-export const CODE_TOKEN_EXPIRED = 'E0002';
+export const CODE_SUCCESS = 200;
 
 export const THEME_COLOR_LIST = [
   { name: '默认', color: '#00b96b' },

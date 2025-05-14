@@ -54,7 +54,7 @@
             </a-menu-item>
             <a-menu-item @click="store.logout">
               <LogoutOutlined />
-              {{ t('common.logout') }}
+              {{ t('logout') }}
             </a-menu-item>
           </a-menu>
         </template>
@@ -101,7 +101,7 @@ const { useToken } = theme;
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
-const { t } = useI18n();
+const { locale, t } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
 const { token } = useToken();
 

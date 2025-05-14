@@ -48,13 +48,3 @@ export function getUUID() {
   const uuid = s.join('');
   return uuid.slice(0, 8);
 }
-
-export function formatWalletAddress(walletAddress) {
-  if (!walletAddress) {
-    return;
-  }
-
-  return (
-    walletAddress.substring(0, 7) + '......' + walletAddress.substring(walletAddress.length - 7)
-  );
-}

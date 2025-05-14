@@ -20,7 +20,6 @@ const bootstrap = () => {
 
   const store = useStore();
   store.initTheme();
-  store.fetchSystemConfig();
 
   app.mount('#app');
 };

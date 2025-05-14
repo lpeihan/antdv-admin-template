@@ -4,21 +4,15 @@ import storage from '@/utils/storage';
 const TOKEN = 'token';
 
 export function hasRole(roles) {
-  if (isLogin()) {
-    return true;
-  }
-
   const store = useStore();
 
   return store.userInfo.roles.some((role) => roles?.includes(role));
 }
 
 export function isLogin() {
-  return !!getToken();
-}
+  const token = storage.getItem(TOKEN);
 
-export function getToken() {
-  return storage.getItem(TOKEN);
+  return !!token;
 }
 
 export function setToken(token) {

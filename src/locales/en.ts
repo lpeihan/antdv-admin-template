@@ -3,6 +3,7 @@ export default {
     copied: 'Copied',
     login: 'Login',
     logout: 'Logout',
+    forgotPassword: 'Forgot Password',
   },
   accountSettings: 'Account Settings',
   username: 'Username',

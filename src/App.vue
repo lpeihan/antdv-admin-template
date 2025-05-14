@@ -18,7 +18,7 @@ const store = useStore();
 const themeConfig = computed(() => ({
   algorithm: store.isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
   token: {
-    colorPrimary: store.themeColor,
+    colorPrimary: store.colorPrimary,
     controlHeight: 34,
   },
 }));

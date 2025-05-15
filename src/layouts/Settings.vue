@@ -1,5 +1,5 @@
 <template>
-  <a-popover v-model:open="state.isOpenTheme" title="" trigger="click">
+  <a-popover v-model:open="state.isOpenTheme" title="">
     <template #content>
       <div class="theme-color-list">
         <div
@@ -16,12 +16,7 @@
     <icon icon="palette" />
   </a-popover>
 
-  <icon
-    :icon="themeStore.isDarkTheme ? 'brightness' : 'moon-stars'"
-    @click="themeStore.toggleTheme"
-  />
-
-  <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
+  <icon :icon="themeStore.isDarkTheme ? 'brightness' : 'moon'" @click="themeStore.toggleTheme" />
 
   <a-dropdown>
     <template #overlay>
@@ -34,6 +29,8 @@
 
     <icon :icon="GlobalOutlined" />
   </a-dropdown>
+
+  <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
 </template>
 
 <script setup>

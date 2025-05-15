@@ -1,7 +1,7 @@
 <template>
   <icon
-    :icon="themeStore.isDarkTheme ? 'brightness' : 'moon-stars'"
-    @click="themeStore.setTheme(themeStore.isDarkTheme ? 'light' : 'dark')"
+    :icon="themeStore.theme === 'dark' ? 'brightness' : 'moon-stars'"
+    @click="themeStore.toggleTheme"
   />
 
   <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />

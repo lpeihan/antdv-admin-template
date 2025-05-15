@@ -1,3 +1,4 @@
+import { theme } from 'ant-design-vue';
 import { defineStore } from 'pinia';
 
 import storage from '@/utils/storage';
@@ -26,6 +27,9 @@ export const useThemeStore = defineStore('theme', {
       storage.setItem('theme', this.theme);
       document.documentElement.setAttribute('data-theme', this.theme);
     },
+    toggleTheme() {
+      this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
+    },
     setColorPrimary(color) {
       this.colorPrimary = color;
 
@@ -45,6 +49,12 @@ export const useThemeStore = defineStore('theme', {
   },
   getters: {
     themeColorList: () => THEME_COLOR_LIST,
-    isDarkTheme: (state) => state.theme === 'dark',
+    antdThemeConfig: (state) => ({
+      algorithm: state.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      token: {
+        colorPrimary: state.colorPrimary,
+        controlHeight: 34,
+      },
+    }),
   },
 });

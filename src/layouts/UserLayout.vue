@@ -1,7 +1,6 @@
 <template>
   <a-config-provider
     :theme="{
-      algorithm: themeStore.isDarkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
       token: { controlHeight: 42 },
     }"
   >
@@ -10,14 +9,6 @@
     </div>
   </a-config-provider>
 </template>
-
-<script setup>
-import { theme } from 'ant-design-vue';
-
-import { useThemeStore } from '@/store/theme';
-
-const themeStore = useThemeStore();
-</script>
 
 <style lang="less" scoped>
 .user-layout {

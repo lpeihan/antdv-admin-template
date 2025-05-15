@@ -1,7 +1,7 @@
 <template>
   <a-layout-header
     :style="{
-      background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--white)',
+      background: themeStore.theme === 'dark' ? token.colorBgContainer : 'var(--white)',
     }"
   >
     <div class="layout-header-wrapper">

@@ -7,6 +7,7 @@ import 'dayjs/locale/en';
 
 import zhCN from './zh-CN';
 
+import { setLocaleEventBus } from '@/utils/eventBus';
 import storage from '@/utils/storage';
 
 const DEFAULT_LANG = 'zh-CN';
@@ -23,6 +24,7 @@ export function getLocale() {
 
 export function getAntdLocale() {
   const locale = getLocale();
+
   const antdLocales = {
     'zh-CN': zhCN_antd,
     en: enUS_antd,
@@ -52,7 +54,6 @@ function setupLocale() {
     },
   });
 
-  dayjs.locale(getDayjsLocale(locale));
   setLocale(locale);
 
   return i18n;
@@ -76,6 +77,9 @@ export async function setLocale(locale) {
 
   i18n.global.setLocaleMessage(locale, messages.default);
   i18n.global.locale.value = locale;
+  dayjs.locale(getDayjsLocale(locale));
 
   storage.setItem('locale', locale);
+
+  setLocaleEventBus.emit(locale);
 }

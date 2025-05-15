@@ -1,3 +1,3 @@
 import { useEventBus } from '@vueuse/core';
 
-export const RELOAD_EVENT_BUS = useEventBus('reload');
+export const setLocaleEventBus = useEventBus('SET_LOCALE');

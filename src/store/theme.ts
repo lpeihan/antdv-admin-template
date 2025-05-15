@@ -4,7 +4,6 @@ import { defineStore } from 'pinia';
 import storage from '@/utils/storage';
 
 const COLOR_PRIMARY_LIST = [
-  '#00b96b',
   '#f7234f',
   '#FA541C',
   '#FAAD14',
@@ -25,7 +24,7 @@ const isDarkTheme = (theme: Theme) => theme === Theme.Dark;
 export const useThemeStore = defineStore('theme', {
   state: () => ({
     theme: storage.getItem('theme') || Theme.Light,
-    colorPrimary: storage.getItem('colorPrimary') || COLOR_PRIMARY_LIST[0],
+    colorPrimary: storage.getItem('colorPrimary') || '#1890FF',
   }),
   actions: {
     setTheme(theme) {

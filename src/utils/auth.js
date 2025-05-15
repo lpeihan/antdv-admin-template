@@ -6,13 +6,19 @@ const TOKEN = 'token';
 export function hasRole(roles) {
   const store = useStore();
 
-  return store.userInfo.roles.some((role) => roles?.includes(role));
+  if (isLogin()) {
+    return store.userInfo.roles.some((role) => roles?.includes(role));
+  }
+
+  return false;
 }
 
 export function isLogin() {
-  const token = storage.getItem(TOKEN);
+  return !!getToken();
+}
 
-  return !!token;
+export function getToken() {
+  return storage.getItem(TOKEN);
 }
 
 export function setToken(token) {

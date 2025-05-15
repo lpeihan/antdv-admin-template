@@ -19,20 +19,6 @@
           修改密码
         </a-button>
       </a-form-item>
-
-      <a-form-item label="主题颜色">
-        <div class="theme-color-list">
-          <a-tooltip v-for="item in themeStore.themeColorList" :key="item.name" :title="item.name">
-            <div
-              class="theme-color-item"
-              :style="{ background: item.color }"
-              @click="themeStore.setColorPrimary(item.color)"
-            >
-              <svg-icon v-if="item.color === themeStore.colorPrimary" name="check" />
-            </div>
-          </a-tooltip>
-        </div>
-      </a-form-item>
     </a-form>
 
     <a-modal
@@ -67,11 +53,9 @@ import { message } from 'ant-design-vue';
 import { computed, reactive, ref } from 'vue';
 
 import { useStore } from '@/store';
-import { useThemeStore } from '@/store/theme';
 import { sleep } from '@/utils';
 
 const store = useStore();
-const themeStore = useThemeStore();
 
 const changePasswordForm = reactive({
   oldPassword: 'password',
@@ -108,23 +92,6 @@ const handleChangePassword = () => {
 .user-name {
   font-weight: bold;
   color: var(--primary-color);
-}
-
-.theme-color-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-
-  .theme-color-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    color: var(--white);
-    cursor: pointer;
-    border-radius: 2px;
-  }
 }
 
 .change-password-form {

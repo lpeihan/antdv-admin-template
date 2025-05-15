@@ -4,15 +4,15 @@ import { defineStore } from 'pinia';
 import storage from '@/utils/storage';
 
 const THEME_COLOR_LIST = [
-  { name: '默认', color: '#00b96b' },
-  { name: '薄暮', color: '#f7234f' },
-  { name: '火山', color: '#FA541C' },
-  { name: '日暮', color: '#FAAD14' },
-  { name: '明青', color: '#13C2C2' },
-  { name: '极光绿', color: '#52C41A' },
-  { name: '拂晓蓝', color: '#1890FF' },
-  { name: '极客蓝', color: '#2F54EB' },
-  { name: '酱紫', color: '#722ED1' },
+  '#00b96b',
+  '#f7234f',
+  '#FA541C',
+  '#FAAD14',
+  '#13C2C2',
+  '#52C41A',
+  '#1890FF',
+  '#2F54EB',
+  '#722ED1',
 ];
 
 enum Theme {
@@ -25,7 +25,7 @@ const isDarkTheme = (theme: Theme) => theme === Theme.Dark;
 export const useThemeStore = defineStore('theme', {
   state: () => ({
     theme: storage.getItem('theme') || Theme.Light,
-    colorPrimary: storage.getItem('colorPrimary') || THEME_COLOR_LIST[0].color,
+    colorPrimary: storage.getItem('colorPrimary') || THEME_COLOR_LIST[0],
   }),
   actions: {
     setTheme(theme) {

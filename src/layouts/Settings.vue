@@ -6,7 +6,6 @@
           v-for="color in themeStore.colorPrimaryList"
           :key="color"
           class="color-primary-item"
-          :class="{ selected: color === themeStore.colorPrimary }"
           :style="{ background: color }"
           @click="handleChangeColorPrimary(color)"
         >

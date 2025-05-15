@@ -51,7 +51,7 @@ export const useThemeStore = defineStore('theme', {
     },
   },
   getters: {
-    themeColorList: () => COLOR_PRIMARY_LIST,
+    colorPrimaryList: () => COLOR_PRIMARY_LIST,
     isDarkTheme: (state) => isDarkTheme(state.theme),
     antdThemeConfig: (state) => ({
       algorithm: isDarkTheme(state.theme) ? theme.darkAlgorithm : theme.defaultAlgorithm,

@@ -1,7 +1,7 @@
 <template>
   <div class="basic-layout">
     <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="state.collapsed" width="256px" :theme="themeStore.theme">
+      <a-layout-sider v-model:collapsed="state.collapsed" width="240px" :theme="themeStore.theme">
         <div class="logo-wrapper" @click="$router.push('/')">
           <img src="@/assets/images/logo.png" alt="logo" />
         </div>
@@ -11,7 +11,7 @@
       <a-layout>
         <Header :handle-collapse="handleCollapse" :collapsed="state.collapsed" />
 
-        <a-layout-content style="padding: 16px">
+        <a-layout-content style="padding: 12px">
           <router-view />
         </a-layout-content>
       </a-layout>
@@ -49,7 +49,7 @@ const handleCollapse = () => {
     cursor: pointer;
 
     img {
-      width: 32px;
+      width: 36px;
     }
   }
 

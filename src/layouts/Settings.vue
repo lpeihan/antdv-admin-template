@@ -1,17 +1,18 @@
 <template>
-  <a-popover v-model:open="state.isOpenTheme" title="">
+  <a-popover>
     <template #content>
-      <div class="theme-color-list">
+      <a-flex gap="small">
         <div
-          v-for="item in themeStore.themeColorList"
-          :key="item"
-          class="theme-color-item"
-          :style="{ background: item }"
-          @click="handleChangeTheme(item)"
+          v-for="color in themeStore.colorPrimaryList"
+          :key="color"
+          class="color-primary-item"
+          :class="{ selected: color === themeStore.colorPrimary }"
+          :style="{ background: color }"
+          @click="handleChangeColorPrimary(color)"
         >
-          <svg-icon v-if="item === themeStore.colorPrimary" name="check" />
+          <svg-icon v-if="color === themeStore.colorPrimary" name="check" />
         </div>
-      </div>
+      </a-flex>
     </template>
     <icon icon="palette" />
   </a-popover>
@@ -36,7 +37,6 @@
 <script setup>
 import { FullscreenExitOutlined, FullscreenOutlined, GlobalOutlined } from '@ant-design/icons-vue';
 import { useFullscreen } from '@vueuse/core';
-import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
@@ -46,30 +46,19 @@ const themeStore = useThemeStore();
 const { locale } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
 
-const state = reactive({
-  isOpenTheme: false,
-});
-
-const handleChangeTheme = (color) => {
+const handleChangeColorPrimary = (color) => {
   themeStore.setColorPrimary(color);
-  state.isOpenTheme = false;
 };
 </script>
 
 <style lang="less" scoped>
-.theme-color-list {
+.color-primary-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  .theme-color-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    border-radius: 2px;
-  }
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 2px;
 }
 </style>

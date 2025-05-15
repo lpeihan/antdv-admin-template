@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 
-export function formatTime(date, format = 'YYYY-MM-DD HH:mm:ss') {
-  if (!date) {
+export function formatTime(time, format = 'YYYY-MM-DD HH:mm:ss') {
+  if (!time) {
     return null;
   }
 
-  return dayjs(date).format(format);
+  return dayjs(time).format(format);
 }

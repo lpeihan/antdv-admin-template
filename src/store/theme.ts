@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 
 import storage from '@/utils/storage';
 
-const THEME_COLOR_LIST = [
+const COLOR_PRIMARY_LIST = [
   '#00b96b',
   '#f7234f',
   '#FA541C',
@@ -25,7 +25,7 @@ const isDarkTheme = (theme: Theme) => theme === Theme.Dark;
 export const useThemeStore = defineStore('theme', {
   state: () => ({
     theme: storage.getItem('theme') || Theme.Light,
-    colorPrimary: storage.getItem('colorPrimary') || THEME_COLOR_LIST[0],
+    colorPrimary: storage.getItem('colorPrimary') || COLOR_PRIMARY_LIST[0],
   }),
   actions: {
     setTheme(theme) {
@@ -51,7 +51,7 @@ export const useThemeStore = defineStore('theme', {
     },
   },
   getters: {
-    themeColorList: () => THEME_COLOR_LIST,
+    themeColorList: () => COLOR_PRIMARY_LIST,
     isDarkTheme: (state) => isDarkTheme(state.theme),
     antdThemeConfig: (state) => ({
       algorithm: isDarkTheme(state.theme) ? theme.darkAlgorithm : theme.defaultAlgorithm,

@@ -7,7 +7,6 @@ import 'dayjs/locale/en';
 
 import zhCN from './zh-CN';
 
-import { setLocaleEventBus } from '@/utils/eventBus';
 import storage from '@/utils/storage';
 
 const DEFAULT_LANG = 'zh-CN';
@@ -80,6 +79,4 @@ export async function setLocale(locale) {
   dayjs.locale(getDayjsLocale(locale));
 
   storage.setItem('locale', locale);
-
-  setLocaleEventBus.emit(locale);
 }

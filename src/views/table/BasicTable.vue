@@ -44,7 +44,7 @@
 import { fetchUserListApi } from '@/api';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useTable } from '@/hooks/useTable';
-import { formatDate } from '@/utils';
+import { formatTime } from '@/utils/formatter';
 
 const columns = [
   {
@@ -110,8 +110,8 @@ const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   selectable: true,
   formatter: (item) => ({
     ...item,
-    created_at: formatDate(item.created_at),
-    updated_at: formatDate(item.updated_at),
+    created_at: formatTime(item.created_at),
+    updated_at: formatTime(item.updated_at),
   }),
 });
 </script>

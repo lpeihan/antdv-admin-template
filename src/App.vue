@@ -5,19 +5,20 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { getAntdLocale } from '@/locales';
 import { useThemeStore } from '@/store/theme';
-import { setLocaleEventBus } from '@/utils/eventBus';
 
 const themeStore = useThemeStore();
+const { locale } = useI18n();
 
 const state = reactive({
   antdLocale: getAntdLocale(),
 });
 
-setLocaleEventBus.on(() => {
+watch(locale, () => {
   state.antdLocale = getAntdLocale();
 });
 </script>

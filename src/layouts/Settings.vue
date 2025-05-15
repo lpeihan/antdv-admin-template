@@ -1,6 +1,6 @@
 <template>
   <icon
-    :icon="themeStore.theme === 'dark' ? 'brightness' : 'moon-stars'"
+    :icon="themeStore.isDarkTheme ? 'brightness' : 'moon-stars'"
     @click="themeStore.toggleTheme"
   />
 

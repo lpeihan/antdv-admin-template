@@ -1,13 +1,3 @@
-import dayjs from 'dayjs';
-
-export function formatDate(date, format = 'YYYY-MM-DD HH:mm:ss') {
-  if (!date) {
-    return null;
-  }
-
-  return dayjs(date).format(format);
-}
-
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function getQueryString(name, url) {

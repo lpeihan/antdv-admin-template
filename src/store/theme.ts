@@ -15,10 +15,17 @@ const THEME_COLOR_LIST = [
   { name: '酱紫', color: '#722ED1' },
 ];
 
+enum Theme {
+  Light = 'light',
+  Dark = 'dark',
+}
+
+const isDarkTheme = (theme: Theme) => theme === Theme.Dark;
+
 export const useThemeStore = defineStore('theme', {
   state: () => ({
-    theme: '',
-    colorPrimary: '',
+    theme: storage.getItem('theme') || Theme.Light,
+    colorPrimary: storage.getItem('colorPrimary') || THEME_COLOR_LIST[0].color,
   }),
   actions: {
     setTheme(theme) {
@@ -28,7 +35,7 @@ export const useThemeStore = defineStore('theme', {
       document.documentElement.setAttribute('data-theme', this.theme);
     },
     toggleTheme() {
-      this.setTheme(this.theme === 'dark' ? 'light' : 'dark');
+      this.setTheme(this.isDarkTheme ? Theme.Light : Theme.Dark);
     },
     setColorPrimary(color) {
       this.colorPrimary = color;
@@ -37,20 +44,17 @@ export const useThemeStore = defineStore('theme', {
       document.documentElement.style.setProperty('--primary-color', this.colorPrimary);
     },
     initTheme() {
-      const theme = storage.getItem('theme') || 'light';
-
-      this.setTheme(theme);
+      this.setTheme(this.theme);
     },
     initColorPrimary() {
-      const colorPrimary = storage.getItem('colorPrimary') || THEME_COLOR_LIST[0].color;
-
-      this.setColorPrimary(colorPrimary);
+      this.setColorPrimary(this.colorPrimary);
     },
   },
   getters: {
     themeColorList: () => THEME_COLOR_LIST,
+    isDarkTheme: (state) => isDarkTheme(state.theme),
     antdThemeConfig: (state) => ({
-      algorithm: state.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+      algorithm: isDarkTheme(state.theme) ? theme.darkAlgorithm : theme.defaultAlgorithm,
       token: {
         colorPrimary: state.colorPrimary,
         controlHeight: 34,

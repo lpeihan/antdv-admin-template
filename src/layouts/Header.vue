@@ -26,7 +26,7 @@
     </div>
 
     <div class="layout-header-wrapper">
-      <HeaderSettings />
+      <Settings />
 
       <a-dropdown>
         <template #overlay>
@@ -60,7 +60,7 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
-import HeaderSettings from './HeaderSettings.vue';
+import Settings from './Settings.vue';
 
 import { useStore } from '@/store';
 import { useThemeStore } from '@/store/theme';

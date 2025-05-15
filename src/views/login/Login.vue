@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <div class="settings-wrapper">
-      <HeaderSettings />
+      <Settings />
     </div>
 
     <div class="login-form">
@@ -49,7 +49,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
-import HeaderSettings from '@/layouts/HeaderSettings.vue';
+import Settings from '@/layouts/Settings.vue';
 import { useStore } from '@/store';
 
 const store = useStore();

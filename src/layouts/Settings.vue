@@ -8,9 +8,7 @@
           class="color-primary-item"
           :style="{ background: color }"
           @click="handleChangeColorPrimary(color)"
-        >
-          <svg-icon v-if="color === themeStore.colorPrimary" name="check" />
-        </div>
+        />
       </a-flex>
     </template>
     <icon icon="palette" />
@@ -52,12 +50,9 @@ const handleChangeColorPrimary = (color) => {
 
 <style lang="less" scoped>
 .color-primary-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 30px;
   height: 30px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: var(--border-radius);
 }
 </style>

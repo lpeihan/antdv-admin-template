@@ -19,7 +19,7 @@ enum Theme {
   Dark = 'dark',
 }
 
-const isDarkTheme = (theme: Theme) => theme === Theme.Dark;
+const isDarkTheme = (theme) => theme === Theme.Dark;
 
 export const useThemeStore = defineStore('theme', {
   state: () => ({
@@ -56,7 +56,8 @@ export const useThemeStore = defineStore('theme', {
       algorithm: isDarkTheme(state.theme) ? theme.darkAlgorithm : theme.defaultAlgorithm,
       token: {
         colorPrimary: state.colorPrimary,
-        controlHeight: 34,
+        controlHeight: 36,
+        borderRadius: 4,
       },
     }),
   },

@@ -98,12 +98,8 @@ const onFinish = async () => {
     }
 
     .ant-form {
-      width: 400px;
+      width: 360px;
       margin: 40px auto 0;
-
-      .ant-btn {
-        font-size: 15px;
-      }
     }
 
     .remember-me {

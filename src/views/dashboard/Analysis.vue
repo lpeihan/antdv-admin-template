@@ -1,24 +1,26 @@
 <template>
   <div class="analysis-page">
-    <div class="overview-list">
-      <a-card v-for="overview in overviews" :key="overview.title" hoverable class="overview-item">
-        <div class="title">
-          {{ overview.title }}
-        </div>
-
-        <div class="icon-wrapper">
-          <div class="value">{{ overview.value.toLocaleString() }}</div>
-          <svg-icon :name="overview.icon" />
-        </div>
-
-        <div class="total-wrapper">
-          <div class="total-title">{{ overview.totalTitle }}</div>
-          <div class="total-value">
-            {{ overview.totalValue.toLocaleString() }}
+    <a-row :gutter="[12, 12]">
+      <a-col v-for="item in overviews" :key="item.title" :xs="24" :sm="12" :lg="6">
+        <a-card hoverable class="overview-item">
+          <div class="title">
+            {{ item.title }}
           </div>
-        </div>
-      </a-card>
-    </div>
+
+          <div class="icon-wrapper">
+            <div class="value">{{ item.value.toLocaleString() }}</div>
+            <svg-icon :name="item.icon" />
+          </div>
+
+          <div class="total-wrapper">
+            <div class="total-title">{{ item.totalTitle }}</div>
+            <div class="total-value">
+              {{ item.totalValue.toLocaleString() }}
+            </div>
+          </div>
+        </a-card>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -62,40 +64,32 @@ const overviews = computed(() => [
 
 <style lang="less" scoped>
 .analysis-page {
-  .overview-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+  .overview-item {
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-    .overview-item {
-      flex: 1;
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
 
-      .title {
-        font-size: 16px;
-        font-weight: bold;
+      .value {
+        font-size: 18px;
       }
 
-      .icon-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-
-        .value {
-          font-size: 18px;
-        }
-
-        .svg-icon {
-          width: 40px;
-          height: 40px;
-        }
+      .svg-icon {
+        width: 40px;
+        height: 40px;
       }
+    }
 
-      .total-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+    .total-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }

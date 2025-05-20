@@ -4,7 +4,7 @@
       background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--white)',
     }"
   >
-    <div class="layout-header-wrapper">
+    <a-flex gap="small" align="center">
       <icon
         :icon="props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
         @click="props.handleCollapse"
@@ -12,7 +12,7 @@
 
       <icon :icon="ReloadOutlined" @click="handleReload" />
 
-      <a-breadcrumb class="breadcrumb">
+      <a-breadcrumb style="margin-left: 4px">
         <a-breadcrumb-item
           v-for="(breadcrumb, index) in breadcrumbs"
           :key="index"
@@ -23,7 +23,7 @@
           <span>{{ breadcrumb.name }}</span>
         </a-breadcrumb-item>
       </a-breadcrumb>
-    </div>
+    </a-flex>
 
     <Settings />
   </a-layout-header>
@@ -100,17 +100,5 @@ const navigateTo = (breadcrumb) => {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  line-height: normal;
-  background: var(--white);
-
-  .layout-header-wrapper {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-
-    .breadcrumb {
-      margin-left: 10px;
-    }
-  }
 }
 </style>

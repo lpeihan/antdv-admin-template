@@ -79,9 +79,6 @@ const onFinish = async () => {
     position: fixed;
     top: 16px;
     right: 16px;
-    display: flex;
-    gap: 2px;
-    align-items: center;
   }
 
   .login-form {

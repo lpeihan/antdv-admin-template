@@ -25,36 +25,12 @@
       </a-breadcrumb>
     </div>
 
-    <div class="layout-header-wrapper">
-      <Settings />
-
-      <a-dropdown>
-        <template #overlay>
-          <a-menu>
-            <a-menu-item @click="$router.push('/accountSettings')">
-              <SettingOutlined />
-              {{ t('accountSettings') }}
-            </a-menu-item>
-            <a-menu-item @click="store.logout">
-              <LogoutOutlined />
-              {{ t('common.logout') }}
-            </a-menu-item>
-          </a-menu>
-        </template>
-        <a-avatar :src="userInfo.avatar" class="user-avatar" />
-      </a-dropdown>
-    </div>
+    <Settings />
   </a-layout-header>
 </template>
 
 <script setup>
-import {
-  LogoutOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ReloadOutlined,
-  SettingOutlined,
-} from '@ant-design/icons-vue';
+import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -62,7 +38,6 @@ import { useRoute, useRouter } from 'vue-router';
 
 import Settings from './Settings.vue';
 
-import { useStore } from '@/store';
 import { useThemeStore } from '@/store/theme';
 
 const props = defineProps({
@@ -80,12 +55,10 @@ const { useToken } = theme;
 
 const route = useRoute();
 const router = useRouter();
-const store = useStore();
 const themeStore = useThemeStore();
 const { t } = useI18n();
 const { token } = useToken();
 
-const userInfo = computed(() => store.userInfo || {});
 const breadcrumbs = computed(() => {
   const pathArray = route.path.split('/').filter((p) => p);
   return pathArray.map((path, index) => {
@@ -137,11 +110,6 @@ const navigateTo = (breadcrumb) => {
 
     .breadcrumb {
       margin-left: 10px;
-    }
-
-    .user-avatar {
-      margin-left: 10px;
-      cursor: pointer;
     }
   }
 }

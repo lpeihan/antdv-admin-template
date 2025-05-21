@@ -19,7 +19,7 @@
           :style="{ cursor: breadcrumb.clickable ? 'pointer' : null }"
           @click="breadcrumb.clickable && navigateTo(breadcrumb)"
         >
-          <component :is="breadcrumb.icon" v-if="breadcrumb.icon" />
+          <!-- <component :is="breadcrumb.icon" v-if="breadcrumb.icon" /> -->
           <span>{{ breadcrumb.name }}</span>
         </a-breadcrumb-item>
       </a-breadcrumb>

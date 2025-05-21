@@ -1,7 +1,7 @@
 export default {
   // common
   copied: 'Copied',
-  accountSettings: 'Account Settings',
+  profile: 'Your Profile',
 
   // login
   login: 'Login',

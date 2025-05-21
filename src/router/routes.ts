@@ -28,15 +28,14 @@ const routes = [
         name: 'dashboard',
         meta: {
           icon: DashboardOutlined,
-          title: 'dashboard',
-          roles: ['admin', 'user'],
+          title: '仪表盘',
         },
         component: RouterView,
         children: [
           {
             path: '/dashboard/analysis',
             name: 'analysis',
-            meta: { title: 'analysis', roles: ['admin', 'user'] },
+            meta: { title: '分析' },
             component: () => import('@/views/dashboard/Analysis.vue'),
           },
         ],
@@ -44,26 +43,26 @@ const routes = [
       {
         path: '/table',
         name: 'table',
-        meta: { icon: TableOutlined, title: 'table', roles: ['admin', 'user'] },
+        meta: { icon: TableOutlined, title: '表格' },
         component: RouterView,
         children: [
           {
             path: '/table/basic',
             name: 'basicTable',
-            meta: { title: 'basicTable', roles: ['admin', 'user'] },
+            meta: { title: '基础表格' },
             component: () => import('@/views/table/BasicTable.vue'),
           },
         ],
       },
       {
-        path: '/accountSettings',
-        name: 'accountSettings',
+        path: '/profile',
+        name: 'profile',
         meta: {
           icon: SettingOutlined,
-          title: 'accountSettings',
-          roles: ['admin', 'user'],
+          title: 'profile',
         },
-        component: () => import('@/views/settings/AccountSettings.vue'),
+        component: () => import('@/views/profile/Profile.vue'),
+        hideInMenu: true,
       },
       {
         path: '/404',

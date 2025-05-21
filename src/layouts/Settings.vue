@@ -35,13 +35,13 @@
       <a-dropdown>
         <template #overlay>
           <a-menu>
-            <a-menu-item @click="$router.push('/accountSettings')">
+            <a-menu-item @click="$router.push('/profile')">
               <SettingOutlined />
-              {{ $t('accountSettings') }}
+              <span class="menu-item-text">{{ $t('profile') }}</span>
             </a-menu-item>
             <a-menu-item @click="store.logout">
               <LogoutOutlined />
-              {{ $t('logout') }}
+              <span class="menu-item-text">{{ $t('logout') }}</span>
             </a-menu-item>
           </a-menu>
         </template>
@@ -83,5 +83,9 @@ const { isFullscreen, toggle } = useFullscreen();
 .user-avatar {
   margin-left: 8px;
   cursor: pointer;
+}
+
+.menu-item-text {
+  margin-left: 8px;
 }
 </style>

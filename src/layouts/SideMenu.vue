@@ -31,7 +31,7 @@ const getMenuData = (items = [], parentKeys = [], selectedKey) => {
   const menuData = [];
 
   for (const item of items) {
-    if (item.meta && !hasRole(item.meta.roles)) {
+    if (item.meta && item.meta.roles && !hasRole(item.meta.roles)) {
       continue;
     }
 

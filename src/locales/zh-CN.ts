@@ -1,7 +1,7 @@
 export default {
   // common
   copied: '复制成功',
-  accountSettings: '账号设置',
+  profile: '账户设置',
 
   // login
   login: '登录',

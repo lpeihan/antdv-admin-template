@@ -97,10 +97,10 @@ watch(
 <style lang="less" scoped>
 .ant-menu {
   &.ant-menu-dark {
-    background: var(--ant-bg-container);
+    background: var(--dark-bg-color);
 
     :deep(.ant-menu-inline) {
-      background: var(--ant-bg-container);
+      background: var(--dark-bg-color);
     }
   }
 }

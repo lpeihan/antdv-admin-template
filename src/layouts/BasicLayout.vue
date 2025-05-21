@@ -30,7 +30,7 @@ import storage from '@/utils/storage';
 
 const themeStore = useThemeStore();
 
-const state = reactive({ collapsed: storage.getItem('collapsed') || false });
+const state = reactive({ collapsed: !!storage.getItem('collapsed') });
 
 const handleCollapse = () => {
   state.collapsed = !state.collapsed;

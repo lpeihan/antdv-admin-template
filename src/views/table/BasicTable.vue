@@ -19,12 +19,6 @@
             <a-avatar :src="text" />
           </template>
 
-          <template v-if="column.dataIndex === 'status'">
-            <a-tag :color="text === 'active' ? 'green' : 'red'">
-              {{ text }}
-            </a-tag>
-          </template>
-
           <template v-if="column.dataIndex === 'email'">
             <a @click="copy(text)">
               {{ text }}
@@ -59,7 +53,7 @@ const columns = [
     title: '用户名',
     dataIndex: 'name',
     align: 'center',
-    width: 150,
+    width: 200,
   },
   {
     title: '头像',
@@ -72,12 +66,6 @@ const columns = [
     dataIndex: 'email',
     align: 'center',
     width: 200,
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    align: 'center',
-    width: 150,
   },
   {
     title: '创建时间',

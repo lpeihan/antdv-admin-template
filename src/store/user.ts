@@ -4,7 +4,7 @@ import { fetchUserInfoApi, loginApi } from '@/api';
 import router from '@/router';
 import { clearToken, setToken } from '@/utils/auth';
 
-export const useStore = defineStore('store', {
+export const useUserStore = defineStore('user', {
   state: () => {
     return {
       userInfo: null,

@@ -31,7 +31,7 @@
 
     <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
 
-    <template v-if="store.userInfo">
+    <template v-if="userStore.userInfo">
       <a-dropdown>
         <template #overlay>
           <a-menu>
@@ -39,13 +39,13 @@
               <SettingOutlined />
               <span class="menu-item-text">{{ $t('profile') }}</span>
             </a-menu-item>
-            <a-menu-item @click="store.logout">
+            <a-menu-item @click="userStore.logout">
               <LogoutOutlined />
               <span class="menu-item-text">{{ $t('logout') }}</span>
             </a-menu-item>
           </a-menu>
         </template>
-        <a-avatar :src="store.userInfo.avatar" class="user-avatar" />
+        <a-avatar :src="userStore.userInfo.avatar" class="user-avatar" />
       </a-dropdown>
     </template>
   </a-flex>
@@ -63,11 +63,11 @@ import { useFullscreen } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
 
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
-import { useStore } from '@/store';
 import { useThemeStore } from '@/store/theme';
+import { useUserStore } from '@/store/user';
 
 const themeStore = useThemeStore();
-const store = useStore();
+const userStore = useUserStore();
 const { locale } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
 </script>

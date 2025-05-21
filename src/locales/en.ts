@@ -2,6 +2,7 @@ export default {
   // common
   copied: 'Copied',
   profile: 'Your Profile',
+  success: 'Success',
 
   // login
   login: 'Login',

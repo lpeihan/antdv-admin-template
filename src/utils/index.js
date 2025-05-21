@@ -1,3 +1,11 @@
+import { message } from 'ant-design-vue';
+
+import { i18n } from '@/locales';
+
+export function showSuccess(messageText = i18n.global.t('success')) {
+  message.success(messageText);
+}
+
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export function getQueryString(name, url) {

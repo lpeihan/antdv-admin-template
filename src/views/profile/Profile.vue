@@ -6,84 +6,78 @@
       labelAlign="left"
     >
       <a-form-item label="用户名">
-        <span class="user-name">{{ userInfo.name }}</span>
+        <span class="user-name">{{ userStore.userInfo.name }}</span>
       </a-form-item>
       <a-form-item label="头像">
-        <a-avatar :src="userInfo.avatar" />
+        <a-avatar :src="userStore.userInfo.avatar" />
       </a-form-item>
       <a-form-item label="说明">
-        <a-textarea v-model:value="userInfo.description" />
+        <a-textarea v-model:value="userStore.userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
-        <a-button type="primary" size="small" @click="state.isOpenChangePasswordModal = true">
-          修改密码
-        </a-button>
+        <a-button type="primary" size="small" @click="state.isShowModal = true">修改密码</a-button>
       </a-form-item>
     </a-form>
 
     <a-modal
-      v-model:open="state.isOpenChangePasswordModal"
+      v-model:open="state.isShowModal"
       title="修改密码"
       :maskClosable="false"
       :confirmLoading="state.confirmLoading"
       @ok="handleChangePassword"
     >
       <a-form
-        ref="changePasswordFormRef"
-        :model="changePasswordForm"
-        :rules="changePasswordRules"
+        ref="formRef"
+        :model="form"
+        :rules="{
+          oldPassword: [{ required: true, message: '' }],
+          newPassword: [{ required: true, message: '' }],
+          confirmPassword: [{ required: true, message: '' }],
+        }"
         class="change-password-form"
         :label-col="{ style: { width: '80px' } }"
       >
         <a-form-item label="旧密码" name="oldPassword">
-          <a-input v-model:value="changePasswordForm.oldPassword" type="password" />
+          <a-input v-model:value="form.oldPassword" type="password" />
         </a-form-item>
         <a-form-item label="新密码" name="newPassword">
-          <a-input v-model:value="changePasswordForm.newPassword" type="password" />
+          <a-input v-model:value="form.newPassword" type="password" />
         </a-form-item>
         <a-form-item label="确认密码" name="confirmPassword">
-          <a-input v-model:value="changePasswordForm.confirmPassword" type="password" />
+          <a-input v-model:value="form.confirmPassword" type="password" />
         </a-form-item>
       </a-form>
     </a-modal>
   </a-card>
 </template>
 <script setup>
-import { message } from 'ant-design-vue';
-import { computed, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 
-import { useStore } from '@/store';
-import { sleep } from '@/utils';
+import { useUserStore } from '@/store/user';
+import { showSuccess, sleep } from '@/utils';
 
-const store = useStore();
+const userStore = useUserStore();
 
-const changePasswordForm = reactive({
+const formRef = ref(null);
+const form = reactive({
   oldPassword: 'password',
   newPassword: 'password',
   confirmPassword: 'password',
 });
-const changePasswordFormRef = ref(null);
-const changePasswordRules = {
-  oldPassword: [{ required: true, message: '请输入旧密码' }],
-  newPassword: [{ required: true, message: '请输入新密码' }],
-  confirmPassword: [{ required: true, message: '请输入确认密码' }],
-};
 
 const state = reactive({
-  isOpenChangePasswordModal: false,
+  isShowModal: false,
   confirmLoading: false,
 });
 
-const userInfo = computed(() => store.userInfo);
-
 const handleChangePassword = () => {
-  changePasswordFormRef.value.validate().then(async () => {
+  formRef.value.validate().then(async () => {
     state.confirmLoading = true;
     await sleep(3000);
 
     state.confirmLoading = false;
-    state.isOpenChangePasswordModal = false;
-    message.success('密码修改成功');
+    state.isShowModal = false;
+    showSuccess();
   });
 };
 </script>

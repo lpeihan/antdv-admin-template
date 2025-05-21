@@ -2,6 +2,7 @@ export default {
   // common
   copied: '复制成功',
   profile: '账户设置',
+  success: '成功',
 
   // login
   login: '登录',

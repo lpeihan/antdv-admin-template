@@ -1,13 +1,13 @@
-import { useStore } from '@/store';
+import { useUserStore } from '@/store/user';
 import storage from '@/utils/storage';
 
 const TOKEN = 'token';
 
 export function hasRole(roles) {
-  const store = useStore();
+  const userStore = useUserStore();
 
   if (isLogin()) {
-    return store.userInfo.roles.some((role) => roles?.includes(role));
+    return userStore.userInfo.roles.some((role) => roles?.includes(role));
   }
 
   return false;

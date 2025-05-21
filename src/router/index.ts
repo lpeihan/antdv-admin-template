@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import routes from './routes';
 
 import 'nprogress/nprogress.css';
-import { useStore } from '@/store';
+import { useUserStore } from '@/store/user';
 import { hasRole, isLogin } from '@/utils/auth';
 
 NProgress.configure({ showSpinner: false });
@@ -25,8 +25,8 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
 
   if (isLogin()) {
-    if (!useStore().userInfo) {
-      await useStore().fetchUserInfo();
+    if (!useUserStore().userInfo) {
+      await useUserStore().fetchUserInfo();
     }
 
     if (to.meta && to.meta.roles && !hasRole(to.meta.roles)) {

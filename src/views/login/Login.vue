@@ -50,9 +50,9 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 import Settings from '@/layouts/Settings.vue';
-import { useStore } from '@/store';
+import { useUserStore } from '@/store/user';
 
-const store = useStore();
+const userStore = useUserStore();
 const router = useRouter();
 
 const form = reactive({
@@ -62,7 +62,7 @@ const form = reactive({
 });
 
 const onFinish = async () => {
-  await store.login(form);
+  await userStore.login(form);
 
   router.push('/');
 };

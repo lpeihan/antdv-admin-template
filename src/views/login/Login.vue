@@ -29,16 +29,16 @@
 
         <div class="remember-me">
           <a-checkbox v-model:checked="form.remember">
-            {{ $t('remember') }}
+            {{ $t('rememberMe') }}
           </a-checkbox>
 
           <a>
-            {{ $t('common.forgotPassword') }}
+            {{ $t('forgotPassword') }}
           </a>
         </div>
 
         <a-button type="primary" html-type="submit" block>
-          {{ $t('common.login') }}
+          {{ $t('login') }}
         </a-button>
       </a-form>
     </div>

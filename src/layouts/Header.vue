@@ -40,6 +40,8 @@ import Settings from './Settings.vue';
 
 import { useThemeStore } from '@/store/theme';
 
+const { useToken } = theme;
+
 const props = defineProps({
   handleCollapse: {
     type: Function,
@@ -50,8 +52,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const { useToken } = theme;
 
 const route = useRoute();
 const router = useRouter();

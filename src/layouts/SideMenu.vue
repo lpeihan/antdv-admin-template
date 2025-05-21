@@ -69,10 +69,6 @@ const state = reactive({
   openKeys: [],
 });
 
-const handleSelect = ({ key }) => {
-  router.push(key);
-};
-
 watch(locale, () => {
   state.menuData = getMenuData(routes);
 });
@@ -92,6 +88,10 @@ watch(
   },
   { immediate: true },
 );
+
+const handleSelect = ({ key }) => {
+  router.push(key);
+};
 </script>
 
 <style lang="less" scoped>

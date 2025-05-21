@@ -8,7 +8,7 @@
             :key="color"
             class="color-primary-item"
             :style="{ background: color }"
-            @click="handleChangeColorPrimary(color)"
+            @click="themeStore.setColorPrimary(color)"
           />
         </a-flex>
       </template>
@@ -31,7 +31,7 @@
 
     <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
 
-    <template v-if="userInfo.id">
+    <template v-if="store.userInfo">
       <a-dropdown>
         <template #overlay>
           <a-menu>
@@ -41,11 +41,11 @@
             </a-menu-item>
             <a-menu-item @click="store.logout">
               <LogoutOutlined />
-              {{ $t('common.logout') }}
+              {{ $t('logout') }}
             </a-menu-item>
           </a-menu>
         </template>
-        <a-avatar :src="userInfo.avatar" class="user-avatar" />
+        <a-avatar :src="store.userInfo.avatar" class="user-avatar" />
       </a-dropdown>
     </template>
   </a-flex>
@@ -60,7 +60,6 @@ import {
   SettingOutlined,
 } from '@ant-design/icons-vue';
 import { useFullscreen } from '@vueuse/core';
-import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
@@ -71,12 +70,6 @@ const themeStore = useThemeStore();
 const store = useStore();
 const { locale } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
-
-const userInfo = computed(() => store.userInfo || {});
-
-const handleChangeColorPrimary = (color) => {
-  themeStore.setColorPrimary(color);
-};
 </script>
 
 <style lang="less" scoped>

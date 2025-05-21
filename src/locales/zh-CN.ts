@@ -1,24 +1,13 @@
 export default {
-  common: {
-    copied: '复制成功',
-    login: '登录',
-    logout: '退出登录',
-    forgotPassword: '忘记密码',
-  },
-  accountSettings: '账户设置',
+  // common
+  copied: '复制成功',
+  accountSettings: '账号设置',
+
+  // login
+  login: '登录',
+  logout: '退出登录',
   username: '用户名',
   password: '密码',
-  remember: '记住账号',
-  dashboard: '仪表盘',
-  analysis: '分析',
-  basicTable: '基础表格',
-  table: '表格',
-  user: '用户',
-  totalUser: '总用户',
-  visit: '访问',
-  totalVisit: '总访问',
-  download: '下载',
-  totalDownload: '总下载',
-  use: '使用',
-  totalUse: '总使用',
+  rememberMe: '记住账号',
+  forgotPassword: '忘记密码？',
 };

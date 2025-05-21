@@ -26,36 +26,33 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const overviews = computed(() => [
   {
     icon: 'card',
-    title: t('user'),
-    totalTitle: t('totalUser'),
+    title: '用户',
+    totalTitle: '总用户',
     totalValue: 120_000,
     value: 2000,
   },
   {
     icon: 'cake',
-    title: t('visit'),
-    totalTitle: t('totalVisit'),
+    title: '访问',
+    totalTitle: '总访问',
     totalValue: 500_000,
     value: 20_000,
   },
   {
     icon: 'download',
-    title: t('download'),
-    totalTitle: t('totalDownload'),
+    title: '下载',
+    totalTitle: '总下载',
     totalValue: 120_000,
     value: 8000,
   },
   {
     icon: 'bell',
-    title: t('use'),
-    totalTitle: t('totalUse'),
+    title: '用户',
+    totalTitle: '总用户',
     totalValue: 50_000,
     value: 5000,
   },

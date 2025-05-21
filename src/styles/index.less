@@ -1,19 +1,7 @@
 @import './global.less';
+@import './vars.less';
 
-:root {
-  --border-color: #f0f0f0;
-  --black: #000;
-  --white: #fff;
-
-  --border-radius: 4px;
-  --dark-bg-color: #141414;
-  --login-bg-color: #f0f2f5;
-}
-
-:root[data-theme='dark'] {
-  --login-bg-color: var(--dark-bg-color);
-
-  body {
-    color: var(--white);
-  }
+body {
+  font-size: 14px;
+  color: var(--text-color);
 }

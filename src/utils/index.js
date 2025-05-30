@@ -2,7 +2,7 @@ import { message } from 'ant-design-vue';
 
 import { i18n } from '@/locales';
 
-export function showSuccess(messageText = i18n.global.t('success')) {
+export function showSuccessMessage(messageText = i18n.global.t('success')) {
   message.success(messageText);
 }
 

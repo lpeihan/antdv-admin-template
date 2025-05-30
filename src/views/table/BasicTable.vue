@@ -72,12 +72,14 @@ const columns = [
     dataIndex: 'created_at',
     align: 'center',
     width: 200,
+    customRender: ({ text }) => formatTime(text),
   },
   {
     title: '更新时间',
     dataIndex: 'updated_at',
     align: 'center',
     width: 200,
+    customRender: ({ text }) => formatTime(text),
   },
   {
     title: '操作',
@@ -89,17 +91,11 @@ const columns = [
 ];
 
 const { copy } = useClipboard();
-const DEFAULT_SEARCH_PARAMS = { email: '' };
 
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,
   request: fetchUserListApi,
-  defaultSearchParams: DEFAULT_SEARCH_PARAMS,
+  defaultSearchParams: { email: '' },
   selectable: true,
-  formatter: (item) => ({
-    ...item,
-    created_at: formatTime(item.created_at),
-    updated_at: formatTime(item.updated_at),
-  }),
 });
 </script>

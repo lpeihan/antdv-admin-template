@@ -15,23 +15,19 @@
         <a-textarea v-model:value="userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
-        <a-button type="primary" size="small" @click="() => profileModal.open()">修改密码</a-button>
+        <a-button type="primary" size="small" @click="showModal(ProfileModal)">修改密码</a-button>
       </a-form-item>
     </a-form>
   </a-card>
-
-  <ProfileModal ref="profileModal" />
 </template>
 
 <script setup>
-import { useTemplateRef } from 'vue';
-
 import ProfileModal from './ProfileModal.vue';
 
 import { useUserStore } from '@/store/user';
+import { showModal } from '@/utils/showModal';
 
 const { userInfo } = useUserStore();
-const profileModal = useTemplateRef('profileModal');
 </script>
 
 <style lang="less" scoped>

@@ -6,13 +6,13 @@
       labelAlign="left"
     >
       <a-form-item label="用户名">
-        <span class="user-name">{{ userStore.userInfo.name }}</span>
+        <span class="user-name">{{ userInfo.name }}</span>
       </a-form-item>
       <a-form-item label="头像">
-        <a-avatar :src="userStore.userInfo.avatar" />
+        <a-avatar :src="userInfo.avatar" />
       </a-form-item>
       <a-form-item label="说明">
-        <a-textarea v-model:value="userStore.userInfo.description" />
+        <a-textarea v-model:value="userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
         <a-button type="primary" size="small" @click="() => profileModal.open()">修改密码</a-button>
@@ -30,7 +30,7 @@ import ProfileModal from './ProfileModal.vue';
 
 import { useUserStore } from '@/store/user';
 
-const userStore = useUserStore();
+const { userInfo } = useUserStore();
 const profileModal = useTemplateRef('profileModal');
 </script>
 

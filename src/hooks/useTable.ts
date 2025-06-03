@@ -39,7 +39,7 @@ export const useTable = (options) => {
         pageNum: pagination.value.current,
         pageSize: pagination.value.pageSize,
       });
-      const list = Array.isArray(res.data.list) ? res.data.list : [];
+      const list = res.data.list;
       dataSource.value = list.map(formatter);
       pagination.value.total = res.data.total || 0;
     } finally {

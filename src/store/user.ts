@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-import { fetchUserInfoApi, loginApi } from '@/api';
+import { fetchUserInfo, login } from '@/api';
 import router from '@/router';
 import { clearToken, setToken } from '@/utils/auth';
 
@@ -12,12 +12,12 @@ export const useUserStore = defineStore('user', {
   },
   actions: {
     async fetchUserInfo() {
-      const res = await fetchUserInfoApi();
+      const res = await fetchUserInfo();
 
       this.userInfo = res.data;
     },
     async login(data) {
-      const res = await loginApi(data);
+      const res = await login(data);
 
       setToken(res.data.token);
 

@@ -3,7 +3,19 @@
     <a-card>
       <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
         <a-form-item label="邮箱" name="email">
-          <a-input v-model:value="searchParams.email" placeholder="请输入邮箱" />
+          <a-input v-model:value="searchParams.email" allow-clear placeholder="请输入邮箱" />
+        </a-form-item>
+
+        <a-form-item label="状态" name="status">
+          <a-select
+            v-model:value="searchParams.status"
+            allow-clear
+            placeholder="请选择状态"
+            @change="handleSearch"
+          >
+            <a-select-option value="1">启用</a-select-option>
+            <a-select-option value="0">禁用</a-select-option>
+          </a-select>
         </a-form-item>
 
         <a-form-item>
@@ -35,7 +47,7 @@
 </template>
 
 <script setup>
-import { fetchUserListApi } from '@/api';
+import { fetchUserList } from '@/api';
 import { useClipboard } from '@/hooks/useClipboard';
 import { useTable } from '@/hooks/useTable';
 import { formatTime } from '@/utils/formatter';
@@ -94,8 +106,7 @@ const { copy } = useClipboard();
 
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,
-  request: fetchUserListApi,
-  defaultSearchParams: { email: '' },
+  request: fetchUserList,
   selectable: true,
 });
 </script>

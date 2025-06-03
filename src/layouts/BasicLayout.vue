@@ -58,7 +58,7 @@ const handleCollapse = () => {
   }
 
   .ant-layout-sider-dark {
-    background: var(--dark-bg-color);
+    background: var(--colorBgContainer);
   }
 }
 </style>

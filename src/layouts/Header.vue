@@ -1,7 +1,7 @@
 <template>
   <a-layout-header
     :style="{
-      background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--colorWhite)',
+      background: token.colorBgContainer,
     }"
   >
     <a-flex gap="small" align="center">
@@ -38,8 +38,6 @@ import { useRoute, useRouter } from 'vue-router';
 
 import Settings from './Settings.vue';
 
-import { useThemeStore } from '@/store/theme';
-
 const { useToken } = theme;
 
 const props = defineProps({
@@ -55,7 +53,6 @@ const props = defineProps({
 
 const route = useRoute();
 const router = useRouter();
-const themeStore = useThemeStore();
 const { t } = useI18n();
 const { token } = useToken();
 

@@ -97,10 +97,10 @@ const handleSelect = ({ key }) => {
 <style lang="less" scoped>
 .ant-menu {
   &.ant-menu-dark {
-    background: var(--dark-bg-color);
+    background: var(--colorBgContainer);
 
     :deep(.ant-menu-inline) {
-      background: var(--dark-bg-color);
+      background: var(--colorBgContainer);
     }
   }
 }

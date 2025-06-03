@@ -74,8 +74,8 @@ const { isFullscreen, toggle } = useFullscreen();
 
 <style lang="less" scoped>
 .color-primary-item {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
   border-radius: var(--border-radius);
 }

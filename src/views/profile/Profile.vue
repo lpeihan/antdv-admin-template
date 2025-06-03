@@ -54,7 +54,7 @@
 import { reactive, ref } from 'vue';
 
 import { useUserStore } from '@/store/user';
-import { showSuccess, sleep } from '@/utils';
+import { showSuccessMessage, sleep } from '@/utils';
 
 const userStore = useUserStore();
 
@@ -77,7 +77,7 @@ const handleChangePassword = () => {
 
     state.confirmLoading = false;
     state.isShowModal = false;
-    showSuccess();
+    showSuccessMessage();
   });
 };
 </script>

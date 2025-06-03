@@ -77,7 +77,7 @@ const { isFullscreen, toggle } = useFullscreen();
   width: 28px;
   height: 28px;
   cursor: pointer;
-  border-radius: var(--border-radius);
+  border-radius: var(--borderRadius);
 }
 
 .user-avatar {

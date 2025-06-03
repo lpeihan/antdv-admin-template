@@ -9,7 +9,7 @@
 <style lang="less" scoped>
 .user-layout {
   height: 100vh;
-  background: var(--login-bg-color) url('@/assets/images/bg.svg') no-repeat;
+  background: var(--colorBgContainer) url('@/assets/images/bg.svg') no-repeat;
   background-size: 100% 100%;
 }
 </style>

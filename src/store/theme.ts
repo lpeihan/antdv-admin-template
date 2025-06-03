@@ -21,6 +21,8 @@ enum Theme {
 
 const isDarkTheme = (theme) => theme === Theme.Dark;
 
+let cssVarStyleEl;
+
 export const useThemeStore = defineStore('theme', {
   state: () => ({
     theme: storage.getItem('theme') || Theme.Light,
@@ -47,6 +49,25 @@ export const useThemeStore = defineStore('theme', {
     },
     initColorPrimary() {
       this.setColorPrimary(this.colorPrimary);
+    },
+    // 将 ant-design-vue 的 token 应用到 css 变量中
+    applyAntdCssVariablesViaStyle(token) {
+      const cssLines = [];
+
+      Object.entries(token).forEach(([key, value]) => {
+        const cssVar = `--${key}`;
+        cssLines.push(`${cssVar}: ${value};`);
+      });
+
+      const css = `:root {\n  ${cssLines.join('\n  ')}\n}`;
+
+      if (cssVarStyleEl) {
+        cssVarStyleEl.innerHTML = css;
+        return;
+      }
+
+      cssVarStyleEl = document.createElement('style');
+      document.head.appendChild(cssVarStyleEl);
     },
   },
   getters: {

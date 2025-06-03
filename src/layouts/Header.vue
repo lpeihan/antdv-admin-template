@@ -1,7 +1,7 @@
 <template>
   <a-layout-header
     :style="{
-      background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--white)',
+      background: themeStore.isDarkTheme ? token.colorBgContainer : 'var(--colorWhite)',
     }"
   >
     <a-flex gap="small" align="center">

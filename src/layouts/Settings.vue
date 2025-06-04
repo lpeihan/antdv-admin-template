@@ -12,7 +12,7 @@
           />
         </a-flex>
       </template>
-      <icon icon="palette" />
+      <icon icon="palette" :style="{ color: themeStore.colorPrimary }" />
     </a-popover>
 
     <icon :icon="themeStore.isDarkTheme ? 'brightness' : 'moon'" @click="themeStore.toggleTheme" />

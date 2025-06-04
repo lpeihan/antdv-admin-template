@@ -1,6 +1,6 @@
 'use strict';
 
-const { codeInspectorPlugin } = require('code-inspector-plugin');
+// const { codeInspectorPlugin } = require('code-inspector-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
 const { merge } = require('webpack-merge');
 
@@ -14,9 +14,9 @@ module.exports = merge(webpackBaseConf, cssConf, {
 
   plugins: [
     new ProgressPlugin(true),
-    codeInspectorPlugin({
-      bundler: 'webpack',
-    }),
+    // codeInspectorPlugin({
+    //   bundler: 'webpack',
+    // }),
   ],
 
   devServer: {

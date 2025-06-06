@@ -9,7 +9,10 @@
         <SideMenu :collapsed="state.collapsed" />
       </a-layout-sider>
       <a-layout>
-        <Header :handle-collapse="handleCollapse" :collapsed="state.collapsed" />
+        <Header
+          :handle-collapse="state.collapsed = !state.collapsed"
+          :collapsed="state.collapsed"
+        />
 
         <a-layout-content style="padding: 12px">
           <router-view />
@@ -26,17 +29,10 @@ import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
 import { useThemeStore } from '@/store/theme';
-import storage from '@/utils/storage';
 
 const themeStore = useThemeStore();
 
-const state = reactive({ collapsed: !!storage.getItem('collapsed') });
-
-const handleCollapse = () => {
-  state.collapsed = !state.collapsed;
-
-  storage.setItem('collapsed', state.collapsed);
-};
+const state = reactive({ collapsed: false });
 </script>
 
 <style lang="less" scoped>

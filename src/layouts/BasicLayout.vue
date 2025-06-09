@@ -42,7 +42,7 @@ const handleCollapse = () => {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .basic-layout {
   .logo-wrapper {
     display: flex;
@@ -61,17 +61,6 @@ const handleCollapse = () => {
   }
 
   .ant-layout-sider-dark {
-    background: var(--colorBgContainer);
-  }
-}
-
-.side-menu-drawer {
-  .ant-drawer-header {
-    display: none;
-  }
-
-  .ant-drawer-body {
-    padding: 0;
     background: var(--colorBgContainer);
   }
 }

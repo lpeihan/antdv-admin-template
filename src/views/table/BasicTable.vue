@@ -107,6 +107,6 @@ const { copy } = useClipboard();
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,
   request: fetchUserList,
-  selectable: true,
+  // selectable: true,
 });
 </script>

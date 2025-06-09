@@ -2,7 +2,7 @@
   <div class="basic-layout">
     <a-layout style="min-height: 100vh">
       <a-layout-sider v-model:collapsed="state.collapsed" width="240px" :theme="themeStore.theme">
-        <div class="logo-wrapper" @click="$router.push('/')">
+        <div class="logo-wrapper">
           <img src="@/assets/images/logo.png" alt="logo" />
         </div>
 
@@ -31,7 +31,6 @@ import { useThemeStore } from '@/store/theme';
 import storage from '@/utils/storage';
 
 const themeStore = useThemeStore();
-
 const isPC = useMediaQuery('(min-width: 768px)');
 
 const state = reactive({ collapsed: storage.getItem('collapsed') });
@@ -49,7 +48,6 @@ const handleCollapse = () => {
     align-items: center;
     justify-content: center;
     height: 64px;
-    cursor: pointer;
 
     img {
       width: 36px;

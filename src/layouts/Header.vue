@@ -10,9 +10,9 @@
         @click="props.handleCollapse"
       />
 
-      <icon :icon="ReloadOutlined" @click="handleReload" />
+      <icon v-if="props.isPC" :icon="ReloadOutlined" @click="handleReload" />
 
-      <a-breadcrumb style="margin-left: 4px">
+      <a-breadcrumb v-if="props.isPC" style="margin-left: 4px">
         <a-breadcrumb-item
           v-for="(breadcrumb, index) in breadcrumbs"
           :key="index"
@@ -25,7 +25,7 @@
       </a-breadcrumb>
     </a-flex>
 
-    <Settings />
+    <Settings :isPC="props.isPC" />
   </a-layout-header>
 </template>
 
@@ -48,6 +48,9 @@ const props = defineProps({
   collapsed: {
     type: Boolean,
     required: true,
+  },
+  isPC: {
+    type: Boolean,
   },
 });
 

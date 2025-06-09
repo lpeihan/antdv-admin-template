@@ -22,6 +22,8 @@ import { hasRole } from '@/utils/auth';
 const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};
 
+const emit = defineEmits(['select']);
+
 const { locale, t } = useI18n();
 const themeStore = useThemeStore();
 const route = useRoute();
@@ -91,6 +93,7 @@ watch(
 
 const handleSelect = ({ key }) => {
   router.push(key);
+  emit('select');
 };
 </script>
 

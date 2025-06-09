@@ -29,7 +29,11 @@
       <icon :icon="GlobalOutlined" />
     </a-dropdown>
 
-    <icon :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" @click="toggle" />
+    <icon
+      v-if="props.isPC"
+      :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined"
+      @click="toggle"
+    />
 
     <template v-if="userStore.userInfo">
       <a-dropdown>
@@ -65,6 +69,12 @@ import { useI18n } from 'vue-i18n';
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
 import { useThemeStore } from '@/store/theme';
 import { useUserStore } from '@/store/user';
+
+const props = defineProps({
+  isPC: {
+    type: Boolean,
+  },
+});
 
 const themeStore = useThemeStore();
 const userStore = useUserStore();

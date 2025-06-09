@@ -6,13 +6,11 @@
           <img src="@/assets/images/logo.png" alt="logo" />
         </div>
 
-        <SideMenu :collapsed="state.collapsed" />
+        <SideMenu />
       </a-layout-sider>
+
       <a-layout>
-        <Header
-          :handle-collapse="state.collapsed = !state.collapsed"
-          :collapsed="state.collapsed"
-        />
+        <Header :handleCollapse="handleCollapse" :collapsed="state.collapsed" :isPC="isPC" />
 
         <a-layout-content style="padding: 12px">
           <router-view />
@@ -23,19 +21,28 @@
 </template>
 
 <script setup>
+import { useMediaQuery } from '@vueuse/core';
 import { reactive } from 'vue';
 
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
 import { useThemeStore } from '@/store/theme';
+import storage from '@/utils/storage';
 
 const themeStore = useThemeStore();
 
-const state = reactive({ collapsed: false });
+const isPC = useMediaQuery('(min-width: 768px)');
+
+const state = reactive({ collapsed: storage.getItem('collapsed') });
+
+const handleCollapse = () => {
+  state.collapsed = !state.collapsed;
+  storage.setItem('collapsed', state.collapsed);
+};
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .basic-layout {
   .logo-wrapper {
     display: flex;
@@ -54,6 +61,17 @@ const state = reactive({ collapsed: false });
   }
 
   .ant-layout-sider-dark {
+    background: var(--colorBgContainer);
+  }
+}
+
+.side-menu-drawer {
+  .ant-drawer-header {
+    display: none;
+  }
+
+  .ant-drawer-body {
+    padding: 0;
     background: var(--colorBgContainer);
   }
 }

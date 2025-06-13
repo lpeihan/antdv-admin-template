@@ -27,7 +27,7 @@
 <script setup>
 import { computed, useTemplateRef } from 'vue';
 
-import PasswordModal from './PasswordModal.vue';
+import PasswordModal from './components/PasswordModal.vue';
 
 import { useUserStore } from '@/store/user';
 

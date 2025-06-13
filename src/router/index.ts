@@ -1,9 +1,9 @@
 import NProgress from 'nprogress';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
+import 'nprogress/nprogress.css';
 import routes from './routes';
 
-import 'nprogress/nprogress.css';
 import { useUserStore } from '@/store/user';
 import { hasRole, isLogin } from '@/utils/auth';
 

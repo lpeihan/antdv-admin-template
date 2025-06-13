@@ -26,19 +26,13 @@
     </a-card>
     <a-card>
       <a-table v-bind="tableProps">
-        <template #bodyCell="{ column, text }">
-          <template v-if="column.dataIndex === 'avatar'">
+        <template #bodyCell="{ column: { dataIndex }, text }">
+          <template v-if="dataIndex === 'avatar'">
             <a-avatar :src="text" />
           </template>
 
-          <template v-if="column.dataIndex === 'email'">
-            <a @click="copy(text)">
-              {{ text }}
-            </a>
-          </template>
-
-          <template v-if="column.dataIndex === 'action'">
-            <a-button size="small" type="link">编辑</a-button>
+          <template v-if="dataIndex === 'actions'">
+            <a-button type="link">编辑</a-button>
           </template>
         </template>
       </a-table>
@@ -48,61 +42,46 @@
 
 <script setup>
 import { fetchUserList } from '@/api';
-import { useClipboard } from '@/hooks/useClipboard';
 import { useTable } from '@/hooks/useTable';
-import { formatTime } from '@/utils/formatter';
 
 const columns = [
   {
     title: 'ID',
     dataIndex: 'id',
-    align: 'center',
     sorter: true,
-    fixed: 'left',
     width: 100,
   },
   {
     title: '用户名',
     dataIndex: 'name',
-    align: 'center',
     width: 200,
   },
   {
     title: '头像',
     dataIndex: 'avatar',
-    align: 'center',
     width: 150,
   },
   {
     title: '邮箱',
     dataIndex: 'email',
-    align: 'center',
     width: 200,
+    link: true,
   },
   {
     title: '创建时间',
     dataIndex: 'created_at',
-    align: 'center',
-    width: 200,
-    customRender: ({ text }) => formatTime(text),
   },
   {
     title: '更新时间',
     dataIndex: 'updated_at',
-    align: 'center',
-    width: 200,
-    customRender: ({ text }) => formatTime(text),
   },
   {
     title: '操作',
-    dataIndex: 'action',
-    align: 'center',
+    dataIndex: 'actions',
     fixed: 'right',
     width: 100,
   },
 ];
-
-const { copy } = useClipboard();
 
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,

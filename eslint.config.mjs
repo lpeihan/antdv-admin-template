@@ -13,7 +13,7 @@ export default defineConfig([
   },
   tseslint.configs.recommended,
   {
-    files: ['**/*.{js,mjs,cjs,ts,vue}'],
+    files: ['**/*.{js,mjs,cjs,ts,vue,tsx}'],
     plugins: { js },
     extends: ['js/recommended'],
     rules: {
@@ -64,7 +64,6 @@ export default defineConfig([
     files: ['**/*.vue'],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
     rules: {
-      'vue/multi-word-component-names': 'off',
       'vue/attributes-order': [
         'error',
         {
@@ -84,6 +83,11 @@ export default defineConfig([
           alphabetical: false,
         },
       ],
+    },
+  },
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
     },
   },
 ]);

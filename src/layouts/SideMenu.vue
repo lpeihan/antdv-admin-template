@@ -23,6 +23,11 @@ const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};
 
 const emit = defineEmits(['select']);
+const props = defineProps({
+  collapsed: {
+    type: Boolean,
+  },
+});
 
 const { locale, t } = useI18n();
 const themeStore = useThemeStore();
@@ -77,13 +82,14 @@ watch(locale, () => {
 
 watch(
   route,
-  () => {
+  (value, oldValue) => {
     const selectedKeys = SELECTED_KEYS_MAP[route.path];
     const openKeys = OPEN_KEYS_MAP[route.path];
 
     if (selectedKeys && openKeys) {
       state.selectedKeys = selectedKeys;
-      state.openKeys = [...state.openKeys, ...openKeys];
+      // 解决首次刷新，菜单折叠的时候会自动弹出的问题
+      state.openKeys = props.collapsed && !oldValue ? [] : [...state.openKeys, ...openKeys];
     } else {
       state.selectedKeys = [];
     }

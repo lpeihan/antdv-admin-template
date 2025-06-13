@@ -1,4 +1,35 @@
+import { TableColumnProps } from 'ant-design-vue';
 import { computed, onMounted, ref } from 'vue';
+
+import { useClipboard } from '@/hooks/useClipboard';
+import { formatTime } from '@/utils/formatter';
+
+function formatColumns(columns: TableColumnProps[]) {
+  const { copy } = useClipboard();
+
+  const getCommonProps = (item) => {
+    if (['created_at', 'updated_at'].includes(item.dataIndex as string)) {
+      return {
+        customRender: ({ text }) => formatTime(text),
+        width: 200,
+      };
+    }
+
+    if (item.link) {
+      return {
+        customRender: ({ text }) => <a onClick={() => copy(text)}>{text}</a>,
+      };
+    }
+
+    return null;
+  };
+
+  return columns.map((item) => ({
+    align: 'center',
+    ...getCommonProps(item),
+    ...item,
+  }));
+}
 
 export const useTable = (options) => {
   const {
@@ -24,11 +55,12 @@ export const useTable = (options) => {
     },
   });
   const selectedRowKeys = ref([]);
+  const formattedColumns = formatColumns(columns);
 
   const searchParams = ref({ ...defaultSearchParams });
 
   const scroll = {
-    x: columns.reduce((acc, item) => acc + (item.width || 100), 0),
+    x: formattedColumns.reduce((acc, item) => acc + Number(item.width), 0),
   };
 
   const fetchList = async () => {
@@ -76,7 +108,7 @@ export const useTable = (options) => {
 
   const tableProps = computed(() => ({
     dataSource: dataSource.value,
-    columns,
+    columns: formattedColumns,
     scroll,
     loading: loading.value,
     pagination: pagination.value,

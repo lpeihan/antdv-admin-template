@@ -28,6 +28,7 @@
   "description": "",
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
+    "@tailwindcss/postcss": "^4.1.10",
     "@vueuse/core": "^13.1.0",
     "ant-design-vue": "4.x",
     "axios": "^1.7.2",
@@ -37,6 +38,7 @@
     "decimal.js": "^10.5.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
+    "tailwindcss": "^4.1.10",
     "vue": "^3.5.0",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.4.0",
@@ -83,6 +85,7 @@
     "postcss-less": "^6.0.0",
     "postcss-loader": "^8.1.1",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "progress-webpack-plugin": "^1.0.16",
     "rimraf": "^6.0.1",
     "strip-ansi": "^6.0.1",

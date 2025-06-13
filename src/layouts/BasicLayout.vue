@@ -1,18 +1,18 @@
 <template>
   <div class="basic-layout">
     <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="state.collapsed" width="240px" :theme="themeStore.theme">
-        <div class="logo-wrapper">
-          <img src="@/assets/images/logo.png" alt="logo" />
+      <a-layout-sider v-model:collapsed="collapsed" width="240px" :theme="themeStore.theme">
+        <div class="flex h-[64px] items-center justify-center">
+          <img src="@/assets/images/logo.png" alt="logo" class="w-[36px]" />
         </div>
 
-        <SideMenu />
+        <SideMenu :collapsed="collapsed" />
       </a-layout-sider>
 
       <a-layout>
-        <Header :handleCollapse="handleCollapse" :collapsed="state.collapsed" :isPC="isPC" />
+        <Header :handleCollapse="handleCollapse" :collapsed="collapsed" />
 
-        <a-layout-content style="padding: 12px">
+        <a-layout-content class="p-[12px]">
           <router-view />
         </a-layout-content>
       </a-layout>
@@ -21,39 +21,27 @@
 </template>
 
 <script setup>
-import { useMediaQuery } from '@vueuse/core';
-import { reactive } from 'vue';
+import { useMediaQuery, useStorage } from '@vueuse/core';
+import { provide } from 'vue';
 
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
 import { useThemeStore } from '@/store/theme';
-import storage from '@/utils/storage';
 
-const themeStore = useThemeStore();
 const isPC = useMediaQuery('(min-width: 768px)');
+const themeStore = useThemeStore();
+const collapsed = useStorage('collapsed', false);
 
-const state = reactive({ collapsed: storage.getItem('collapsed') });
+provide('isPC', isPC);
 
 const handleCollapse = () => {
-  state.collapsed = !state.collapsed;
-  storage.setItem('collapsed', state.collapsed);
+  collapsed.value = !collapsed.value;
 };
 </script>
 
 <style lang="less" scoped>
 .basic-layout {
-  .logo-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 64px;
-
-    img {
-      width: 36px;
-    }
-  }
-
   .ant-layout-sider-light {
     border-right: 1px solid var(--colorBorderSecondary);
   }

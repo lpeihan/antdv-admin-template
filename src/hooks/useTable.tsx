@@ -15,7 +15,7 @@ function formatColumns(columns: TableColumnProps[]) {
       };
     }
 
-    if (item.link) {
+    if (item.isLink) {
       return {
         customRender: ({ text }) => <a onClick={() => copy(text)}>{text}</a>,
       };

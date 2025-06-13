@@ -11,11 +11,9 @@
             v-model:value="searchParams.status"
             allow-clear
             placeholder="请选择状态"
+            :options="STATUS_OPTIONS"
             @change="handleSearch"
-          >
-            <a-select-option value="1">启用</a-select-option>
-            <a-select-option value="0">禁用</a-select-option>
-          </a-select>
+          />
         </a-form-item>
 
         <a-form-item>
@@ -24,6 +22,7 @@
         </a-form-item>
       </a-form>
     </a-card>
+
     <a-card>
       <a-table v-bind="tableProps">
         <template #bodyCell="{ column: { dataIndex }, text }">
@@ -40,7 +39,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { fetchUserList } from '@/api';
 import { useTable } from '@/hooks/useTable';
 
@@ -66,7 +65,7 @@ const columns = [
     title: '邮箱',
     dataIndex: 'email',
     width: 200,
-    link: true,
+    isLink: true,
   },
   {
     title: '创建时间',
@@ -84,9 +83,13 @@ const columns = [
   },
 ];
 
+const STATUS_OPTIONS = [
+  { label: '启用', value: 1 },
+  { label: '禁用', value: 0 },
+];
+
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,
   api: fetchUserList,
-  // selectable: true,
 });
 </script>

@@ -49,6 +49,7 @@ const columns = [
     title: 'ID',
     dataIndex: 'id',
     sorter: true,
+    fixed: 'left',
     width: 100,
   },
   {
@@ -85,7 +86,7 @@ const columns = [
 
 const { tableProps, searchParams, handleSearch, handleReset } = useTable({
   columns,
-  request: fetchUserList,
+  api: fetchUserList,
   // selectable: true,
 });
 </script>

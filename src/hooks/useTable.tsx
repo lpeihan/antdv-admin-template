@@ -35,7 +35,7 @@ export const useTable = (options) => {
   const {
     defaultSearchParams = {},
     columns,
-    request,
+    api,
     formatter = (item) => item,
     selectable = false,
   } = options;
@@ -66,7 +66,7 @@ export const useTable = (options) => {
   const fetchList = async () => {
     loading.value = true;
     try {
-      const res = await request({
+      const res = await api({
         ...searchParams.value,
         pageNum: pagination.value.current,
         pageSize: pagination.value.pageSize,

@@ -1,4 +1,4 @@
-import { DashboardOutlined, SettingOutlined, TableOutlined } from '@ant-design/icons-vue';
+import { DashboardOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 const routes = [
@@ -41,16 +41,16 @@ const routes = [
         ],
       },
       {
-        path: '/table',
-        name: 'table',
-        meta: { icon: TableOutlined, title: '表格' },
+        path: '/userManagement',
+        name: 'userManagement',
+        meta: { icon: UserOutlined, title: '用户管理' },
         component: RouterView,
         children: [
           {
-            path: '/table/basic',
-            name: 'basicTable',
-            meta: { title: '基础表格' },
-            component: () => import('@/views/table/BasicTable.vue'),
+            path: '/userManagement/userList',
+            name: 'userList',
+            meta: { title: '用户列表' },
+            component: () => import('@/views/userManagement/UserList.vue'),
           },
         ],
       },

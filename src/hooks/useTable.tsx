@@ -7,7 +7,7 @@ import { formatTime } from '@/utils/formatter';
 function formatColumns(columns: TableColumnProps[]) {
   const { copy } = useClipboard();
 
-  const getCommonProps = (item) => {
+  const getCustomProps = (item) => {
     if (['created_at', 'updated_at'].includes(item.dataIndex as string)) {
       return {
         customRender: ({ text }) => formatTime(text),
@@ -26,7 +26,7 @@ function formatColumns(columns: TableColumnProps[]) {
 
   return columns.map((item) => ({
     align: 'center',
-    ...getCommonProps(item),
+    ...getCustomProps(item),
     ...item,
   }));
 }

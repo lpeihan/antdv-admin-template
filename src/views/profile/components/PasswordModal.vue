@@ -50,10 +50,11 @@ const form = reactive({
 const handleChangePassword = () => {
   formRef.value.validate().then(async () => {
     state.confirmLoading = true;
+
     await sleep(3000);
 
     state.confirmLoading = false;
-    state.isShowModal = false;
+    state.open = false;
     showSuccessMessage();
   });
 };

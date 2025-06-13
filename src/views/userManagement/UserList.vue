@@ -39,8 +39,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { fetchUserList } from '@/api';
+<script setup>
+import { fetchUserList as api } from '@/api';
 import { useTable } from '@/hooks/useTable';
 
 const columns = [
@@ -88,8 +88,5 @@ const STATUS_OPTIONS = [
   { label: '禁用', value: 0 },
 ];
 
-const { tableProps, searchParams, handleSearch, handleReset } = useTable({
-  columns,
-  api: fetchUserList,
-});
+const { tableProps, searchParams, handleSearch, handleReset } = useTable({ columns, api });
 </script>

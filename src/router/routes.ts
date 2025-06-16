@@ -1,6 +1,8 @@
 import { DashboardOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
+import { i18n } from '@/locales';
+
 const routes = [
   {
     path: '/user',
@@ -28,7 +30,9 @@ const routes = [
         name: 'dashboard',
         meta: {
           icon: DashboardOutlined,
-          title: '仪表盘',
+          get title() {
+            return i18n.global.t('dashboard');
+          },
         },
         component: RouterView,
         children: [

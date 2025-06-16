@@ -3,6 +3,7 @@ export default {
   copied: '复制成功',
   profile: '账户设置',
   success: '成功',
+  dashboard: '仪表盘',
 
   // login
   login: '登录',

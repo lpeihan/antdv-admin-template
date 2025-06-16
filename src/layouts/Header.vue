@@ -33,7 +33,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { theme } from 'ant-design-vue';
 import { computed, inject } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
 import Settings from './Settings.vue';
@@ -55,7 +54,6 @@ const props = defineProps({
 
 const route = useRoute();
 const router = useRouter();
-const { t } = useI18n();
 const { token } = useToken();
 
 const breadcrumbs = computed(() => {
@@ -69,7 +67,7 @@ const breadcrumbs = computed(() => {
     const name = matchedRoute?.meta?.title;
 
     return {
-      name: name && t(name),
+      name,
       path: fullPath,
       icon: matchedRoute?.meta?.icon || null,
       clickable: !isLastItem && !isLayout,

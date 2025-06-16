@@ -29,7 +29,7 @@ const props = defineProps({
   },
 });
 
-const { locale, t } = useI18n();
+const { locale } = useI18n();
 const themeStore = useThemeStore();
 const route = useRoute();
 const router = useRouter();
@@ -49,7 +49,7 @@ const getMenuData = (items = [], parentKeys = [], selectedKey) => {
       const newItem = {
         key: item.path,
         icon: item.meta.icon ? () => h(item.meta.icon) : null,
-        label: t(item.meta.title),
+        label: item.meta.title,
       };
 
       if (item.children && !item.hideChildrenInMenu) {

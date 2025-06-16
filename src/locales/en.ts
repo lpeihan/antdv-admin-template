@@ -3,6 +3,7 @@ export default {
   copied: 'Copied',
   profile: 'Your Profile',
   success: 'Success',
+  dashboard: 'Dashboard',
 
   // login
   login: 'Login',

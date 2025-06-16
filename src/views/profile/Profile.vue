@@ -25,7 +25,7 @@
   </a-card>
 </template>
 <script setup>
-import { computed, useTemplateRef } from 'vue';
+import { toRefs, useTemplateRef } from 'vue';
 
 import PasswordModal from './components/PasswordModal.vue';
 
@@ -34,5 +34,5 @@ import { useUserStore } from '@/store/user';
 const userStore = useUserStore();
 const passwordModal = useTemplateRef('passwordModal');
 
-const userInfo = computed(() => userStore.userInfo);
+const { userInfo } = toRefs(userStore);
 </script>

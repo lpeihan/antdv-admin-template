@@ -7,7 +7,7 @@ import { formatTime } from '@/utils/formatter';
 function formatColumns(columns: TableColumnProps[]) {
   const { copy } = useClipboard();
 
-  const getCustomProps = (item) => {
+  const getCustomProps = (item: TableColumnProps) => {
     if (['created_at', 'updated_at'].includes(item.dataIndex as string)) {
       return {
         customRender: ({ text }) => formatTime(text),
@@ -15,6 +15,7 @@ function formatColumns(columns: TableColumnProps[]) {
       };
     }
 
+    // @ts-ignore
     if (item.isLink) {
       return {
         customRender: ({ text }) => <a onClick={() => copy(text)}>{text}</a>,
@@ -26,6 +27,7 @@ function formatColumns(columns: TableColumnProps[]) {
 
   return columns.map((item) => ({
     align: 'center',
+    ellipsis: true,
     ...getCustomProps(item),
     ...item,
   }));

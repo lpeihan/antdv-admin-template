@@ -6,13 +6,7 @@
     :confirmLoading="loading"
     @ok="handleChangePassword"
   >
-    <a-form
-      ref="formRef"
-      :model="form"
-      :rules="rules"
-      class="!pt-[20px]"
-      :label-col="{ style: { width: '80px' } }"
-    >
+    <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
       <a-form-item label="旧密码" name="oldPassword">
         <a-input-password v-model:value="form.oldPassword" />
       </a-form-item>

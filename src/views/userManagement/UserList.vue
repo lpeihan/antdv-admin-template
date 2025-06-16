@@ -48,7 +48,6 @@ const columns = [
     title: 'ID',
     dataIndex: 'id',
     sorter: true,
-    fixed: 'left',
     width: 100,
   },
   {

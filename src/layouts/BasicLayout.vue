@@ -1,7 +1,7 @@
 <template>
   <div class="basic-layout text-primary">
     <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="collapsed" width="240px" :theme="themeStore.theme">
+      <a-layout-sider v-model:collapsed="collapsed" :width="240" :theme="themeStore.theme">
         <div class="flex h-[64px] items-center justify-center">
           <img src="@/assets/images/logo.png" alt="logo" class="w-[36px]" />
         </div>

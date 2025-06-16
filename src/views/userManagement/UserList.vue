@@ -41,7 +41,7 @@
 
 <script setup>
 import { fetchUserListApi as api } from '@/api';
-import { useTable } from '@/hooks/useTable';
+import { useTable } from '@/hooks';
 
 const columns = [
   {

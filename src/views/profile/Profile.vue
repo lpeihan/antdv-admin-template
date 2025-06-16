@@ -15,7 +15,7 @@
         <a-textarea v-model:value="userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
-        <a-button type="primary" size="small" @click="() => passwordModal.openModal()">
+        <a-button type="primary" size="small" @click="() => passwordModal.open()">
           修改密码
         </a-button>
       </a-form-item>

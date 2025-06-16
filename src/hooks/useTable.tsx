@@ -1,7 +1,7 @@
 import { TableColumnProps } from 'ant-design-vue';
 import { computed, onMounted, ref } from 'vue';
 
-import { useClipboard } from '@/hooks/useClipboard';
+import { useClipboard } from '@/hooks';
 import { formatTime } from '@/utils/formatter';
 
 function formatColumns(columns: TableColumnProps[]) {
@@ -27,7 +27,6 @@ function formatColumns(columns: TableColumnProps[]) {
 
   return columns.map((item) => ({
     align: 'center',
-    ellipsis: true,
     ...getCustomProps(item),
     ...item,
   }));

@@ -1,9 +1,9 @@
 <template>
   <a-modal
-    v-model:open="state.open"
+    v-model:open="visible"
     title="修改密码"
     :maskClosable="false"
-    :confirmLoading="state.confirmLoading"
+    :confirmLoading="loading"
     @ok="handleChangePassword"
   >
     <a-form
@@ -33,12 +33,10 @@
 <script setup>
 import { reactive, ref } from 'vue';
 
+import { useModal } from '@/hooks';
 import { showSuccessMessage, sleep } from '@/utils';
 
-const state = reactive({
-  open: false,
-  confirmLoading: false,
-});
+const { visible, open, close, loading, showLoading } = useModal();
 
 const formRef = ref(null);
 const form = reactive({
@@ -49,17 +47,14 @@ const form = reactive({
 
 const handleChangePassword = () => {
   formRef.value.validate().then(async () => {
-    state.confirmLoading = true;
+    showLoading();
 
     await sleep(3000);
 
-    state.confirmLoading = false;
-    state.open = false;
+    close();
     showSuccessMessage();
   });
 };
 
-defineExpose({
-  openModal: () => (state.open = true),
-});
+defineExpose({ open });
 </script>

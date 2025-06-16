@@ -2,6 +2,7 @@ import { DashboardOutlined, SettingOutlined, UserOutlined } from '@ant-design/ic
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 import { i18n } from '@/locales';
+import { Role } from '@/utils/constants';
 
 const routes = [
   {
@@ -19,7 +20,7 @@ const routes = [
   {
     path: '/',
     component: require('@/layouts/BasicLayout.vue').default,
-    meta: { roles: ['admin', 'user'] },
+    meta: { roles: [Role.Admin, Role.User] },
     children: [
       {
         path: '/',

@@ -1,4 +1,3 @@
-const { VantResolver } = require('@vant/auto-import-resolver');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const dayjs = require('dayjs');
@@ -197,7 +196,6 @@ module.exports = {
     ComponentsPlugin({
       dirs: [paths.resolve('src/components')],
       dts: false,
-      resolvers: [VantResolver()],
     }),
   ],
 };

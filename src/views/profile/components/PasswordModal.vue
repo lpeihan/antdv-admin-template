@@ -40,15 +40,15 @@ const rules = {
   confirmPassword: [{ required: true, message: '' }],
 };
 
-const handleChangePassword = () => {
-  formRef.value.validate().then(async () => {
-    showLoading();
+const handleChangePassword = async () => {
+  await formRef.value.validate();
 
-    await sleep(3000);
+  showLoading();
 
-    close();
-    showSuccessMessage();
-  });
+  await sleep(3000);
+
+  close();
+  showSuccessMessage();
 };
 
 defineExpose({ open });

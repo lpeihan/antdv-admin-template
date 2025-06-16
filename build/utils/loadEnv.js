@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const paths = require('./paths');
 
 function loadEnv(env) {
-  const envFiles = ['.env.labenv'];
+  const envFiles = ['.env.test'];
 
   envFiles.push(`.env.${env}`);
 

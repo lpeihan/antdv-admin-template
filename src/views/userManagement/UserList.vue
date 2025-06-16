@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { fetchUserList as api } from '@/api';
+import { fetchUserListApi as api } from '@/api';
 import { useTable } from '@/hooks/useTable';
 
 const columns = [

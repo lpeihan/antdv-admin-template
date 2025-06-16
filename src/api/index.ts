@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-export function login(data) {
+export function loginApi(data) {
   return request({
     url: '/mock/user/login',
     method: 'post',
@@ -8,14 +8,14 @@ export function login(data) {
   });
 }
 
-export function fetchUserInfo() {
+export function fetchUserInfoApi() {
   return request({
     url: '/mock/user/info',
     method: 'get',
   });
 }
 
-export function fetchUserList(params) {
+export function fetchUserListApi(params) {
   return request({
     url: '/mock/user/list',
     method: 'get',

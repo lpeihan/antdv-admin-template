@@ -6,7 +6,7 @@
       labelAlign="left"
     >
       <a-form-item label="用户名">
-        <span class="font-bold text-[var(--primary-color)]">{{ userInfo.name }}</span>
+        <span class="text-primary font-bold">{{ userInfo.name }}</span>
       </a-form-item>
       <a-form-item label="头像">
         <a-avatar :src="userInfo.avatar" />

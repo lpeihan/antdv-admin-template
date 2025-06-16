@@ -32,7 +32,7 @@
             {{ $t('rememberMe') }}
           </a-checkbox>
 
-          <a class="text-[var(--primary-color)]">
+          <a class="!text-primary">
             {{ $t('forgotPassword') }}
           </a>
         </div>

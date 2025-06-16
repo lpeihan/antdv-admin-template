@@ -32,6 +32,9 @@ https://www.netlify.com/
 # Convert png to ico
 https://cloudconvert.com/png-to-ico
 
+# Tailwind CSS
+https://tailwind.nodejs.cn/docs/border-radius
+
 ```
 
 ## .env.local

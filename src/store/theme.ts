@@ -42,7 +42,7 @@ export const useThemeStore = defineStore('theme', {
       this.colorPrimary = color;
 
       storage.setItem('colorPrimary', this.colorPrimary);
-      document.documentElement.style.setProperty('--primary-color', this.colorPrimary);
+      // document.documentElement.style.setProperty('--primary-color', this.colorPrimary);
     },
     initTheme() {
       this.setTheme(this.theme);

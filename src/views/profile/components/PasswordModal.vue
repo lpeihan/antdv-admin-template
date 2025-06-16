@@ -9,11 +9,7 @@
     <a-form
       ref="formRef"
       :model="form"
-      :rules="{
-        oldPassword: [{ required: true, message: '' }],
-        newPassword: [{ required: true, message: '' }],
-        confirmPassword: [{ required: true, message: '' }],
-      }"
+      :rules="rules"
       class="!pt-[20px]"
       :label-col="{ style: { width: '80px' } }"
     >
@@ -44,6 +40,11 @@ const form = reactive({
   newPassword: '',
   confirmPassword: '',
 });
+const rules = {
+  oldPassword: [{ required: true, message: '' }],
+  newPassword: [{ required: true, message: '' }],
+  confirmPassword: [{ required: true, message: '' }],
+};
 
 const handleChangePassword = () => {
   formRef.value.validate().then(async () => {

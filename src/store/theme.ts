@@ -58,7 +58,7 @@ export const useThemeStore = defineStore('theme', {
 
         if (typeof value === 'number') {
           const isPx = /font|radius|width|height|size|margin|padding/i.test(key);
-          value = isPx ? `${value}px` : `${value}`;
+          value = isPx ? `${value}px` : value;
         }
 
         cssLines.push(`${cssVar}: ${value};`);

@@ -16,7 +16,6 @@ function formatColumns(columns: ColumnProps[]) {
     if (['created_at', 'updated_at'].includes(dataIndex)) {
       return {
         customRender: ({ text }) => formatTime(text),
-        width: 200,
       };
     }
 

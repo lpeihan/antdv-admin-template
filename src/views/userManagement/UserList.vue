@@ -63,16 +63,18 @@ const columns = [
   {
     title: '邮箱',
     dataIndex: 'email',
-    width: 200,
     isLink: true,
+    width: 200,
   },
   {
     title: '创建时间',
     dataIndex: 'created_at',
+    width: 200,
   },
   {
     title: '更新时间',
     dataIndex: 'updated_at',
+    width: 200,
   },
   {
     title: '操作',

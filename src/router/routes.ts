@@ -1,4 +1,10 @@
-import { DashboardOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons-vue';
+import {
+  CalendarOutlined,
+  DashboardOutlined,
+  SettingOutlined,
+  SmileOutlined,
+  UserOutlined,
+} from '@ant-design/icons-vue';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 import { i18n } from '@/locales';
@@ -68,6 +74,20 @@ const routes = [
         },
         component: () => import('@/views/profile/Profile.vue'),
         hideInMenu: true,
+      },
+      {
+        path: '/features',
+        name: 'features',
+        meta: { icon: CalendarOutlined, title: '功能' },
+        component: RouterView,
+        children: [
+          {
+            path: '/features/icon',
+            name: 'icon',
+            meta: { title: '图标', icon: SmileOutlined },
+            component: () => import('@/views/features/Icon.vue'),
+          },
+        ],
       },
       {
         path: '/404',

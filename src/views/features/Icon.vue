@@ -7,8 +7,8 @@
         class="flex h-[80px] w-[80px] cursor-pointer flex-col items-center justify-center"
         @click="handleCopy(item)"
       >
-        <svg-icon :name="item" class="!h-[24px] !w-[24px]" />
-        <span class="pt-2">{{ item }}</span>
+        <svg-icon :name="item" class="!h-[20px] !w-[20px]" />
+        <span class="pt-3">{{ item }}</span>
       </div>
     </div>
   </a-card>

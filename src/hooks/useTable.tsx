@@ -4,19 +4,23 @@ import { computed, onMounted, ref } from 'vue';
 import { useClipboard } from '@/hooks';
 import { formatTime } from '@/utils/formatter';
 
-function formatColumns(columns: TableColumnProps[]) {
+type ColumnProps = TableColumnProps & {
+  dataIndex: string;
+  isLink: boolean;
+};
+
+function formatColumns(columns: ColumnProps[]) {
   const { copy } = useClipboard();
 
-  const getCustomProps = (item: TableColumnProps) => {
-    if (['created_at', 'updated_at'].includes(item.dataIndex as string)) {
+  const getCustomProps = ({ dataIndex, isLink }: ColumnProps) => {
+    if (['created_at', 'updated_at'].includes(dataIndex)) {
       return {
         customRender: ({ text }) => formatTime(text),
         width: 200,
       };
     }
 
-    // @ts-ignore
-    if (item.isLink) {
+    if (isLink) {
       return {
         customRender: ({ text }) => <a onClick={() => copy(text)}>{text}</a>,
       };

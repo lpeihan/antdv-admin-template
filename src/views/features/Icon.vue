@@ -8,7 +8,7 @@
         @click="handleCopy(item)"
       >
         <svg-icon :name="item" class="!h-[20px] !w-[20px]" />
-        <span class="pt-3">{{ item }}</span>
+        <span class="pt-2">{{ item }}</span>
       </div>
     </div>
   </a-card>

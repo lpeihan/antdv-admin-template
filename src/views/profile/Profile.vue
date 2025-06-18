@@ -15,22 +15,22 @@
         <a-textarea v-model:value="userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
-        <a-button type="primary" size="small" @click="passwordModal?.openModal">修改密码</a-button>
+        <a-button type="primary" size="small" @click="passwordModalRef?.openModal">
+          修改密码
+        </a-button>
       </a-form-item>
     </a-form>
 
-    <PasswordModal ref="passwordModal" />
+    <PasswordModal ref="passwordModalRef" />
   </a-card>
 </template>
 <script setup>
 import { toRefs, useTemplateRef } from 'vue';
 
-import PasswordModal from './components/PasswordModal.vue';
+import PasswordModal from './PasswordModal.vue';
 
 import { useUserStore } from '@/store/user';
 
-const userStore = useUserStore();
-const passwordModal = useTemplateRef('passwordModal');
-
-const { userInfo } = toRefs(userStore);
+const { userInfo } = toRefs(useUserStore());
+const passwordModalRef = useTemplateRef('passwordModalRef');
 </script>

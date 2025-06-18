@@ -69,6 +69,7 @@ export const useTable = (options) => {
 
   const fetchList = async () => {
     loading.value = true;
+
     try {
       const res = await api({
         ...searchParams.value,

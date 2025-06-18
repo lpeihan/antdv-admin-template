@@ -51,7 +51,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['**/*.{js,mjs,cjs,ts,vue}'],
+    // files: ['**/*.{js,mjs,cjs,ts,vue}'],
     languageOptions: {
       globals: {
         ...globals.browser,

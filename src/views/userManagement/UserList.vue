@@ -89,5 +89,12 @@ const STATUS_OPTIONS = [
   { label: '禁用', value: 0 },
 ];
 
-const { tableProps, searchParams, handleSearch, handleReset } = useTable({ columns, api });
+const { tableProps, searchParams, handleSearch, handleReset } = useTable({
+  columns,
+  api,
+  defaultSearchParams: {
+    email: null,
+    status: null,
+  },
+});
 </script>

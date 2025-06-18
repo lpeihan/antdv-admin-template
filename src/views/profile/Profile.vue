@@ -15,9 +15,7 @@
         <a-textarea v-model:value="userInfo.description" />
       </a-form-item>
       <a-form-item label="密码">
-        <a-button type="primary" size="small" @click="passwordModalRef?.openModal">
-          修改密码
-        </a-button>
+        <a-button type="primary" size="small" @click="handleUpdatePassword">修改密码</a-button>
       </a-form-item>
     </a-form>
 
@@ -31,6 +29,12 @@ import PasswordModal from './PasswordModal.vue';
 
 import { useUserStore } from '@/store/user';
 
-const { userInfo } = toRefs(useUserStore());
+const userStore = useUserStore();
 const passwordModalRef = useTemplateRef('passwordModalRef');
+
+const { userInfo } = toRefs(userStore);
+
+const handleUpdatePassword = () => {
+  passwordModalRef.value.openModal();
+};
 </script>

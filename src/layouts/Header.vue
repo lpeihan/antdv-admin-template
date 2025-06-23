@@ -32,14 +32,14 @@
 <script setup>
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { theme } from 'ant-design-vue';
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import Settings from './Settings.vue';
 
-const { useToken } = theme;
+import { useDevice } from '@/hooks';
 
-const isPC = inject('isPC');
+const { useToken } = theme;
 
 const props = defineProps({
   handleCollapse: {
@@ -55,6 +55,7 @@ const props = defineProps({
 const route = useRoute();
 const router = useRouter();
 const { token } = useToken();
+const { isPC } = useDevice();
 
 const breadcrumbs = computed(() => {
   const pathArray = route.path.split('/').filter((p) => p);

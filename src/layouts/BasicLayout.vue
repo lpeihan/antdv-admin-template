@@ -21,19 +21,15 @@
 </template>
 
 <script setup>
-import { useMediaQuery, useStorage } from '@vueuse/core';
-import { provide } from 'vue';
+import { useStorage } from '@vueuse/core';
 
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
 import { useThemeStore } from '@/store/theme';
 
-const isPC = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
 const collapsed = useStorage('collapsed', false);
-
-provide('isPC', isPC);
 
 const handleCollapse = () => {
   collapsed.value = !collapsed.value;

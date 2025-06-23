@@ -22,7 +22,6 @@ import { hasRole } from '@/utils/auth';
 const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};
 
-const emit = defineEmits(['select']);
 const props = defineProps({
   collapsed: {
     type: Boolean,
@@ -99,7 +98,6 @@ watch(
 
 const handleSelect = ({ key }) => {
   router.push(key);
-  emit('select');
 };
 </script>
 

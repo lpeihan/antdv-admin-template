@@ -64,17 +64,16 @@ import {
   SettingOutlined,
 } from '@ant-design/icons-vue';
 import { useFullscreen } from '@vueuse/core';
-import { inject } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import { useDevice } from '@/hooks';
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
 import { useThemeStore } from '@/store/theme';
 import { useUserStore } from '@/store/user';
-
-const isPC = inject('isPC');
 
 const themeStore = useThemeStore();
 const userStore = useUserStore();
 const { locale } = useI18n();
 const { isFullscreen, toggle } = useFullscreen();
+const { isPC } = useDevice();
 </script>

@@ -4,22 +4,12 @@ ENV=${ENV}
 DIST_ZIP_NAME="dist.zip"
 REMOTE_USER="root"
 DEPLOY_PATH="/home/web"
-ENV_FILE="$(dirname "$0")/../.env.$ENV"
 
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-source "$ENV_FILE"
-source "$(dirname "$0")/../.env.local"
-
-TEMP_KEY_FILE=$(mktemp)
-echo "$PRIVATE_KEY" > "$TEMP_KEY_FILE"
-chmod 600 "$TEMP_KEY_FILE"
-
-# ssh-keygen -R $REMOTE_HOST
-# ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
 
 log_info() {
     echo -e "${BLUE}[INFO] $1${NC}"
@@ -33,10 +23,28 @@ log_error() {
     echo -e "${RED}[ERROR] $1${NC}"
 }
 
-if [ ! -f "$ENV_FILE" ]; then
-    log_error "[ERROR] Environment file not found at $ENV_FILE"
+source "$(dirname "$0")/../.env.local"
+
+if [ "$ENV" = "lab" ]; then
+    REMOTE_HOST="$LAB_HOST"
+    PRIVATE_KEY="$LAB_PRIVATE_KEY"
+elif [ "$ENV" = "production" ]; then
+    REMOTE_HOST="$PRODUCTION_HOST"
+    PRIVATE_KEY="$PRODUCTION_PRIVATE_KEY"
+else
+    log_error "[ERROR] UNKNOWN ENV: $ENV"
     exit 1
 fi
+
+TEMP_KEY_FILE=$(mktemp)
+echo "$PRIVATE_KEY" > "$TEMP_KEY_FILE"
+chmod 600 "$TEMP_KEY_FILE"
+
+# ssh-keygen -R $REMOTE_HOST
+# ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
+
+log_info "host: $REMOTE_HOST"
+log_info "private key: $PRIVATE_KEY"
 
 log_info "uploading $DIST_ZIP_NAME to $REMOTE_HOST..."
 log_info "$$TEMP_KEY_FILE"

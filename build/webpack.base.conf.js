@@ -7,13 +7,12 @@ const ComponentsPlugin = require('unplugin-vue-components/webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
 
-const loadEnv = require('./utils/loadEnv');
+const getEnvVars = require('./utils/env');
 const paths = require('./utils/paths');
 
 const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[contenthash:8]' : ''}.js`;
 
-loadEnv(process.env.ENV);
-
+const envVars = getEnvVars(process.env.ENV);
 const entries = {
   index: './src/main.js',
   // admin: './src/admin.js',
@@ -177,11 +176,9 @@ module.exports = {
       __VUE_OPTIONS_API__: JSON.stringify(true),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
-      'process.env': Object.keys(process.env).reduce(
+      'process.env': Object.keys(envVars).reduce(
         (env, key) => {
-          if (key.startsWith('VUE_APP_')) {
-            env[key] = JSON.stringify(process.env[key]);
-          }
+          env[key] = JSON.stringify(envVars[key]);
           return env;
         },
         {

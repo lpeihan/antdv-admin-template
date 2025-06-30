@@ -36,15 +36,15 @@ else
     exit 1
 fi
 
+log_info "host: $REMOTE_HOST"
+log_info "private key: $PRIVATE_KEY"
+
 TEMP_KEY_FILE=$(mktemp)
 echo "$PRIVATE_KEY" > "$TEMP_KEY_FILE"
 chmod 600 "$TEMP_KEY_FILE"
 
-# ssh-keygen -R $REMOTE_HOST
-# ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
-
-log_info "host: $REMOTE_HOST"
-log_info "private key: $PRIVATE_KEY"
+ssh-keygen -R $REMOTE_HOST
+ssh-keyscan -H $REMOTE_HOST >> ~/.ssh/known_hosts
 
 log_info "uploading $DIST_ZIP_NAME to $REMOTE_HOST..."
 log_info "$$TEMP_KEY_FILE"

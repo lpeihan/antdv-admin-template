@@ -1,7 +1,6 @@
+import { useStorage } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { defineStore } from 'pinia';
-
-import storage from '@/utils/storage';
 
 const COLOR_PRIMARY_LIST = [
   '#f7234f',
@@ -25,14 +24,13 @@ let cssVarStyleEl;
 
 export const useThemeStore = defineStore('theme', {
   state: () => ({
-    theme: storage.getItem('theme') || Theme.Light,
-    colorPrimary: storage.getItem('colorPrimary') || '#1890FF',
+    theme: useStorage('theme', Theme.Light),
+    colorPrimary: useStorage('colorPrimary', '#1890FF'),
   }),
   actions: {
     setTheme(theme) {
       this.theme = theme;
 
-      storage.setItem('theme', this.theme);
       document.documentElement.setAttribute('data-theme', this.theme);
     },
     toggleTheme() {
@@ -41,7 +39,6 @@ export const useThemeStore = defineStore('theme', {
     setColorPrimary(color) {
       this.colorPrimary = color;
 
-      storage.setItem('colorPrimary', this.colorPrimary);
       // document.documentElement.style.setProperty('--primary-color', this.colorPrimary);
     },
     initTheme() {

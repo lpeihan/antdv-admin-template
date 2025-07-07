@@ -1,3 +1,4 @@
+import { useStorage } from '@vueuse/core';
 import enUS_antd from 'ant-design-vue/es/locale/en_US';
 import zhCN_antd from 'ant-design-vue/es/locale/zh_CN';
 import dayjs from 'dayjs';
@@ -7,9 +8,8 @@ import 'dayjs/locale/en';
 
 import zhCN from './zh-CN';
 
-import storage from '@/utils/storage';
-
 const DEFAULT_LANG = 'zh-CN';
+const localeStorage = useStorage('locale', DEFAULT_LANG);
 
 // https://github.com/lokalise/i18n-ally/tree/main/locales
 export const SUPPORTED_LOCALES = [
@@ -30,7 +30,7 @@ export const SUPPORTED_LOCALES = [
 ];
 
 export function getLocale() {
-  return storage.getItem('locale') || DEFAULT_LANG;
+  return localeStorage.value;
 }
 
 export function getAntdLocale() {
@@ -90,5 +90,5 @@ export async function setLocale(locale) {
   i18n.global.locale.value = locale;
   dayjs.locale(getDayjsLocale(locale));
 
-  storage.setItem('locale', locale);
+  localeStorage.value = locale;
 }

@@ -8,7 +8,11 @@ import {
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 import { i18n } from '@/locales';
-import { Role } from '@/utils/constants';
+
+export enum RoleName {
+  Admin = 'admin',
+  User = 'user',
+}
 
 const routes = [
   {
@@ -26,7 +30,7 @@ const routes = [
   {
     path: '/',
     component: require('@/layouts/BasicLayout.vue').default,
-    meta: { roles: [Role.Admin, Role.User] },
+    meta: { roles: [RoleName.Admin, RoleName.User] },
     children: [
       {
         path: '/',

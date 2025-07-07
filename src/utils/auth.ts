@@ -1,7 +1,10 @@
+import { useStorage } from '@vueuse/core';
+
 import { useUserStore } from '@/store/user';
-import storage from '@/utils/storage';
 
 const TOKEN = 'token';
+
+const tokenStorage = useStorage(TOKEN, '');
 
 export function hasRole(roles) {
   const userStore = useUserStore();
@@ -18,13 +21,13 @@ export function isLogin() {
 }
 
 export function getToken() {
-  return storage.getItem(TOKEN);
+  return tokenStorage.value;
 }
 
 export function setToken(token) {
-  storage.setItem(TOKEN, token);
+  tokenStorage.value = token;
 }
 
 export function clearToken() {
-  storage.removeItem(TOKEN);
+  tokenStorage.value = '';
 }

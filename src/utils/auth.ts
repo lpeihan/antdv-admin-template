@@ -9,11 +9,11 @@ const tokenStorage = useStorage(TOKEN, '');
 export function hasRole(roles) {
   const userStore = useUserStore();
 
-  if (isLogin()) {
-    return userStore.userInfo.roles.some((role) => roles?.includes(role));
+  if (!isLogin()) {
+    return false;
   }
 
-  return false;
+  return userStore.userInfo.roles.some((role) => roles?.includes(role));
 }
 
 export function isLogin() {

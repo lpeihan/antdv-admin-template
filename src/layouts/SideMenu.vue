@@ -17,7 +17,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 import routes from '@/router/routes';
 import { useThemeStore } from '@/store/theme';
-import { hasRole } from '@/utils/auth';
+import { useUserStore } from '@/store/user';
 
 const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};
@@ -30,6 +30,7 @@ const props = defineProps({
 
 const { locale } = useI18n();
 const themeStore = useThemeStore();
+const userStore = useUserStore();
 const route = useRoute();
 const router = useRouter();
 
@@ -37,7 +38,7 @@ const getMenuData = (items = [], parentKeys = [], selectedKey) => {
   const menuData = [];
 
   for (const item of items) {
-    if (item.meta && item.meta.roles && !hasRole(item.meta.roles)) {
+    if (item.meta && item.meta.roles && !userStore.hasRole(item.meta.roles)) {
       continue;
     }
 

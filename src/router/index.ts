@@ -5,7 +5,6 @@ import 'nprogress/nprogress.css';
 import routes from './routes';
 
 import { useUserStore } from '@/store/user';
-import { hasRole, isLogin } from '@/utils/auth';
 
 NProgress.configure({ showSpinner: false });
 
@@ -24,12 +23,14 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
 
-  if (isLogin()) {
-    if (!useUserStore().userInfo) {
+  const userStore = useUserStore();
+
+  if (userStore.token) {
+    if (!userStore.userInfo) {
       await useUserStore().fetchUserInfo();
     }
 
-    if (to.meta && to.meta.roles && !hasRole(to.meta.roles)) {
+    if (to.meta && to.meta.roles && !userStore.hasRole(to.meta.roles)) {
       next('/404');
       return;
     }

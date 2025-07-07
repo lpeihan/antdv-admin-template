@@ -1,7 +1,7 @@
 import { message } from 'ant-design-vue';
 import axios from 'axios';
 
-import { getToken } from '@/utils/auth';
+import { useUserStore } from '@/store/user';
 import { CODE_SUCCESS } from '@/utils/constants';
 
 const request = axios.create({
@@ -10,10 +10,10 @@ const request = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const token = getToken();
+    const userStore = useUserStore();
 
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+    if (userStore.token) {
+      config.headers['Authorization'] = `Bearer ${userStore.token}`;
     }
 
     return config;

@@ -1,12 +1,13 @@
+import { useStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 import { fetchUserInfoApi, loginApi } from '@/api';
 import router from '@/router';
-import { clearToken, setToken } from '@/utils/auth';
 
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
+      token: useStorage('token', ''),
       userInfo: null,
     };
   },
@@ -19,15 +20,20 @@ export const useUserStore = defineStore('user', {
     async login(data) {
       const res = await loginApi(data);
 
-      setToken(res.data.token);
-
+      this.token = res.data.token;
       await this.fetchUserInfo();
     },
     logout() {
-      clearToken();
+      this.token = '';
       this.userInfo = null;
 
       router.push('/user/login');
+    },
+    hasRole(roles) {
+      if (!this.token) {
+        return false;
+      }
+      return this.userInfo.roles.some((role) => roles?.includes(role));
     },
   },
 });

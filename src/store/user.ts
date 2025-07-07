@@ -33,6 +33,7 @@ export const useUserStore = defineStore('user', {
       if (!this.token) {
         return false;
       }
+
       return this.userInfo.roles.some((role) => roles?.includes(role));
     },
   },

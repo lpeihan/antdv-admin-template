@@ -8,11 +8,7 @@ import {
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
 import { i18n } from '@/locales';
-
-export enum RoleName {
-  Admin = 'admin',
-  User = 'user',
-}
+import { RoleName } from '@/types';
 
 const routes = [
   {

@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 
 import { fetchUserInfoApi, loginApi } from '@/api';
 import router from '@/router';
+import { RoleName } from '@/types';
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -29,12 +30,12 @@ export const useUserStore = defineStore('user', {
 
       router.push('/user/login');
     },
-    hasRole(roles) {
+    hasRole(roles: RoleName[] = []) {
       if (!this.token) {
         return false;
       }
 
-      return this.userInfo.roles.some((role) => roles?.includes(role));
+      return this.userInfo.roles.some((role) => roles.includes(role));
     },
   },
 });

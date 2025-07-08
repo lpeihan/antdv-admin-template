@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css';
 import routes from './routes';
 
 import { useUserStore } from '@/store/user';
+import { RoleName } from '@/types';
 
 NProgress.configure({ showSpinner: false });
 
@@ -30,7 +31,7 @@ router.beforeEach(async (to, from, next) => {
       await useUserStore().fetchUserInfo();
     }
 
-    if (to.meta && to.meta.roles && !userStore.hasRole(to.meta.roles)) {
+    if (to.meta && to.meta.roles && !userStore.hasRole(to.meta.roles as RoleName[])) {
       next('/404');
       return;
     }

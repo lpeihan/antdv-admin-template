@@ -2,7 +2,7 @@ import { message } from 'ant-design-vue';
 import axios from 'axios';
 
 import { useUserStore } from '@/store/user';
-import { HttpStatus } from '@/types';
+import { HttpCode } from '@/types';
 
 const request = axios.create({
   timeout: 20000,
@@ -27,7 +27,7 @@ request.interceptors.response.use(
   (res) => {
     const { data } = res;
 
-    if (data.code === HttpStatus.Success) {
+    if (data.code === HttpCode.Success) {
       return data;
     }
 

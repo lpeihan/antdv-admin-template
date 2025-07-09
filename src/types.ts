@@ -3,7 +3,7 @@ export enum RoleName {
   User = 'user',
 }
 
-export enum HttpStatus {
+export enum HttpCode {
   Success = 200,
   InternalServerError = 500,
 }

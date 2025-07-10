@@ -1,5 +1,9 @@
 <template>
-  <a-config-provider :locale="state.antdLocale" :theme="themeStore.antdThemeConfig">
+  <a-config-provider
+    :key="state.key"
+    :locale="state.antdLocale"
+    :theme="themeStore.antdThemeConfig"
+  >
     <router-view />
   </a-config-provider>
 </template>
@@ -11,14 +15,20 @@ import { useI18n } from 'vue-i18n';
 
 import { getAntdLocale } from '@/locales';
 import { useThemeStore } from '@/store/theme';
+import { reloadEventBus } from '@/utils/eventBus';
 
 const { useToken } = theme;
 const { token } = useToken();
 const themeStore = useThemeStore();
 const { locale } = useI18n();
 
+reloadEventBus.on(() => {
+  state.key++;
+});
+
 const state = reactive({
   antdLocale: getAntdLocale(),
+  key: 0,
 });
 
 watch(locale, () => {

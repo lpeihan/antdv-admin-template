@@ -38,6 +38,7 @@ import { useRoute, useRouter } from 'vue-router';
 import Settings from './Settings.vue';
 
 import { useDevice } from '@/hooks';
+import { reloadEventBus } from '@/utils/eventBus';
 
 const { useToken } = theme;
 
@@ -78,7 +79,7 @@ const breadcrumbs = computed(() => {
 });
 
 const handleReload = () => {
-  window.location.reload();
+  reloadEventBus.emit();
 };
 
 const navigateTo = (breadcrumb) => {

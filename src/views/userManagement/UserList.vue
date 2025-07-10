@@ -17,8 +17,18 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button @click="handleReset">重置</a-button>
-          <a-button type="primary" html-type="submit">搜索</a-button>
+          <a-button type="primary" @click="handleAdd">
+            <template #icon>
+              <PlusOutlined />
+            </template>
+            新增
+          </a-button>
+          <a-button type="primary" html-type="submit">
+            <template #icon>
+              <SearchOutlined />
+            </template>
+            搜索
+          </a-button>
         </a-form-item>
       </a-form>
     </a-card>
@@ -40,6 +50,8 @@
 </template>
 
 <script setup>
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
+
 import { fetchUserListApi as api } from '@/api';
 import { useTable } from '@/hooks';
 
@@ -89,7 +101,7 @@ const STATUS_OPTIONS = [
   { label: '禁用', value: 0 },
 ];
 
-const { tableProps, searchParams, handleSearch, handleReset } = useTable({
+const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api,
   defaultSearchParams: {

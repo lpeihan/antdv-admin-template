@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "cross-env NODE_ENV=development ENV=local nodemon build/dev-server.js",
+    "start": "npm run serve",
     "build": "cross-env NODE_ENV=production node build/build.js",
     "analyze": "cross-env NODE_ENV=production npm_config_report=true npm run build",
     "deploy:lab": "cross-env ENV=lab sh -c 'npm run build && ./scripts/deploy.sh'",

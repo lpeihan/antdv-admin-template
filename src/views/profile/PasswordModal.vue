@@ -6,14 +6,14 @@
     :confirmLoading="loading"
     @ok="handleChangePassword"
   >
-    <a-form ref="formRef" :model="form" class="!pt-[20px]">
-      <a-form-item label="旧密码" name="oldPassword" :rules="{ required: true, message: '' }">
+    <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
+      <a-form-item label="旧密码" name="oldPassword">
         <a-input-password v-model:value="form.oldPassword" />
       </a-form-item>
-      <a-form-item label="新密码" name="newPassword" :rules="{ required: true, message: '' }">
+      <a-form-item label="新密码" name="newPassword">
         <a-input-password v-model:value="form.newPassword" />
       </a-form-item>
-      <a-form-item label="确认密码" name="confirmPassword" :rules="{ required: true, message: '' }">
+      <a-form-item label="确认密码" name="confirmPassword">
         <a-input-password v-model:value="form.confirmPassword" />
       </a-form-item>
     </a-form>
@@ -21,8 +21,9 @@
 </template>
 
 <script setup>
-import { reactive, ref, useTemplateRef } from 'vue';
+import { useTemplateRef } from 'vue';
 
+import { useModalForm } from '@/hooks';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM = {
@@ -32,13 +33,7 @@ const INITIAL_FORM = {
 };
 
 const formRef = useTemplateRef('formRef');
-const open = ref(false);
-const loading = ref(false);
-const form = reactive({ ...INITIAL_FORM });
-
-const openModal = () => {
-  open.value = true;
-};
+const { form, rules, open, loading, openModal } = useModalForm(INITIAL_FORM, formRef);
 
 const handleChangePassword = async () => {
   await formRef.value.validate();

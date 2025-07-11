@@ -6,14 +6,14 @@
     :confirmLoading="loading"
     @ok="handleAddOrEdit"
   >
-    <a-form ref="formRef" :model="form" class="!pt-[20px]">
-      <a-form-item label="用户名" name="name" :rules="{ required: true, message: '' }">
+    <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
+      <a-form-item label="用户名" name="name">
         <a-input v-model:value="form.name" />
       </a-form-item>
-      <a-form-item label="邮箱" name="email" :rules="{ required: true, message: '' }">
+      <a-form-item label="邮箱" name="email">
         <a-input v-model:value="form.email" />
       </a-form-item>
-      <a-form-item label="密码" name="password" :rules="{ required: true, message: '' }">
+      <a-form-item label="密码" name="password">
         <a-input-password v-model:value="form.password" />
       </a-form-item>
     </a-form>
@@ -21,8 +21,9 @@
 </template>
 
 <script setup>
-import { reactive, ref, useTemplateRef, watchEffect } from 'vue';
+import { useTemplateRef } from 'vue';
 
+import { useModalForm } from '@/hooks';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM = {
@@ -33,20 +34,7 @@ const INITIAL_FORM = {
 };
 
 const formRef = useTemplateRef('formRef');
-const open = ref(false);
-const loading = ref(false);
-const form = reactive({ ...INITIAL_FORM });
-
-watchEffect(() => {
-  if (!open.value) {
-    Object.assign(form, INITIAL_FORM);
-  }
-});
-
-const openModal = (record) => {
-  Object.assign(form, record);
-  open.value = true;
-};
+const { form, rules, open, loading, openModal } = useModalForm(INITIAL_FORM, formRef);
 
 const handleAddOrEdit = async () => {
   await formRef.value.validate();

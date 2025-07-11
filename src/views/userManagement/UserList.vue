@@ -35,7 +35,7 @@
 
     <a-card>
       <a-table v-bind="tableProps">
-        <template #bodyCell="{ column: { dataIndex }, text }">
+        <template #bodyCell="{ column: { dataIndex }, text, record }">
           <template v-if="dataIndex === 'avatar'">
             <a-avatar :src="text" />
           </template>

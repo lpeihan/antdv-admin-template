@@ -1,45 +1,54 @@
 <template>
   <a-modal
     v-model:open="open"
-    title="新增用户"
+    :title="form.id ? '编辑用户' : '新增用户'"
     :maskClosable="false"
     :confirmLoading="loading"
-    @ok="handleChangePassword"
+    @ok="handleAddOrEdit"
   >
-    <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
-      <a-form-item label="旧密码" name="oldPassword">
-        <a-input-password v-model:value="form.oldPassword" />
+    <a-form ref="formRef" :model="form" class="!pt-[20px]">
+      <a-form-item label="用户名" name="name" :rules="{ required: true, message: '' }">
+        <a-input v-model:value="form.name" />
       </a-form-item>
-      <a-form-item label="新密码" name="newPassword">
-        <a-input-password v-model:value="form.newPassword" />
+      <a-form-item label="邮箱" name="email" :rules="{ required: true, message: '' }">
+        <a-input v-model:value="form.email" />
       </a-form-item>
-      <a-form-item label="确认密码" name="confirmPassword">
-        <a-input-password v-model:value="form.confirmPassword" />
+      <a-form-item label="密码" name="password" :rules="{ required: true, message: '' }">
+        <a-input-password v-model:value="form.password" />
       </a-form-item>
     </a-form>
   </a-modal>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, useTemplateRef, watchEffect } from 'vue';
 
 import { showSuccessMessage, sleep } from '@/utils';
 
-const formRef = ref(null);
-const form = reactive({
-  oldPassword: '',
-  newPassword: '',
-  confirmPassword: '',
-});
-const rules = {
-  oldPassword: [{ required: true, message: '' }],
-  newPassword: [{ required: true, message: '' }],
-  confirmPassword: [{ required: true, message: '' }],
+const INITIAL_FORM = {
+  name: '',
+  email: '',
+  password: '',
+  id: '',
 };
+
+const formRef = useTemplateRef('formRef');
 const open = ref(false);
 const loading = ref(false);
+const form = reactive({ ...INITIAL_FORM });
 
-const handleChangePassword = async () => {
+watchEffect(() => {
+  if (!open.value) {
+    Object.assign(form, INITIAL_FORM);
+  }
+});
+
+const openModal = (record) => {
+  Object.assign(form, record);
+  open.value = true;
+};
+
+const handleAddOrEdit = async () => {
   await formRef.value.validate();
 
   loading.value = true;
@@ -51,5 +60,5 @@ const handleChangePassword = async () => {
   showSuccessMessage();
 };
 
-defineExpose({ openModal: () => (open.value = true) });
+defineExpose({ openModal });
 </script>

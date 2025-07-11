@@ -41,16 +41,21 @@
           </template>
 
           <template v-if="dataIndex === 'actions'">
-            <a-button type="link">编辑</a-button>
+            <a-button type="link" @click="handleEdit(record)">编辑</a-button>
           </template>
         </template>
       </a-table>
     </a-card>
+
+    <UserInfoModal ref="userInfoModalRef" />
   </div>
 </template>
 
 <script setup>
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
+import { useTemplateRef } from 'vue';
+
+import UserInfoModal from './UserInfoModal.vue';
 
 import { fetchUserListApi as api } from '@/api';
 import { useTable } from '@/hooks';
@@ -101,6 +106,8 @@ const STATUS_OPTIONS = [
   { label: '禁用', value: 0 },
 ];
 
+const userInfoModalRef = useTemplateRef('userInfoModalRef');
+
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api,
@@ -109,4 +116,12 @@ const { tableProps, searchParams, handleSearch } = useTable({
     status: null,
   },
 });
+
+const handleAdd = () => {
+  userInfoModalRef.value.openModal();
+};
+
+const handleEdit = (record) => {
+  userInfoModalRef.value.openModal(record);
+};
 </script>

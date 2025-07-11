@@ -79,7 +79,7 @@ export const useThemeStore = defineStore('theme', {
       algorithm: isDarkTheme(state.theme) ? theme.darkAlgorithm : theme.defaultAlgorithm,
       token: {
         colorPrimary: state.colorPrimary,
-        controlHeight: 36,
+        controlHeight: 34,
         borderRadius: 4,
       },
     }),

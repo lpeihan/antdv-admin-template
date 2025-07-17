@@ -2,6 +2,9 @@ import { useStorage } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { defineStore } from 'pinia';
 
+import { STORAGE_KEY } from '@/constants';
+import { AppTheme } from '@/enums';
+
 const COLOR_PRIMARY_LIST = [
   '#f7234f',
   '#FA541C',
@@ -13,19 +16,14 @@ const COLOR_PRIMARY_LIST = [
   '#722ED1',
 ];
 
-enum Theme {
-  Light = 'light',
-  Dark = 'dark',
-}
-
-const isDarkTheme = (theme) => theme === Theme.Dark;
+const isDarkTheme = (theme) => theme === AppTheme.Dark;
 
 let cssVarStyleEl;
 
 export const useThemeStore = defineStore('theme', {
   state: () => ({
-    theme: useStorage('theme', Theme.Light),
-    colorPrimary: useStorage('colorPrimary', '#1890FF'),
+    theme: useStorage(STORAGE_KEY.theme, AppTheme.Light),
+    colorPrimary: useStorage(STORAGE_KEY.colorPrimary, '#1890FF'),
   }),
   actions: {
     setTheme(theme) {
@@ -34,7 +32,7 @@ export const useThemeStore = defineStore('theme', {
       document.documentElement.setAttribute('data-theme', this.theme);
     },
     toggleTheme() {
-      this.setTheme(this.isDarkTheme ? Theme.Light : Theme.Dark);
+      this.setTheme(this.isDarkTheme ? AppTheme.Light : AppTheme.Dark);
     },
     setColorPrimary(color) {
       this.colorPrimary = color;

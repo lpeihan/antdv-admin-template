@@ -2,13 +2,14 @@ import { useStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 import { fetchUserInfoApi, loginApi } from '@/api';
+import { STORAGE_KEY } from '@/constants';
+import { RoleName } from '@/enums';
 import router from '@/router';
-import { RoleName } from '@/types';
 
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
-      token: useStorage('token', ''),
+      token: useStorage(STORAGE_KEY.token, ''),
       userInfo: null,
     };
   },

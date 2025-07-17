@@ -26,10 +26,11 @@ import { useStorage } from '@vueuse/core';
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';
 
+import { STORAGE_KEY } from '@/constants';
 import { useThemeStore } from '@/store/theme';
 
 const themeStore = useThemeStore();
-const collapsed = useStorage('collapsed', false);
+const collapsed = useStorage(STORAGE_KEY.Collapsed, false);
 
 const handleCollapse = () => {
   collapsed.value = !collapsed.value;

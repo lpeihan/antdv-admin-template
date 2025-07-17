@@ -7,8 +7,8 @@ import {
 } from '@ant-design/icons-vue';
 import { RouteRecordRaw, RouterView } from 'vue-router';
 
+import { RoleName } from '@/enums';
 import { i18n } from '@/locales';
-import { RoleName } from '@/types';
 
 const routes = [
   {

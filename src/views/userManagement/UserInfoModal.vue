@@ -21,9 +21,8 @@
 </template>
 
 <script setup>
-import { useTemplateRef } from 'vue';
+import { reactive, ref, useTemplateRef, watch } from 'vue';
 
-import { useModalForm } from '@/hooks';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM = {
@@ -32,9 +31,30 @@ const INITIAL_FORM = {
   password: '',
   id: '',
 };
-
+const form = reactive({ ...INITIAL_FORM });
 const formRef = useTemplateRef('formRef');
-const { form, rules, open, loading, openModal } = useModalForm(INITIAL_FORM, formRef);
+const rules = {
+  name: [{ required: true, message: '' }],
+  email: [{ required: true, message: '' }],
+  password: [{ required: true, message: '' }],
+};
+const open = ref(false);
+const loading = ref(false);
+
+watch(open, (value) => {
+  if (!value) {
+    Object.assign(form, INITIAL_FORM);
+    formRef.value.clearValidate();
+  }
+});
+
+const openModal = (record) => {
+  if (record) {
+    Object.assign(form, record);
+  }
+
+  open.value = true;
+};
 
 const handleAddOrEdit = async () => {
   await formRef.value.validate();

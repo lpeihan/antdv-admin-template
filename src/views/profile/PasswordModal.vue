@@ -21,9 +21,8 @@
 </template>
 
 <script setup>
-import { useTemplateRef } from 'vue';
+import { reactive, ref, useTemplateRef, watch } from 'vue';
 
-import { useModalForm } from '@/hooks';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM = {
@@ -32,8 +31,26 @@ const INITIAL_FORM = {
   confirmPassword: '',
 };
 
+const form = reactive({ ...INITIAL_FORM });
 const formRef = useTemplateRef('formRef');
-const { form, rules, open, loading, openModal } = useModalForm(INITIAL_FORM, formRef);
+const rules = {
+  oldPassword: [{ required: true, message: '' }],
+  newPassword: [{ required: true, message: '' }],
+  confirmPassword: [{ required: true, message: '' }],
+};
+const open = ref(false);
+const loading = ref(false);
+
+watch(open, (value) => {
+  if (!value) {
+    Object.assign(form, INITIAL_FORM);
+    formRef.value.clearValidate();
+  }
+});
+
+const openModal = () => {
+  open.value = true;
+};
 
 const handleChangePassword = async () => {
   await formRef.value.validate();

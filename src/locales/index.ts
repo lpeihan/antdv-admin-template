@@ -8,8 +8,10 @@ import 'dayjs/locale/en';
 
 import zhCN from './zh-CN';
 
+import { STORAGE_KEY } from '@/constants';
+
 const DEFAULT_LANG = 'zh-CN';
-const localeStorage = useStorage('locale', DEFAULT_LANG);
+const localeStorage = useStorage(STORAGE_KEY.locale, DEFAULT_LANG);
 
 // https://github.com/lokalise/i18n-ally/tree/main/locales
 export const SUPPORTED_LOCALES = [

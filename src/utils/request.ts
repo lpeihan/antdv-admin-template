@@ -1,8 +1,8 @@
 import { message } from 'ant-design-vue';
 import axios from 'axios';
 
+import { HttpCode } from '@/enums';
 import { useUserStore } from '@/store/user';
-import { HttpCode } from '@/types';
 
 const request = axios.create({
   timeout: 20000,

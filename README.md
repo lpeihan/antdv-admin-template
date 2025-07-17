@@ -50,42 +50,42 @@ PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
 
 ```shell
 upstream backend {
-	server localhost:8080;
+  server localhost:8080;
 }
 
 server {
-	listen 80;
-	server_name localhost;
-	return 301 https://$host$request_uri;
+  listen 80;
+  server_name localhost;
+  return 301 https://$host$request_uri;
 }
 
 server {
-	listen 443 ssl;
-	server_name localhost;
+  listen 443 ssl;
+  server_name localhost;
 
-	ssl_certificate /home/ubuntu/.acme.sh/localhost_ecc/fullchain.cer;
-	ssl_certificate_key /home/ubuntu/.acme.sh/localhost_ecc/localhost.key;
+  ssl_certificate /home/ubuntu/.acme.sh/localhost_ecc/fullchain.cer;
+  ssl_certificate_key /home/ubuntu/.acme.sh/localhost_ecc/localhost.key;
 
-	ssl_session_cache shared:SSL:1m;
-	ssl_session_timeout 5m;
+  ssl_session_cache shared:SSL:1m;
+  ssl_session_timeout 5m;
 
-	root /home/ubuntu/web/dist;
-	index index.html;
+  root /home/ubuntu/web/dist;
+  index index.html;
 
-	location / {
-		try_files $uri $uri/ /index.html;
-	}
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
 
-	location /api/ {
-		proxy_pass http://backend;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-	}
+  location /api/ {
+    proxy_pass http://backend;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+  }
 
-	location /admin/ {
-		# alias /home/ubuntu/admin/dist/;
-		index admin.html;
-		try_files $uri $uri/ /admin.html;
-	}
+  location /admin/ {
+    # alias /home/ubuntu/admin/dist/;
+    index admin.html;
+    try_files $uri $uri/ /admin.html;
+  }
 }
 ```

@@ -2,6 +2,7 @@
   <a-layout-header
     :style="{
       background: token.colorBgContainer,
+      borderBottom: `1px solid ${token.colorBorderSecondary}`,
     }"
   >
     <div class="flex items-center gap-2">

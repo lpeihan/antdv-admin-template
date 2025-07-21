@@ -44,7 +44,7 @@ const handleCollapse = () => {
 
 <style lang="less" scoped>
 .basic-layout {
-  .ant-layout-sider-light {
+  .ant-layout-sider {
     border-right: 1px solid var(--colorBorderSecondary);
   }
 

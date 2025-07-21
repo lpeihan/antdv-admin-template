@@ -1,7 +1,12 @@
 <template>
   <div class="basic-layout">
-    <a-layout style="min-height: 100vh">
-      <a-layout-sider v-model:collapsed="collapsed" :width="240" :theme="themeStore.theme">
+    <a-layout>
+      <a-layout-sider
+        v-model:collapsed="collapsed"
+        :width="240"
+        :theme="themeStore.theme"
+        class="h-[100vh]"
+      >
         <div class="flex h-[64px] items-center justify-center">
           <img src="@/assets/images/logo.png" alt="logo" class="w-[36px]" />
         </div>
@@ -9,10 +14,10 @@
         <SideMenu :collapsed="collapsed" />
       </a-layout-sider>
 
-      <a-layout>
+      <a-layout class="h-[100vh]">
         <Header :handleCollapse="handleCollapse" :collapsed="collapsed" />
 
-        <a-layout-content class="p-[12px]">
+        <a-layout-content class="overflow-y-auto p-[12px]">
           <router-view />
         </a-layout-content>
       </a-layout>

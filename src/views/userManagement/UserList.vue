@@ -37,7 +37,7 @@
       <a-table v-bind="tableProps">
         <template #bodyCell="{ column: { dataIndex }, text, record }">
           <template v-if="dataIndex === 'avatar'">
-            <a-avatar :src="text" />
+            <a-avatar :src="text" size="large" />
           </template>
 
           <template v-if="dataIndex === 'actions'">

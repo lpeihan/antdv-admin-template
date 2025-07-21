@@ -103,7 +103,6 @@ const columns = [
 ];
 
 const userInfoModalRef = useTemplateRef('userInfoModalRef');
-
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api,

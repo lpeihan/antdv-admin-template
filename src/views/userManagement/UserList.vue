@@ -17,7 +17,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" @click="handleAdd">
+          <a-button type="primary" ghost @click="handleAdd">
             <template #icon>
               <PlusOutlined />
             </template>

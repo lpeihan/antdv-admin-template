@@ -36,10 +36,10 @@ import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import Settings from './Settings.vue';
-
 import { useDevice } from '@/hooks';
 import { reloadEventBus } from '@/utils/eventBus';
+
+import Settings from './Settings.vue';
 
 const { useToken } = theme;
 

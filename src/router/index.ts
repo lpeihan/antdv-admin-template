@@ -2,10 +2,11 @@ import NProgress from 'nprogress';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 import 'nprogress/nprogress.css';
-import routes from './routes';
 
 import { RoleName } from '@/enums';
 import { useUserStore } from '@/store/user';
+
+import routes from './routes';
 
 NProgress.configure({ showSpinner: false });
 

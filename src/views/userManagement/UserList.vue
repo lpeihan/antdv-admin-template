@@ -11,7 +11,7 @@
             v-model:value="searchParams.status"
             allow-clear
             placeholder="请选择状态"
-            :options="STATUS_OPTIONS"
+            :options="USER_STATUS_OPTIONS"
             @change="handleSearch"
           />
         </a-form-item>
@@ -55,10 +55,11 @@
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
 import { useTemplateRef } from 'vue';
 
-import UserInfoModal from './UserInfoModal.vue';
-
 import { fetchUserListApi as api } from '@/api';
+import { USER_STATUS_OPTIONS } from '@/constants';
 import { useTable } from '@/hooks';
+
+import UserInfoModal from './UserInfoModal.vue';
 
 const columns = [
   {
@@ -101,20 +102,12 @@ const columns = [
   },
 ];
 
-const STATUS_OPTIONS = [
-  { label: '启用', value: 1 },
-  { label: '禁用', value: 0 },
-];
-
 const userInfoModalRef = useTemplateRef('userInfoModalRef');
 
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api,
-  defaultSearchParams: {
-    email: null,
-    status: null,
-  },
+  defaultSearchParams: {},
 });
 
 const handleAdd = () => {

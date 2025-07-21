@@ -28,11 +28,11 @@
 <script setup>
 import { useStorage } from '@vueuse/core';
 
-import Header from './Header.vue';
-import SideMenu from './SideMenu.vue';
-
 import { STORAGE_KEY } from '@/constants';
 import { useThemeStore } from '@/store/theme';
+
+import Header from './Header.vue';
+import SideMenu from './SideMenu.vue';
 
 const themeStore = useThemeStore();
 const collapsed = useStorage(STORAGE_KEY.Collapsed, false);

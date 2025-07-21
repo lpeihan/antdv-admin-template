@@ -6,9 +6,9 @@ import { createI18n } from 'vue-i18n';
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/en';
 
-import zhCN from './zh-CN';
-
 import { STORAGE_KEY } from '@/constants';
+
+import zhCN from './zh-CN';
 
 const DEFAULT_LANG = 'zh-CN';
 const localeStorage = useStorage(STORAGE_KEY.locale, DEFAULT_LANG);

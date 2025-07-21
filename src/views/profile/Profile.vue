@@ -25,9 +25,9 @@
 <script setup>
 import { toRefs, useTemplateRef } from 'vue';
 
-import PasswordModal from './PasswordModal.vue';
-
 import { useUserStore } from '@/store/user';
+
+import PasswordModal from './PasswordModal.vue';
 
 const userStore = useUserStore();
 const passwordModalRef = useTemplateRef('passwordModalRef');

@@ -33,6 +33,13 @@ export default defineConfig([
         {
           'newlines-between': 'always',
           groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,

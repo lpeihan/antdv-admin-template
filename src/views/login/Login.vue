@@ -7,7 +7,7 @@
     <div>
       <div class="mb-[30px] flex items-center justify-center gap-3">
         <img src="@/assets/images/logo.png" alt="logo" width="48" />
-        <span class="text-xl font-bold">Antdv Admin</span>
+        <span class="text-xl font-bold">Admin Portal</span>
       </div>
 
       <a-form :model="form" autocomplete="off" class="w-[360px]" @finish="onFinish">

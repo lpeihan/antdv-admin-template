@@ -1,9 +1,13 @@
+function withPrefix(key) {
+  return `admin_${key}`;
+}
+
 export const STORAGE_KEY = {
-  token: 'token',
-  collapsed: 'collapsed',
-  theme: 'theme',
-  colorPrimary: 'colorPrimary',
-  locale: 'locale',
+  token: withPrefix('token'),
+  collapsed: withPrefix('collapsed'),
+  theme: withPrefix('theme'),
+  colorPrimary: withPrefix('colorPrimary'),
+  locale: withPrefix('locale'),
 };
 
 export const USER_STATUS_OPTIONS = [

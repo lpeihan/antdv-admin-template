@@ -11,7 +11,7 @@ const getUserData = () => ({
   avatar: faker.image.avatar(),
   email: faker.internet.email(),
   roles: [faker.helpers.arrayElement(['admin', 'user'])],
-  status: faker.helpers.arrayElement(['active', 'inactive']),
+  status: faker.helpers.arrayElement([1, 0]),
 });
 
 module.exports = (app) => {

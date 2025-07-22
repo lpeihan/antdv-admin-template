@@ -1,7 +1,7 @@
 <template>
   <div class="basic-table-page">
     <a-card>
-      <a-form layout="inline" class="basic-table-form" @finish="handleSearch">
+      <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
         <a-form-item label="邮箱" name="email">
           <a-input v-model:value="searchParams.email" allow-clear placeholder="请输入邮箱" />
         </a-form-item>
@@ -40,6 +40,12 @@
             <a-avatar :src="text" size="large" />
           </template>
 
+          <template v-if="dataIndex === 'status'">
+            <a-tag :color="text === UserStatus.Enabled ? 'success' : 'warning'">
+              {{ getEnumLabel(USER_STATUS_OPTIONS, text) }}
+            </a-tag>
+          </template>
+
           <template v-if="dataIndex === 'actions'">
             <a-button type="link" @click="handleEdit(record)">编辑</a-button>
           </template>
@@ -55,9 +61,11 @@
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
 import { useTemplateRef } from 'vue';
 
-import { fetchUserListApi as api } from '@/api';
+import { fetchUserListApi } from '@/api';
 import { USER_STATUS_OPTIONS } from '@/constants';
+import { UserStatus } from '@/enums';
 import { useTable } from '@/hooks';
+import { getEnumLabel } from '@/utils';
 
 import UserInfoModal from './UserInfoModal.vue';
 
@@ -76,6 +84,11 @@ const columns = [
   {
     title: '头像',
     dataIndex: 'avatar',
+    width: 150,
+  },
+  {
+    title: '状态',
+    dataIndex: 'status',
     width: 150,
   },
   {
@@ -105,7 +118,7 @@ const columns = [
 const userInfoModalRef = useTemplateRef('userInfoModalRef');
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
-  api,
+  api: fetchUserListApi,
   defaultSearchParams: {},
 });
 

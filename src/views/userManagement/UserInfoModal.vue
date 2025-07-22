@@ -4,9 +4,17 @@
     :title="isEdit ? '编辑用户' : '新增用户'"
     :maskClosable="false"
     :confirmLoading="loading"
+    :width="600"
     @ok="handleOk"
   >
-    <a-form ref="formRef" :model="formData" :rules="formRules" class="!pt-[20px]">
+    <a-form
+      ref="formRef"
+      :model="formData"
+      :rules="formRules"
+      :label-col="{ style: { width: '100px' } }"
+      class="!pt-[20px]"
+      labelAlign="left"
+    >
       <a-form-item label="用户名" name="name">
         <a-input v-model:value="formData.name" />
       </a-form-item>

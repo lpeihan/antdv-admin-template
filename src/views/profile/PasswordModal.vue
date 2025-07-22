@@ -4,9 +4,17 @@
     title="修改密码"
     :maskClosable="false"
     :confirmLoading="loading"
+    :width="600"
     @ok="handleOk"
   >
-    <a-form ref="formRef" :model="formData" :rules="formRules" class="!pt-[20px]">
+    <a-form
+      ref="formRef"
+      :model="formData"
+      :rules="formRules"
+      :label-col="{ style: { width: '100px' } }"
+      class="!pt-[20px]"
+      labelAlign="left"
+    >
       <a-form-item label="旧密码" name="oldPassword">
         <a-input-password v-model:value="formData.oldPassword" />
       </a-form-item>

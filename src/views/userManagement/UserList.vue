@@ -1,7 +1,7 @@
 <template>
   <div class="basic-table-page">
     <a-card>
-      <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
+      <a-form layout="inline" class="basic-table-form" @finish="handleSearch">
         <a-form-item label="邮箱" name="email">
           <a-input v-model:value="searchParams.email" allow-clear placeholder="请输入邮箱" />
         </a-form-item>

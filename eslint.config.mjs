@@ -91,6 +91,7 @@ export default defineConfig([
           alphabetical: false,
         },
       ],
+      'vue/no-undef-properties': 'error',
     },
   },
   {

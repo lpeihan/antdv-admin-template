@@ -4,7 +4,7 @@
     :title="form.id ? '编辑用户' : '新增用户'"
     :maskClosable="false"
     :confirmLoading="loading"
-    @ok="handleAddOrEdit"
+    @ok="handleOk"
   >
     <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
       <a-form-item label="用户名" name="name">
@@ -56,7 +56,7 @@ const openModal = (record) => {
   open.value = true;
 };
 
-const handleAddOrEdit = async () => {
+const handleOk = async () => {
   await formRef.value.validate();
 
   loading.value = true;

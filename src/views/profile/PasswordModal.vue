@@ -4,7 +4,7 @@
     title="修改密码"
     :maskClosable="false"
     :confirmLoading="loading"
-    @ok="handleChangePassword"
+    @ok="handleOk"
   >
     <a-form ref="formRef" :model="form" :rules="rules" class="!pt-[20px]">
       <a-form-item label="旧密码" name="oldPassword">
@@ -52,7 +52,7 @@ const openModal = () => {
   open.value = true;
 };
 
-const handleChangePassword = async () => {
+const handleOk = async () => {
   await formRef.value.validate();
 
   loading.value = true;

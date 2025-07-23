@@ -10,18 +10,21 @@
     <a-form
       ref="formRef"
       :model="formData"
-      :rules="formRules"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
       labelAlign="left"
     >
-      <a-form-item label="旧密码" name="oldPassword">
+      <a-form-item label="旧密码" name="oldPassword" :rules="[{ required: true, message: '' }]">
         <a-input-password v-model:value="formData.oldPassword" />
       </a-form-item>
-      <a-form-item label="新密码" name="newPassword">
+      <a-form-item label="新密码" name="newPassword" :rules="[{ required: true, message: '' }]">
         <a-input-password v-model:value="formData.newPassword" />
       </a-form-item>
-      <a-form-item label="确认密码" name="confirmPassword">
+      <a-form-item
+        label="确认密码"
+        name="confirmPassword"
+        :rules="[{ required: true, message: '' }]"
+      >
         <a-input-password v-model:value="formData.confirmPassword" />
       </a-form-item>
     </a-form>
@@ -42,11 +45,6 @@ const INITIAL_FORM_DATA = {
 
 const formData = reactive({ ...INITIAL_FORM_DATA });
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formRules = {
-  oldPassword: [{ required: true, message: '' }],
-  newPassword: [{ required: true, message: '' }],
-  confirmPassword: [{ required: true, message: '' }],
-};
 const open = ref(false);
 const loading = ref(false);
 

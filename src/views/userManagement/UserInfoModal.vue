@@ -10,18 +10,17 @@
     <a-form
       ref="formRef"
       :model="formData"
-      :rules="formRules"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
       labelAlign="left"
     >
-      <a-form-item label="用户名" name="name">
+      <a-form-item label="用户名" name="name" :rules="[{ required: true, message: '' }]">
         <a-input v-model:value="formData.name" />
       </a-form-item>
-      <a-form-item label="邮箱" name="email">
+      <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '' }]">
         <a-input v-model:value="formData.email" />
       </a-form-item>
-      <a-form-item label="密码" name="password">
+      <a-form-item label="密码" name="password" :rules="[{ required: true, message: '' }]">
         <a-input-password v-model:value="formData.password" />
       </a-form-item>
     </a-form>
@@ -43,11 +42,6 @@ const INITIAL_FORM_DATA = {
 
 const formData = reactive({ ...INITIAL_FORM_DATA });
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formRules = {
-  name: [{ required: true, message: '' }],
-  email: [{ required: true, message: '' }],
-  password: [{ required: true, message: '' }],
-};
 const open = ref(false);
 const loading = ref(false);
 

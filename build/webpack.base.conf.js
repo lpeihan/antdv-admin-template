@@ -3,7 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const dayjs = require('dayjs');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HTMLPlugin = require('html-webpack-plugin');
-const ComponentsPlugin = require('unplugin-vue-components/webpack');
+// const ComponentsPlugin = require('unplugin-vue-components/webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
 
@@ -190,9 +190,9 @@ module.exports = {
       ),
     }),
 
-    ComponentsPlugin({
-      dirs: [paths.resolve('src/components')],
-      dts: false,
-    }),
+    // ComponentsPlugin({
+    //   dirs: [paths.resolve('src/components')],
+    //   dts: false,
+    // }),
   ],
 };

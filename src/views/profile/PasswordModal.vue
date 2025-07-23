@@ -1,14 +1,15 @@
 <template>
   <a-modal
-    v-model:open="open"
+    v-model:open="isOpen"
     title="修改密码"
     :maskClosable="false"
-    :confirmLoading="loading"
+    :confirmLoading="isConfirmLoading"
     :width="600"
     @ok="handleOk"
   >
     <a-form
       ref="formRef"
+      :key="isOpen"
       :model="formData"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
@@ -33,7 +34,7 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'ant-design-vue';
-import { reactive, ref, useTemplateRef, watch } from 'vue';
+import { reactive, ref, useTemplateRef } from 'vue';
 
 import { showSuccessMessage, sleep } from '@/utils';
 
@@ -45,30 +46,28 @@ const INITIAL_FORM_DATA = {
 
 const formData = reactive({ ...INITIAL_FORM_DATA });
 const formRef = useTemplateRef<FormInstance>('formRef');
-const open = ref(false);
-const loading = ref(false);
 
-watch(open, (value) => {
-  if (!value) {
-    Object.assign(formData, INITIAL_FORM_DATA);
-    formRef.value.clearValidate();
-  }
-});
+const isOpen = ref(false);
+const isConfirmLoading = ref(false);
 
 const openModal = () => {
-  open.value = true;
+  Object.assign(formData, INITIAL_FORM_DATA);
+
+  isOpen.value = true;
 };
 
 const handleOk = async () => {
   await formRef.value.validate();
+  isConfirmLoading.value = true;
 
-  loading.value = true;
+  try {
+    await sleep(3000);
 
-  await sleep(3000);
-
-  loading.value = false;
-  open.value = false;
-  showSuccessMessage();
+    isOpen.value = false;
+    showSuccessMessage();
+  } finally {
+    isConfirmLoading.value = false;
+  }
 };
 
 defineExpose({ openModal });

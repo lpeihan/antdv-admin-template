@@ -28,7 +28,7 @@ request.interceptors.response.use(
     const { data } = res;
 
     if (data.code === HttpCode.Success) {
-      return data;
+      return Promise.resolve(data);
     }
 
     message.error(data.message);

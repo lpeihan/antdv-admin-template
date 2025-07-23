@@ -2,8 +2,12 @@
   <div class="basic-table-page">
     <a-card>
       <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
-        <a-form-item label="邮箱" name="email">
-          <a-input v-model:value="searchParams.email" allow-clear placeholder="请输入邮箱" />
+        <a-form-item label="用户ID" name="id">
+          <a-input v-model:value="searchParams.id" allow-clear placeholder="请输入用户ID" />
+        </a-form-item>
+
+        <a-form-item label="用户名" name="name">
+          <a-input v-model:value="searchParams.name" allow-clear placeholder="请输入用户名" />
         </a-form-item>
 
         <a-form-item label="状态" name="status">

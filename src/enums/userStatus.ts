@@ -11,11 +11,11 @@ export const UserStatusMap = {
   },
   [UserStatus.Disabled]: {
     label: '禁用',
-    color: 'warning',
+    color: 'error',
   },
   [UserStatus.Frozen]: {
     label: '冻结',
-    color: 'danger',
+    color: 'warning',
   },
 };
 

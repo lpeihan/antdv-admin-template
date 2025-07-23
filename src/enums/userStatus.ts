@@ -21,5 +21,5 @@ export const UserStatusMap = {
 
 export const UserStatusOptions = Object.entries(UserStatusMap).map(([value, meta]) => ({
   label: meta.label,
-  value,
+  value: Number(value),
 }));

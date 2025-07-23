@@ -21,8 +21,12 @@
       <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '' }]">
         <a-input v-model:value="formData.email" />
       </a-form-item>
-      <a-form-item label="密码" name="password" :rules="[{ required: true, message: '' }]">
-        <a-input-password v-model:value="formData.password" />
+      <a-form-item label="状态" name="status" :rules="[{ required: true, message: '' }]">
+        <a-select
+          v-model:value="formData.status"
+          placeholder="请选择状态"
+          :options="UserStatusOptions"
+        />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -32,13 +36,14 @@
 import type { FormInstance } from 'ant-design-vue';
 import { computed, reactive, ref, useTemplateRef } from 'vue';
 
+import { UserStatus, UserStatusOptions } from '@/enums';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM_DATA = {
   name: '',
   email: '',
-  password: '',
   id: '',
+  status: UserStatus.Enabled,
 };
 
 const formRef = useTemplateRef<FormInstance>('formRef');

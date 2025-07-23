@@ -42,7 +42,7 @@
 
           <template v-if="dataIndex === 'status'">
             <a-tag :color="UserStatusMap[text]?.color">
-              {{ UserStatusOptions[text]?.label }}
+              {{ UserStatusMap[text]?.label }}
             </a-tag>
           </template>
 

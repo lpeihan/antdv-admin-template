@@ -11,7 +11,7 @@
             v-model:value="searchParams.status"
             allow-clear
             placeholder="请选择状态"
-            :options="USER_STATUS_OPTIONS"
+            :options="UserStatusOptions"
             @change="handleSearch"
           />
         </a-form-item>
@@ -41,8 +41,8 @@
           </template>
 
           <template v-if="dataIndex === 'status'">
-            <a-tag :color="text === UserStatus.Enabled ? 'success' : 'warning'">
-              {{ getEnumLabel(USER_STATUS_OPTIONS, text) }}
+            <a-tag :color="UserStatusMap[text]?.color">
+              {{ UserStatusOptions[text]?.label }}
             </a-tag>
           </template>
 
@@ -62,10 +62,8 @@ import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
 import { useTemplateRef } from 'vue';
 
 import { fetchUserListApi } from '@/api';
-import { USER_STATUS_OPTIONS } from '@/constants';
-import { UserStatus } from '@/enums';
+import { UserStatusMap, UserStatusOptions } from '@/enums';
 import { useTable } from '@/hooks';
-import { getEnumLabel } from '@/utils';
 
 import UserInfoModal from './UserInfoModal.vue';
 

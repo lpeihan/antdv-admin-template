@@ -12,8 +12,3 @@ export enum RoleName {
   Admin = 'admin',
   User = 'user',
 }
-
-export enum UserStatus {
-  Enabled = 1,
-  Disabled = 0,
-}

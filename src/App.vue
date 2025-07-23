@@ -18,6 +18,7 @@ import { useThemeStore } from '@/store/theme';
 import { reloadEventBus } from '@/utils/eventBus';
 
 const { useToken } = theme;
+
 const { token } = useToken();
 const themeStore = useThemeStore();
 const { locale } = useI18n();

@@ -46,10 +46,3 @@ export function getUUID() {
   const uuid = s.join('');
   return uuid.slice(0, 8);
 }
-
-export const getEnumLabel = (options, value) => {
-  console.log(options, value);
-  const option = options.find((option) => option.value === value);
-
-  return option?.label;
-};

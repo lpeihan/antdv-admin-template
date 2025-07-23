@@ -41,9 +41,8 @@ const INITIAL_FORM_DATA = {
   id: '',
 };
 
-const formData = reactive({ ...INITIAL_FORM_DATA });
 const formRef = useTemplateRef<FormInstance>('formRef');
-
+const formData = reactive({ ...INITIAL_FORM_DATA });
 const isOpen = ref(false);
 const isConfirmLoading = ref(false);
 
@@ -51,15 +50,15 @@ const isEdit = computed(() => formData.id);
 
 const openModal = (record = INITIAL_FORM_DATA) => {
   Object.assign(formData, record);
-
   isOpen.value = true;
 };
 
 const handleOk = async () => {
   await formRef.value.validate();
-  isConfirmLoading.value = true;
 
   try {
+    isConfirmLoading.value = true;
+
     await sleep(3000);
 
     isOpen.value = false;

@@ -44,7 +44,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
@@ -56,8 +56,8 @@ const userStore = useUserStore();
 const router = useRouter();
 
 const form = reactive({
-  username: 'User',
-  password: '000000',
+  username: 'SuperAdmin',
+  password: 'SuperAdmin',
   remember: true,
 });
 

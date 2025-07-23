@@ -28,7 +28,8 @@
   </a-modal>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { FormInstance } from 'ant-design-vue';
 import { computed, reactive, ref, useTemplateRef, watch } from 'vue';
 
 import { showSuccessMessage, sleep } from '@/utils';
@@ -41,7 +42,7 @@ const INITIAL_FORM_DATA = {
 };
 
 const formData = reactive({ ...INITIAL_FORM_DATA });
-const formRef = useTemplateRef('formRef');
+const formRef = useTemplateRef<FormInstance>('formRef');
 const formRules = {
   name: [{ required: true, message: '' }],
   email: [{ required: true, message: '' }],
@@ -59,7 +60,7 @@ watch(open, (value) => {
   }
 });
 
-const openModal = (record) => {
+const openModal = (record?) => {
   if (record) {
     Object.assign(formData, record);
   }

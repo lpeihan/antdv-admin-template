@@ -14,7 +14,7 @@ const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[co
 
 const envVars = getEnvVars(process.env.ENV);
 const entries = {
-  index: './src/main.js',
+  index: './src/main.ts',
   // admin: './src/admin.js',
 };
 

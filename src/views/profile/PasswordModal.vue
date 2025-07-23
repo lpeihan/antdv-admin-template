@@ -28,7 +28,8 @@
   </a-modal>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { FormInstance } from 'ant-design-vue';
 import { reactive, ref, useTemplateRef, watch } from 'vue';
 
 import { showSuccessMessage, sleep } from '@/utils';
@@ -40,7 +41,7 @@ const INITIAL_FORM_DATA = {
 };
 
 const formData = reactive({ ...INITIAL_FORM_DATA });
-const formRef = useTemplateRef('formRef');
+const formRef = useTemplateRef<FormInstance>('formRef');
 const formRules = {
   oldPassword: [{ required: true, message: '' }],
   newPassword: [{ required: true, message: '' }],

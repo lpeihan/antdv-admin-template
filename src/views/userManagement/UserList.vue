@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
 import { useTemplateRef } from 'vue';
 

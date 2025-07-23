@@ -14,7 +14,7 @@
   </a-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import svgIcons from '@/assets/svgIcons';
 import { useClipboard } from '@/hooks';
 

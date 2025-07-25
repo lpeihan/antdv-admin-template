@@ -1,8 +1,8 @@
 import { TableColumnProps } from 'ant-design-vue';
+import dayjs from 'dayjs';
 import { computed, onMounted, ref } from 'vue';
 
 import { useClipboard } from '@/hooks';
-import { formatTime } from '@/utils/formatter';
 
 type ColumnProps = TableColumnProps & {
   dataIndex: string;
@@ -15,7 +15,7 @@ function formatColumns(columns: ColumnProps[]) {
   const getCustomProps = ({ dataIndex, isLink }: ColumnProps) => {
     if (['created_at', 'updated_at'].includes(dataIndex)) {
       return {
-        customRender: ({ text }) => formatTime(text),
+        customRender: ({ text }) => dayjs(text).format('YYYY-MM-DD HH:mm:ss'),
       };
     }
 

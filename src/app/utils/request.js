@@ -1,0 +1,57 @@
+import axios from 'axios';
+import { showToast } from 'vant';
+
+import { closeLoading, showLoading } from '@/components';
+import { HttpCode } from '@/types';
+
+let loadCount = 0;
+
+const request = axios.create({
+  timeout: 30000,
+
+  loading: false,
+});
+
+request.interceptors.request.use(
+  (config) => {
+    if (config.loading && ++loadCount > 0) {
+      showLoading();
+    }
+
+    return config;
+  },
+  (err) => {
+    Promise.reject(err);
+  },
+);
+
+request.interceptors.response.use(
+  (res) => {
+    const { config, data } = res;
+
+    if (config.loading && --loadCount <= 0) {
+      closeLoading();
+    }
+
+    if (data.code === HttpCode.SUCCESS) {
+      return data;
+    }
+
+    showToast(data.message);
+
+    return Promise.reject(data);
+  },
+  (err) => {
+    const { config } = err;
+
+    if (config.loading && --loadCount <= 0) {
+      closeLoading();
+    }
+
+    showToast(err.message);
+
+    return Promise.reject(err);
+  },
+);
+
+export default request;

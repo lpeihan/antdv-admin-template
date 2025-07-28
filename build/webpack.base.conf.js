@@ -1,9 +1,10 @@
+const { VantResolver } = require('@vant/auto-import-resolver');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const dayjs = require('dayjs');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HTMLPlugin = require('html-webpack-plugin');
-// const ComponentsPlugin = require('unplugin-vue-components/webpack');
+const ComponentsPlugin = require('unplugin-vue-components/webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
 
@@ -14,8 +15,8 @@ const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[co
 
 const envVars = getEnvVars(process.env.ENV);
 const entries = {
-  index: './src/admin/main.ts',
-  // admin: './src/admin.js',
+  index: './src/app/main.ts',
+  admin: './src/admin/main.ts',
 };
 
 const htmlPlugins = Object.keys(entries).map(
@@ -94,41 +95,48 @@ module.exports = {
         generator: { filename: 'img/[contenthash:8][ext][query]' },
       },
 
-      // do not base64-inline SVGs.
-      // https://github.com/facebookincubator/create-react-app/pull/1180
-      {
-        test: /\.(svg)(\?.*)?$/,
-        type: 'asset/resource',
-        generator: { filename: 'img/[contenthash:8][ext][query]' },
-        exclude: [paths.resolve('src/admin/assets/svgIcons')],
-      },
+      ...(() => {
+        const svgIconDirs = [
+          paths.resolve('src/admin/assets/svgIcons'),
+          paths.resolve('src/app/assets/svgIcons'),
+        ];
 
-      {
-        test: /\.(svg)(\?.*)?$/,
-        generator: { filename: 'img/[contenthash:8][ext][query]' },
-        include: [paths.resolve('src/admin/assets/svgIcons')],
-        use: [
+        return [
           {
-            loader: 'svg-sprite-loader',
-            options: {
-              symbolId: '[name]',
-            },
+            test: /\.(svg)(\?.*)?$/,
+            type: 'asset/resource',
+            generator: { filename: 'img/[contenthash:8][ext][query]' },
+            exclude: svgIconDirs,
           },
           {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                {
-                  name: 'removeAttrs',
-                  params: {
-                    attrs: ['fill', 'fill-rule'],
-                  },
+            test: /\.(svg)(\?.*)?$/,
+            generator: { filename: 'img/[contenthash:8][ext][query]' },
+            include: svgIconDirs,
+            use: [
+              {
+                loader: 'svg-sprite-loader',
+                options: {
+                  symbolId: '[name]',
                 },
-              ],
-            },
+              },
+              {
+                loader: 'svgo-loader',
+                options: {
+                  plugins: [
+                    {
+                      name: 'removeAttrs',
+                      params: {
+                        attrs: ['fill', 'fill-rule'],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
           },
-        ],
-      },
+        ];
+      })(),
+
       // media
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -158,7 +166,7 @@ module.exports = {
           from: paths.resolve('public'),
           toType: 'dir',
           globOptions: {
-            ignore: ['.DS_Store', '**/index.html'],
+            ignore: ['.DS_Store', '**/index.html', '**/admin.html'],
           },
           noErrorOnMissing: true,
         },
@@ -190,9 +198,11 @@ module.exports = {
       ),
     }),
 
-    // ComponentsPlugin({
-    //   dirs: [paths.resolve('src/components')],
-    //   dts: false,
-    // }),
+    ComponentsPlugin({
+      // dirs: [paths.resolve('src/components')],
+      dirs: [],
+      dts: false,
+      resolvers: [VantResolver()],
+    }),
   ],
 };

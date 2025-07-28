@@ -1,7 +1,7 @@
 export const STORAGE_KEY = {
-  token: 'token',
-  collapsed: 'collapsed',
-  theme: 'theme',
-  colorPrimary: 'colorPrimary',
-  locale: 'locale',
+  token: 'admin_token',
+  collapsed: 'admin_collapsed',
+  theme: 'admin_theme',
+  colorPrimary: 'admin_colorPrimary',
+  locale: 'admin_locale',
 };

@@ -58,8 +58,8 @@ const genStyleRules = () => {
         loader: 'style-resources-loader',
         options: {
           patterns: [
-            paths.resolve('src/styles/mixins.less'),
-            paths.resolve('src/styles/vars.less'),
+            // paths.resolve('src/styles/mixins.less'),
+            // paths.resolve('src/styles/vars.less'),
           ],
         },
       });

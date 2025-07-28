@@ -14,7 +14,7 @@ const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[co
 
 const envVars = getEnvVars(process.env.ENV);
 const entries = {
-  index: './src/main.ts',
+  index: './src/admin/main.ts',
   // admin: './src/admin.js',
 };
 
@@ -100,13 +100,13 @@ module.exports = {
         test: /\.(svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        exclude: [paths.resolve('src/assets/svgIcons')],
+        exclude: [paths.resolve('src/admin/assets/svgIcons')],
       },
 
       {
         test: /\.(svg)(\?.*)?$/,
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        include: [paths.resolve('src/assets/svgIcons')],
+        include: [paths.resolve('src/admin/assets/svgIcons')],
         use: [
           {
             loader: 'svg-sprite-loader',

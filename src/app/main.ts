@@ -5,6 +5,7 @@ import VConsole from 'vconsole';
 import { createApp } from 'vue';
 
 import App from './App.vue';
+import components from './components';
 import { i18n } from './locales';
 import router from './router';
 import { getQueryString } from './utils';
@@ -31,7 +32,7 @@ const bootstrap = () => {
   const pinia = createPinia();
   const app = createApp(App);
 
-  app.use(i18n).use(pinia).use(router).mount('#app');
+  app.use(i18n).use(pinia).use(router).use(components).mount('#app');
 };
 
 bootstrap();

@@ -31,8 +31,18 @@ const genStyleRules = () => {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      postcssOptions: {
-        config: paths.resolve('postcss.config.mjs'),
+      postcssOptions(loaderContext) {
+        const resourcePath = loaderContext.resourcePath;
+
+        if (resourcePath.includes('/admin/')) {
+          return {
+            config: paths.resolve('src/admin/postcss.config.mjs'),
+          };
+        }
+
+        return {
+          config: paths.resolve('postcss.config.mjs'),
+        };
       },
     },
   };

@@ -94,6 +94,7 @@
     "postcss": "^8.5.3",
     "postcss-less": "^6.0.0",
     "postcss-loader": "^8.1.1",
+    "postcss-pxtorem": "^6.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "progress-webpack-plugin": "^1.0.16",

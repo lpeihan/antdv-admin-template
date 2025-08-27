@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "react": {
+        "pragma": "h",
+        "pragmaFrag": "Fragment",
+        "throwIfNamespace": false,
+        "development": false,
+        "useBuiltins": false,
+        "refresh": false,
+        "runtime": "automatic",
+        "importSource": "vue"
+      }
+    },
+    "loose": false,
+    "externalHelpers": false,
+    "keepClassNames": true
+  },
+  "module": {
+    "type": "es6",
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
+    "noInterop": false
+  },
+  "minify": false,
+  "sourceMaps": true,
+  "env": {
+    "targets": {
+      "chrome": "80",
+      "firefox": "80",
+      "safari": "13",
+      "edge": "80"
+    },
+    "mode": "usage",
+    "coreJs": "3.37"
+  }
+}

@@ -69,13 +69,13 @@ module.exports = {
           // Don't transpile node_modules
           return /node_modules/.test(file);
         },
-        use: ['thread-loader', 'babel-loader'],
+        use: ['thread-loader', 'swc-loader'],
       },
       {
         test: /\.tsx?$/,
         use: [
           'thread-loader',
-          'babel-loader',
+          'swc-loader',
           {
             loader: 'ts-loader',
             options: {

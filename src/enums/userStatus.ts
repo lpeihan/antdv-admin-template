@@ -4,7 +4,7 @@ export enum UserStatus {
   Frozen = 2,
 }
 
-export const UserStatusMap = {
+export const USER_STATUS_MAP = {
   [UserStatus.Enabled]: {
     label: '启用',
     color: 'success',
@@ -19,7 +19,7 @@ export const UserStatusMap = {
   },
 };
 
-export const UserStatusOptions = Object.entries(UserStatusMap).map(([value, meta]) => ({
+export const USER_STATUS_OPTIONS = Object.entries(USER_STATUS_MAP).map(([value, meta]) => ({
   label: meta.label,
   value: Number(value),
 }));

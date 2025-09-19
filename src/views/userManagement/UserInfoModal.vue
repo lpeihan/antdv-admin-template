@@ -25,7 +25,7 @@
         <a-select
           v-model:value="formData.status"
           placeholder="请选择状态"
-          :options="UserStatusOptions"
+          :options="USER_STATUS_OPTIONS"
         />
       </a-form-item>
     </a-form>
@@ -36,7 +36,7 @@
 import type { FormInstance } from 'ant-design-vue';
 import { computed, reactive, ref, useTemplateRef } from 'vue';
 
-import { UserStatus, UserStatusOptions } from '@/enums';
+import { USER_STATUS_OPTIONS, UserStatus } from '@/enums';
 import { showSuccessMessage, sleep } from '@/utils';
 
 const INITIAL_FORM_DATA = {

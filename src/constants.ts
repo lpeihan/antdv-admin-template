@@ -5,7 +5,3 @@ export const STORAGE_KEY = {
   colorPrimary: 'admin_colorPrimary',
   locale: 'admin_locale',
 };
-
-export const EVENT_BUS_KEY = {
-  reload: 'reload',
-};

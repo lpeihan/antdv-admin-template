@@ -30,20 +30,19 @@
   </a-layout-header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue';
 import { useEventBus } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { EVENT_BUS_KEY } from '@/constants';
 import { useDevice } from '@/hooks';
 
 import Settings from './Settings.vue';
 
 const { useToken } = theme;
-const reloadEventBus = useEventBus(EVENT_BUS_KEY.reload);
+const refreshEventBus = useEventBus('refresh');
 
 const props = defineProps({
   handleCollapse: {
@@ -82,7 +81,7 @@ const breadcrumbs = computed(() => {
 });
 
 const handleReload = () => {
-  reloadEventBus.emit();
+  refreshEventBus.emit();
 };
 
 const navigateTo = (breadcrumb) => {

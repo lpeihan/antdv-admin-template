@@ -8,24 +8,23 @@
   </a-config-provider>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useEventBus } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { EVENT_BUS_KEY } from '@/constants';
 import { getAntdLocale } from '@/locales';
 import { useThemeStore } from '@/store';
 
 const { useToken } = theme;
 
 const { token } = useToken();
-const themeStore = useThemeStore();
 const { locale } = useI18n();
-const reloadEventBus = useEventBus(EVENT_BUS_KEY.reload);
+const themeStore = useThemeStore();
+const refreshEventBus = useEventBus('refresh');
 
-reloadEventBus.on(() => {
+refreshEventBus.on(() => {
   state.key++;
 });
 

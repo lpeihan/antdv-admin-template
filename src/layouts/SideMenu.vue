@@ -10,7 +10,7 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { h, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
@@ -33,7 +33,7 @@ const userStore = useUserStore();
 const route = useRoute();
 const router = useRouter();
 
-const getMenuData = (items = [], parentKeys = [], selectedKey) => {
+const getMenuData = (items = [], parentKeys = [], selectedKey?) => {
   const menuData = [];
 
   for (const item of items) {
@@ -52,6 +52,7 @@ const getMenuData = (items = [], parentKeys = [], selectedKey) => {
       };
 
       if (item.children && !item.hideChildrenInMenu) {
+        // @ts-ignore
         newItem.children = getMenuData(item.children, [...parentKeys, item.path]);
       } else {
         getMenuData(

@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useStorage } from '@vueuse/core';
 
 import { STORAGE_KEY } from '@/constants';

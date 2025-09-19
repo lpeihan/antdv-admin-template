@@ -16,7 +16,7 @@ import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
 import routes from '@/router/routes';
-import { useThemeStore, useUserStore } from '@/store';
+import { useThemeStore, useUserStore } from '@/stores';
 
 const SELECTED_KEYS_MAP = {};
 const OPEN_KEYS_MAP = {};

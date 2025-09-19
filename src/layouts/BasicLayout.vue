@@ -29,7 +29,7 @@
 import { useStorage } from '@vueuse/core';
 
 import { STORAGE_KEY } from '@/constants';
-import { useThemeStore } from '@/store';
+import { useThemeStore } from '@/stores';
 
 import Header from './Header.vue';
 import SideMenu from './SideMenu.vue';

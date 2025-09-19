@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import 'nprogress/nprogress.css';
 
 import { RoleName } from '@/enums';
-import { useUserStore } from '@/store/user';
+import { useUserStore } from '@/stores';
 
 import routes from './routes';
 

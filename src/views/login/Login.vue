@@ -50,7 +50,7 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 import Settings from '@/layouts/Settings.vue';
-import { useUserStore } from '@/store/user';
+import { useUserStore } from '@/stores';
 
 const userStore = useUserStore();
 const router = useRouter();

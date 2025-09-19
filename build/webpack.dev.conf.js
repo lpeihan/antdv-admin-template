@@ -25,7 +25,7 @@ module.exports = merge(webpackBaseConf, cssConf, {
     },
     open: false,
     host: '0.0.0.0',
-    port: 8089,
+    port: 8091,
     hot: true,
     client: {
       overlay: false,

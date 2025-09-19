@@ -68,8 +68,7 @@ import { useI18n } from 'vue-i18n';
 
 import { useDevice } from '@/hooks';
 import { setLocale, SUPPORTED_LOCALES } from '@/locales';
-import { useThemeStore } from '@/store/theme';
-import { useUserStore } from '@/store/user';
+import { useThemeStore, useUserStore } from '@/store';
 
 const themeStore = useThemeStore();
 const userStore = useUserStore();

@@ -9,19 +9,21 @@
 </template>
 
 <script setup>
+import { useEventBus } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import { EVENT_BUS_KEY } from '@/constants';
 import { getAntdLocale } from '@/locales';
-import { useThemeStore } from '@/store/theme';
-import { reloadEventBus } from '@/utils/eventBus';
+import { useThemeStore } from '@/store';
 
 const { useToken } = theme;
 
 const { token } = useToken();
 const themeStore = useThemeStore();
 const { locale } = useI18n();
+const reloadEventBus = useEventBus(EVENT_BUS_KEY.reload);
 
 reloadEventBus.on(() => {
   state.key++;

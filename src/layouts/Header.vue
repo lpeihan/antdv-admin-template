@@ -32,16 +32,18 @@
 
 <script setup>
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue';
+import { useEventBus } from '@vueuse/core';
 import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { EVENT_BUS_KEY } from '@/constants';
 import { useDevice } from '@/hooks';
-import { reloadEventBus } from '@/utils/eventBus';
 
 import Settings from './Settings.vue';
 
 const { useToken } = theme;
+const reloadEventBus = useEventBus(EVENT_BUS_KEY.reload);
 
 const props = defineProps({
   handleCollapse: {

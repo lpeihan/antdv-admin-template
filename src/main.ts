@@ -6,7 +6,7 @@ import App from '@/App.vue';
 import components from '@/components';
 import { i18n } from '@/locales';
 import router from '@/router';
-import { useThemeStore } from '@/store/theme';
+import { useThemeStore } from '@/store';
 
 import 'ant-design-vue/dist/reset.css';
 import '@/styles/index.less';

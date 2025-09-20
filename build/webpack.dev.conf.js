@@ -1,6 +1,6 @@
 'use strict';
 
-// const { codeInspectorPlugin } = require('code-inspector-plugin');
+// const openInEditor = require('launch-editor-middleware');
 const ProgressPlugin = require('progress-webpack-plugin');
 const { merge } = require('webpack-merge');
 
@@ -12,12 +12,7 @@ module.exports = merge(webpackBaseConf, cssConf, {
 
   devtool: 'eval-cheap-module-source-map',
 
-  plugins: [
-    new ProgressPlugin(true),
-    // codeInspectorPlugin({
-    //   bundler: 'webpack',
-    // }),
-  ],
+  plugins: [new ProgressPlugin(true)],
 
   devServer: {
     historyApiFallback: {
@@ -40,6 +35,7 @@ module.exports = merge(webpackBaseConf, cssConf, {
     ],
     setupMiddlewares(middlewares, devServer) {
       require('../mocks/index')(devServer.app);
+      // devServer.app.use('/__open-in-editor', openInEditor());
 
       return middlewares;
     },

@@ -186,6 +186,7 @@ module.exports = {
           BUILD_TIME: JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
           ENV: JSON.stringify(process.env.ENV),
+          __dirname: JSON.stringify(paths.resolve('')),
         },
       ),
     }),

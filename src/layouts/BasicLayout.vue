@@ -5,11 +5,11 @@
         v-model:collapsed="collapsed"
         :width="240"
         :theme="themeStore.theme"
-        class="h-[100vh]"
+        class="h-[100vh] py-[10px]"
       >
-        <div class="flex h-[64px] items-center justify-center">
+        <!-- <div class="flex h-[64px] items-center justify-center">
           <img src="@/assets/images/logo.png" alt="logo" class="w-[36px]" />
-        </div>
+        </div> -->
 
         <SideMenu :collapsed="collapsed" />
       </a-layout-sider>

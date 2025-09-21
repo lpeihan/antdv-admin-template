@@ -12,7 +12,6 @@ import 'ant-design-vue/dist/reset.css';
 import '@/styles/index.less';
 import '@/styles/tailwind.css';
 
-// @ts-ignore
 window.env = process.env;
 
 const bootstrap = () => {

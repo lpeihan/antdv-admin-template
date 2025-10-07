@@ -15,7 +15,7 @@ import { h, reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
-import routes from '@/router/routes';
+import { routes } from '@/router';
 import { useThemeStore, useUserStore } from '@/stores';
 
 const SELECTED_KEYS_MAP = {};

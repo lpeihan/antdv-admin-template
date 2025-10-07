@@ -3,9 +3,7 @@ import SvgIcon from './SvgIcon.vue';
 
 export { Icon, SvgIcon };
 
-export default {
-  install(app) {
-    app.component('Icon', Icon);
-    app.component('SvgIcon', SvgIcon);
-  },
+export const installComponents = (app) => {
+  app.component('Icon', Icon);
+  app.component('SvgIcon', SvgIcon);
 };

@@ -3,9 +3,9 @@ import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 
 import App from '@/App.vue';
-import components from '@/components';
+import { installComponents } from '@/components';
 import { i18n } from '@/locales';
-import router from '@/router';
+import { router } from '@/router';
 import { useThemeStore } from '@/stores';
 
 import 'ant-design-vue/dist/reset.css';
@@ -18,7 +18,7 @@ const bootstrap = () => {
   const pinia = createPinia();
   const app = createApp(App);
 
-  app.use(Antd).use(i18n).use(pinia).use(router).use(components);
+  app.use(Antd).use(i18n).use(pinia).use(router).use(installComponents);
 
   const themeStore = useThemeStore();
   themeStore.initTheme();

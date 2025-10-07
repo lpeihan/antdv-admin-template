@@ -6,11 +6,13 @@ import 'nprogress/nprogress.css';
 import { RoleName } from '@/enums';
 import { useUserStore } from '@/stores';
 
-import routes from './routes';
+import { routes } from './routes';
+
+export { routes };
 
 NProgress.configure({ showSpinner: false });
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
@@ -51,5 +53,3 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach(() => {
   NProgress.done();
 });
-
-export default router;

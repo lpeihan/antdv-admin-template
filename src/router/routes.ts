@@ -10,7 +10,7 @@ import { RouteRecordRaw, RouterView } from 'vue-router';
 import { RoleName } from '@/enums';
 import { i18n } from '@/locales';
 
-const routes = [
+export const routes = [
   {
     path: '/user',
     component: require('@/layouts/UserLayout.vue').default,
@@ -102,5 +102,3 @@ const routes = [
     ],
   },
 ] as RouteRecordRaw[];
-
-export default routes;

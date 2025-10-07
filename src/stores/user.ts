@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 import { fetchUserInfoApi, loginApi } from '@/api';
 import { STORAGE_KEY } from '@/constants';
 import { RoleName } from '@/enums';
-import router from '@/router';
+import { router } from '@/router';
 
 export const useUserStore = defineStore('user', {
   state: () => {

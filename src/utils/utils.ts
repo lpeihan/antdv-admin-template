@@ -8,6 +8,11 @@ export function showSuccessMessage(messageText = i18n.global.t('success')) {
 
 export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+export async function copyToClipboard(text, successText = i18n.global.t('success')) {
+  await navigator.clipboard.writeText(text);
+  showSuccessMessage(successText);
+}
+
 export function getQueryString(name, url) {
   const res = (url || location.href).match(new RegExp('[?&]' + name + '=([^&#]+)', 'i'));
 

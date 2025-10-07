@@ -2,7 +2,7 @@ import { TableColumnProps } from 'ant-design-vue';
 import dayjs from 'dayjs';
 import { computed, onMounted, ref } from 'vue';
 
-import { useClipboard } from '@/hooks';
+import { copyToClipboard } from '@/utils';
 
 type ColumnProps = TableColumnProps & {
   dataIndex: string;
@@ -10,8 +10,6 @@ type ColumnProps = TableColumnProps & {
 };
 
 function formatColumns(columns: ColumnProps[]) {
-  const { copy } = useClipboard();
-
   const getCustomProps = ({ dataIndex, isLink }: ColumnProps) => {
     if (['created_at', 'updated_at'].includes(dataIndex)) {
       return {
@@ -21,7 +19,7 @@ function formatColumns(columns: ColumnProps[]) {
 
     if (isLink) {
       return {
-        customRender: ({ text }) => <a onClick={() => copy(text)}>{text}</a>,
+        customRender: ({ text }) => <a onClick={() => copyToClipboard(text)}>{text}</a>,
       };
     }
 

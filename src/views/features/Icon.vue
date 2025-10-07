@@ -16,13 +16,11 @@
 
 <script setup lang="ts">
 import svgIcons from '@/assets/svgIcons';
-import { useClipboard } from '@/hooks';
+import { copyToClipboard } from '@/utils';
 
 const svgIconsList = Object.keys(svgIcons);
 
-const { copy } = useClipboard();
-
 const handleCopy = (item) => {
-  copy(`<svg-icon name="${item}" />`);
+  copyToClipboard(`<svg-icon name="${item}" />`);
 };
 </script>

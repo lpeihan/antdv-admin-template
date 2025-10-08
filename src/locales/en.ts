@@ -1,7 +1,7 @@
 export default {
   // common
   copied: 'Copied',
-  profile: 'Your Profile',
+  profile: 'My Profile',
   success: 'Success',
   dashboard: 'Dashboard',
 

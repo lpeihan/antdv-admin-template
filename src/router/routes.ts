@@ -70,7 +70,9 @@ export const routes = [
         name: 'profile',
         meta: {
           icon: SettingOutlined,
-          title: 'profile',
+          get title() {
+            return i18n.global.t('profile');
+          },
         },
         component: () => import('@/views/profile/Profile.vue'),
         hideInMenu: true,

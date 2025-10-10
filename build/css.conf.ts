@@ -1,12 +1,11 @@
-'use strict';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { RuleSetRule } from 'webpack';
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const paths = require('./utils/paths');
+import { resolve } from './utils/paths';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const plugins = [];
+const plugins: MiniCssExtractPlugin[] = [];
 if (isProd) {
   const filename = 'css/[name].[contenthash:8].css';
 
@@ -18,7 +17,7 @@ if (isProd) {
   );
 }
 
-const genStyleRules = () => {
+const genStyleRules = (): RuleSetRule[] => {
   const cssLoader = {
     loader: 'css-loader',
     options: {
@@ -32,7 +31,7 @@ const genStyleRules = () => {
     loader: 'postcss-loader',
     options: {
       postcssOptions: {
-        config: paths.resolve('postcss.config.mjs'),
+        config: resolve('postcss.config.mjs'),
       },
     },
   };
@@ -43,8 +42,8 @@ const genStyleRules = () => {
     loader: 'vue-style-loader',
   };
 
-  function createCSSRule(test, loader, loaderOptions) {
-    const loaders = [cssLoader, postcssLoader];
+  function createCSSRule(test: RegExp, loader?: string, loaderOptions?: any): RuleSetRule {
+    const loaders: any[] = [cssLoader, postcssLoader];
 
     if (isProd) {
       loaders.unshift(extractPluginLoader);
@@ -57,10 +56,7 @@ const genStyleRules = () => {
       loaders.push({
         loader: 'style-resources-loader',
         options: {
-          patterns: [
-            paths.resolve('src/styles/mixins.less'),
-            paths.resolve('src/styles/vars.less'),
-          ],
+          patterns: [resolve('src/styles/mixins.less'), resolve('src/styles/vars.less')],
         },
       });
     }
@@ -75,7 +71,7 @@ const genStyleRules = () => {
   ];
 };
 
-module.exports = {
+export default {
   plugins,
   module: {
     rules: genStyleRules(),

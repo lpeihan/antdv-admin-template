@@ -1,14 +1,13 @@
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const dayjs = require('dayjs');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const HTMLPlugin = require('html-webpack-plugin');
-// const ComponentsPlugin = require('unplugin-vue-components/webpack');
-const { VueLoaderPlugin } = require('vue-loader');
-const { DefinePlugin, ProvidePlugin } = require('webpack');
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import dayjs from 'dayjs';
+import ESLintPlugin from 'eslint-webpack-plugin';
+import HTMLPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
+import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
 
-const getEnvVars = require('./utils/env');
-const paths = require('./utils/paths');
+import { getEnvVars } from './utils/env';
+import { resolve } from './utils/paths';
 
 const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[contenthash:8]' : ''}.js`;
 
@@ -21,7 +20,7 @@ const entries = {
 const htmlPlugins = Object.keys(entries).map(
   (name) =>
     new HTMLPlugin({
-      template: paths.resolve(`public/${name}.html`),
+      template: resolve(`public/${name}.html`),
       filename: `${name}.html`,
       chunks: [name, 'chunk-vendors', 'chunk-common'],
       templateParameters: {
@@ -30,13 +29,13 @@ const htmlPlugins = Object.keys(entries).map(
     }),
 );
 
-module.exports = {
+const config: Configuration = {
   context: process.cwd(),
 
   entry: entries,
 
   output: {
-    path: paths.resolve('dist'),
+    path: resolve('dist'),
     publicPath: '/',
     filename: outputFileName,
     chunkFilename: outputFileName,
@@ -44,7 +43,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      '@': paths.resolve('src'),
+      '@': resolve('src'),
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue', '.json', '.mjs'],
     fallback: {
@@ -61,7 +60,7 @@ module.exports = {
       },
       {
         test: /\.m?jsx?$/,
-        exclude: (file) => {
+        exclude: (file: string) => {
           // always transpile js in vue files
           if (/\.vue\.jsx?$/.test(file)) {
             return false;
@@ -100,13 +99,13 @@ module.exports = {
         test: /\.(svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        exclude: [paths.resolve('src/assets/svgIcons')],
+        exclude: [resolve('src/assets/svgIcons')],
       },
 
       {
         test: /\.(svg)(\?.*)?$/,
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        include: [paths.resolve('src/assets/svgIcons')],
+        include: [resolve('src/assets/svgIcons')],
         use: [
           {
             loader: 'svg-sprite-loader',
@@ -155,7 +154,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: paths.resolve('public'),
+          from: resolve('public'),
           toType: 'dir',
           globOptions: {
             ignore: ['.DS_Store', '**/index.html'],
@@ -177,7 +176,7 @@ module.exports = {
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false),
       'process.env': Object.keys(envVars).reduce(
-        (env, key) => {
+        (env: Record<string, string>, key) => {
           env[key] = JSON.stringify(envVars[key]);
           return env;
         },
@@ -186,14 +185,16 @@ module.exports = {
           BUILD_TIME: JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
           ENV: JSON.stringify(process.env.ENV),
-          __dirname: JSON.stringify(paths.resolve('')),
+          __dirname: JSON.stringify(resolve('')),
         },
       ),
     }),
 
     // ComponentsPlugin({
-    //   dirs: [paths.resolve('src/components')],
+    //   dirs: [resolve('src/components')],
     //   dts: false,
     // }),
   ],
 };
+
+export default config;

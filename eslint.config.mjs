@@ -25,6 +25,7 @@ export default defineConfig([
       'no-unused-vars': 'off',
       'import/named': 'off',
       'import/no-named-as-default': 'off',
+      'import/default': 'off',
       'import/no-unresolved': 'off',
       'import/no-duplicates': 'error',
       'import/newline-after-import': ['error', { count: 1 }],

@@ -1,10 +1,20 @@
-module.exports = function formatStats(stats, dir) {
-  const fs = require('fs');
-  const path = require('path');
-  const zlib = require('zlib');
-  const ui = require('cliui')({ width: process.stdout.columns || 80 });
-  const chalk = require('chalk');
-  const dayjs = require('dayjs');
+import fs from 'fs';
+import path from 'path';
+import zlib from 'zlib';
+
+import chalk from 'chalk';
+// @ts-ignore
+import cliui from 'cliui';
+import dayjs from 'dayjs';
+import { Stats } from 'webpack';
+
+interface Asset {
+  name: string;
+  size: number;
+}
+
+export default function formatStats(stats: Stats, dir: string): string {
+  const ui = cliui({ width: process.stdout.columns || 80 });
 
   const json = stats.toJson({
     hash: false,
@@ -14,12 +24,13 @@ module.exports = function formatStats(stats, dir) {
 
   let assets = json.assets
     ? json.assets
-    : json.children.reduce((acc, child) => acc.concat(child.assets), []);
+    : json.children?.reduce((acc: Asset[], child) => acc.concat(child.assets || []), []) || [];
 
   const seenNames = new Map();
-  const isJS = (val) => /\.js$/.test(val);
-  const isCSS = (val) => /\.css$/.test(val);
-  const isMinJS = (val) => /\.min\.js$/.test(val);
+  const isJS = (val: string): boolean => /\.js$/.test(val);
+  const isCSS = (val: string): boolean => /\.css$/.test(val);
+  const isMinJS = (val: string): boolean => /\.min\.js$/.test(val);
+
   assets = assets
     .map((a) => {
       a.name = a.name.split('?')[0];
@@ -40,17 +51,17 @@ module.exports = function formatStats(stats, dir) {
       return b.size - a.size;
     });
 
-  function formatSize(size) {
+  function formatSize(size: number): string {
     return (size / 1024).toFixed(2) + ' KiB';
   }
 
-  function getGzippedSize(asset) {
+  function getGzippedSize(asset: Asset): string {
     const filepath = path.resolve(process.cwd(), path.join(dir, asset.name));
     const buffer = fs.readFileSync(filepath);
     return formatSize(zlib.gzipSync(buffer).length);
   }
 
-  function makeRow(a, b, c) {
+  function makeRow(a: string, b: string, c: string): string {
     return `  ${a}\t    ${b}\t ${c}`;
   }
 
@@ -70,7 +81,7 @@ module.exports = function formatStats(stats, dir) {
         .join(`\n`),
   );
 
-  const time = stats.endTime - stats.startTime;
+  const time = (stats.endTime || 0) - (stats.startTime || 0);
   const now = dayjs().format('YYYY-MM-DD HH:mm:ss');
   const hash = stats.hash;
   const info = `Build at: ${chalk.white(now)} - Hash: ${chalk.white(hash)} - Time: ${chalk.white(
@@ -80,4 +91,4 @@ module.exports = function formatStats(stats, dir) {
   return `${ui.toString()}\n\n  ${chalk.gray(
     `Images and other types of assets omitted.`,
   )}\n  ${info}\n`;
-};
+}

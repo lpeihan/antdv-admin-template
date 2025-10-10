@@ -1,13 +1,10 @@
-'use strict';
+import ProgressPlugin from 'progress-webpack-plugin';
+import { merge } from 'webpack-merge';
 
-// const openInEditor = require('launch-editor-middleware');
-const ProgressPlugin = require('progress-webpack-plugin');
-const { merge } = require('webpack-merge');
+import cssConf from './css.conf';
+import webpackBaseConf from './webpack.base.conf';
 
-const cssConf = require('./css.conf');
-const webpackBaseConf = require('./webpack.base.conf');
-
-module.exports = merge(webpackBaseConf, cssConf, {
+export const webpackDevConf = merge(webpackBaseConf, cssConf, {
   mode: 'development',
 
   devtool: 'eval-cheap-module-source-map',
@@ -20,7 +17,7 @@ module.exports = merge(webpackBaseConf, cssConf, {
     },
     open: false,
     host: '0.0.0.0',
-    port: 8091,
+    port: 8093,
     hot: true,
     client: {
       overlay: false,

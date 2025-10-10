@@ -1,13 +1,16 @@
-'use strict';
+import chalk from 'chalk';
+import ora, { Ora } from 'ora';
 
-const chalk = require('chalk');
-const ora = require('ora');
+interface LastMessage {
+  symbol: string;
+  text: string;
+}
 
-const spinner = ora();
-let lastMsg = null;
+const spinner: Ora = ora();
+let lastMsg: LastMessage | null = null;
 let isPaused = false;
 
-exports.logWithSpinner = (symbol, msg) => {
+export const logWithSpinner = (symbol: string, msg?: string): void => {
   if (!msg) {
     msg = symbol;
     symbol = chalk.green('✔');
@@ -26,7 +29,7 @@ exports.logWithSpinner = (symbol, msg) => {
   spinner.start();
 };
 
-exports.stopSpinner = (persist) => {
+export const stopSpinner = (persist?: boolean): void => {
   if (lastMsg && persist !== false) {
     spinner.stopAndPersist({
       symbol: lastMsg.symbol,
@@ -38,20 +41,20 @@ exports.stopSpinner = (persist) => {
   lastMsg = null;
 };
 
-exports.pauseSpinner = () => {
+export const pauseSpinner = (): void => {
   if (spinner.isSpinning) {
     spinner.stop();
     isPaused = true;
   }
 };
 
-exports.resumeSpinner = () => {
+export const resumeSpinner = (): void => {
   if (isPaused) {
     spinner.start();
     isPaused = false;
   }
 };
 
-exports.failSpinner = (text) => {
+export const failSpinner = (text: string): void => {
   spinner.fail(text);
 };

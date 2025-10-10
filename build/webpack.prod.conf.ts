@@ -1,14 +1,12 @@
-// const path = require('path');
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import { merge } from 'webpack-merge';
+import ZipPlugin from 'zip-webpack-plugin';
 
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const { merge } = require('webpack-merge');
-const ZipPlugin = require('zip-webpack-plugin');
+import cssConf from './css.conf';
+import webpackBaseConf from './webpack.base.conf';
 
-const cssConf = require('./css.conf');
-const webpackBaseConf = require('./webpack.base.conf');
-
-module.exports = merge(webpackBaseConf, cssConf, {
+export const webpackProdConf = merge(webpackBaseConf, cssConf, {
   mode: 'production',
   plugins: [
     new ZipPlugin({

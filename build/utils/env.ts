@@ -1,17 +1,17 @@
-const fs = require('fs');
+import fs from 'fs';
 
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
-const paths = require('./paths');
+import { resolve } from './paths';
 
-function getEnvVars(env) {
+export function getEnvVars(env) {
   const envFiles = ['.env.lab'];
   envFiles.push(`.env.${env}`);
 
   const envVars = {};
 
   envFiles.forEach((file) => {
-    const fullPath = paths.resolve(file);
+    const fullPath = resolve(file);
     if (fs.existsSync(fullPath)) {
       const result = dotenv.parse(fs.readFileSync(fullPath));
       Object.assign(envVars, result);
@@ -20,5 +20,3 @@ function getEnvVars(env) {
 
   return envVars;
 }
-
-module.exports = getEnvVars;

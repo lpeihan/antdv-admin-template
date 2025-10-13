@@ -16,7 +16,7 @@ const localeStorage = useStorage(STORAGE_KEY.locale, DEFAULT_LANG);
 // https://github.com/lokalise/i18n-ally/tree/main/locales
 export const SUPPORTED_LOCALES = [
   { name: '🇨🇳 简体中文', value: 'zh-CN' },
-  { name: '🇺🇸 English', value: 'en' },
+  { name: '🇺🇸 English', value: 'en-US' },
   // { name: '🇨🇳 繁體中文', value: 'zh-TW' },
   // { name: '🇯🇵 日本語', value: 'ja' },
   // { name: '🇰🇷 한국어', value: 'ko' },

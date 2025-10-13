@@ -1,11 +1,10 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { RuleSetRule } from 'webpack';
 
-import { resolve } from './utils/paths';
+import { resolve } from './utils';
 
 const isProd = process.env.NODE_ENV === 'production';
 
-const plugins: MiniCssExtractPlugin[] = [];
+const plugins = [];
 if (isProd) {
   const filename = 'css/[name].[contenthash:8].css';
 
@@ -17,7 +16,7 @@ if (isProd) {
   );
 }
 
-const genStyleRules = (): RuleSetRule[] => {
+const genStyleRules = () => {
   const cssLoader = {
     loader: 'css-loader',
     options: {
@@ -42,7 +41,7 @@ const genStyleRules = (): RuleSetRule[] => {
     loader: 'vue-style-loader',
   };
 
-  function createCSSRule(test: RegExp, loader?: string, loaderOptions?: any): RuleSetRule {
+  function createCSSRule(test, loader?, loaderOptions?) {
     const loaders: any[] = [cssLoader, postcssLoader];
 
     if (isProd) {

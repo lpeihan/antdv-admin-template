@@ -60,7 +60,7 @@ const config: Configuration = {
       },
       {
         test: /\.m?jsx?$/,
-        exclude: (file: string) => {
+        exclude: (file) => {
           // always transpile js in vue files
           if (/\.vue\.jsx?$/.test(file)) {
             return false;

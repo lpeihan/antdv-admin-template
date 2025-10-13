@@ -3,11 +3,7 @@ import { rimraf } from 'rimraf';
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-// @ts-ignore
-import formatStats from './utils/formatStats';
-import { done, error } from './utils/logger';
-import { resolve } from './utils/paths';
-import { logWithSpinner, stopSpinner } from './utils/spinner';
+import { done, error, formatStats, logWithSpinner, resolve, stopSpinner } from './utils';
 import { webpackProdConf } from './webpack.prod.conf';
 
 logWithSpinner('Building for production...\n');
@@ -46,7 +42,7 @@ rimraf(resolve('dist')).then(() => {
       process.exit(1);
     }
 
-    console.log(formatStats(stats as any, 'dist'));
+    console.log(formatStats(stats, 'dist'));
 
     done('Build complete.\n');
   });

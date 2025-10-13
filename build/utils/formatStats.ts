@@ -6,14 +6,8 @@ import chalk from 'chalk';
 // @ts-ignore
 import cliui from 'cliui';
 import dayjs from 'dayjs';
-import { Stats } from 'webpack';
 
-interface Asset {
-  name: string;
-  size: number;
-}
-
-export default function formatStats(stats: Stats, dir: string): string {
+export function formatStats(stats, dir) {
   const ui = cliui({ width: process.stdout.columns || 80 });
 
   const json = stats.toJson({
@@ -24,12 +18,12 @@ export default function formatStats(stats: Stats, dir: string): string {
 
   let assets = json.assets
     ? json.assets
-    : json.children?.reduce((acc: Asset[], child) => acc.concat(child.assets || []), []) || [];
+    : json.children?.reduce((acc, child) => acc.concat(child.assets || []), []) || [];
 
   const seenNames = new Map();
-  const isJS = (val: string): boolean => /\.js$/.test(val);
-  const isCSS = (val: string): boolean => /\.css$/.test(val);
-  const isMinJS = (val: string): boolean => /\.min\.js$/.test(val);
+  const isJS = (val) => /\.js$/.test(val);
+  const isCSS = (val) => /\.css$/.test(val);
+  const isMinJS = (val) => /\.min\.js$/.test(val);
 
   assets = assets
     .map((a) => {
@@ -51,17 +45,17 @@ export default function formatStats(stats: Stats, dir: string): string {
       return b.size - a.size;
     });
 
-  function formatSize(size: number): string {
+  function formatSize(size) {
     return (size / 1024).toFixed(2) + ' KiB';
   }
 
-  function getGzippedSize(asset: Asset): string {
+  function getGzippedSize(asset) {
     const filepath = path.resolve(process.cwd(), path.join(dir, asset.name));
     const buffer = fs.readFileSync(filepath);
     return formatSize(zlib.gzipSync(buffer).length);
   }
 
-  function makeRow(a: string, b: string, c: string): string {
+  function makeRow(a, b, c) {
     return `  ${a}\t    ${b}\t ${c}`;
   }
 

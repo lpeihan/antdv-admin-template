@@ -2,8 +2,7 @@ import chalk from 'chalk';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
-import { getLocalIP } from './utils/getLocalIP';
-import { clearConsole, info } from './utils/logger';
+import { clearConsole, getLocalIP, info } from './utils';
 import { webpackDevConf } from './webpack.dev.conf';
 
 const devServerOptions = webpackDevConf.devServer;
@@ -11,9 +10,10 @@ if (!devServerOptions) {
   throw new Error('DevServer options not found');
 }
 
-const protocol = (devServerOptions as any).https ? 'https' : 'http';
-const host = devServerOptions.host as string;
-const port = devServerOptions.port as number;
+// @ts-ignore
+const protocol = devServerOptions.https ? 'https' : 'http';
+const host = devServerOptions.host;
+const port = devServerOptions.port;
 
 info('Starting development server...');
 

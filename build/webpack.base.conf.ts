@@ -29,7 +29,7 @@ const htmlPlugins = Object.keys(entries).map(
     }),
 );
 
-const config: Configuration = {
+export const webpackBaseConf: Configuration = {
   context: process.cwd(),
 
   entry: entries,
@@ -196,5 +196,3 @@ const config: Configuration = {
     // }),
   ],
 };
-
-export default config;

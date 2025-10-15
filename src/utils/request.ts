@@ -4,7 +4,7 @@ import axios from 'axios';
 import { HttpCode } from '@/enums';
 import { useUserStore } from '@/stores';
 
-const request = axios.create({
+export const request = axios.create({
   timeout: 20000,
 });
 
@@ -41,5 +41,3 @@ request.interceptors.response.use(
     return Promise.reject(err);
   },
 );
-
-export default request;

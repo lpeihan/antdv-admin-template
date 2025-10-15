@@ -4,7 +4,7 @@ import { merge } from 'webpack-merge';
 import ZipPlugin from 'zip-webpack-plugin';
 
 import cssConf from './css.conf';
-import webpackBaseConf from './webpack.base.conf';
+import { webpackBaseConf } from './webpack.base.conf';
 
 export const webpackProdConf = merge(webpackBaseConf, cssConf, {
   mode: 'production',

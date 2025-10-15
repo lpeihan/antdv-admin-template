@@ -4,7 +4,7 @@ import { merge } from 'webpack-merge';
 import { installMock } from '../mocks/index';
 
 import cssConf from './css.conf';
-import webpackBaseConf from './webpack.base.conf';
+import { webpackBaseConf } from './webpack.base.conf';
 
 export const webpackDevConf = merge(webpackBaseConf, cssConf, {
   mode: 'development',

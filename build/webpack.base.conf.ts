@@ -1,7 +1,7 @@
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import dayjs from 'dayjs';
-import ESLintPlugin from 'eslint-webpack-plugin';
+// import ESLintPlugin from 'eslint-webpack-plugin';
 import HTMLPlugin from 'html-webpack-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
@@ -163,13 +163,13 @@ export const webpackBaseConf: Configuration = {
         },
       ],
     }),
-    new ESLintPlugin({
-      emitError: true,
-      emitWarning: true,
-      failOnError: false,
-      extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
-      formatter: require('eslint-formatter-friendly'),
-    }),
+    // new ESLintPlugin({
+    //   emitError: true,
+    //   emitWarning: true,
+    //   failOnError: false,
+    //   extensions: ['.ts', '.tsx', '.js', '.jsx', '.vue'],
+    //   formatter: require('eslint-formatter-friendly'),
+    // }),
     new DefinePlugin({
       // vue3 feature flags <http://link.vuejs.org/feature-flags>
       __VUE_OPTIONS_API__: JSON.stringify(true),
@@ -185,7 +185,7 @@ export const webpackBaseConf: Configuration = {
           BUILD_TIME: JSON.stringify(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
           ENV: JSON.stringify(process.env.ENV),
-          __dirname: JSON.stringify(resolve('')),
+          __dirname: JSON.stringify(resolve()),
         },
       ),
     }),

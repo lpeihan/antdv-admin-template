@@ -33,18 +33,16 @@
     "@tailwindcss/postcss": "^4.1.10",
     "@vueuse/core": "^13.1.0",
     "ant-design-vue": "~4.2.6",
-    "axios": "^1.9.0",
+    "axios": "^1.12.2",
     "buffer": "^6.0.3",
     "core-js": "^3.42.0",
     "dayjs": "^1.11.13",
-    "decimal.js": "^10.5.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.3.1",
     "tailwindcss": "^4.1.10",
     "vue": "^3.5.13",
     "vue-i18n": "^9.14.4",
-    "vue-router": "^4.5.1",
-    "web3": "^4.16.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

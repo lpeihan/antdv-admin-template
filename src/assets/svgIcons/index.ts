@@ -1,3 +1,4 @@
+// @ts-ignore
 const files = require.context('.', true, /\.svg$/);
 
 const modules = {};

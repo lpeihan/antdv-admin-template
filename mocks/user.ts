@@ -14,7 +14,7 @@ const getUserData = () => ({
   status: faker.helpers.arrayElement([0, 1, 2]),
 });
 
-module.exports = (app) => {
+export const installUserMock = (app) => {
   app.post('/mock/user/login', (req, res) => {
     res.json({
       code: CODE_SUCCESS,

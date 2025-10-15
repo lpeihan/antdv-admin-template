@@ -13,7 +13,7 @@ const props = defineProps({
     type: String,
     required: true,
     default: '',
-    validator(val) {
+    validator(val: string) {
       return svgIcons[val];
     },
   },

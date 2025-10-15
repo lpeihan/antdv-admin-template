@@ -37,12 +37,13 @@ import { theme } from 'ant-design-vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { EVENT_BUS_KEY } from '@/constants';
 import { useDevice } from '@/hooks';
 
 import Settings from './Settings.vue';
 
 const { useToken } = theme;
-const refreshEventBus = useEventBus('refresh');
+const refreshEventBus = useEventBus(EVENT_BUS_KEY.refresh);
 
 const props = defineProps({
   handleCollapse: {

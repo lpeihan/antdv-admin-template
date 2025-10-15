@@ -14,6 +14,7 @@ import { theme } from 'ant-design-vue';
 import { reactive, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import { EVENT_BUS_KEY } from '@/constants';
 import { getAntdLocale } from '@/locales';
 import { useThemeStore } from '@/stores';
 
@@ -22,7 +23,7 @@ const { useToken } = theme;
 const { token } = useToken();
 const { locale } = useI18n();
 const themeStore = useThemeStore();
-const refreshEventBus = useEventBus('refresh');
+const refreshEventBus = useEventBus(EVENT_BUS_KEY.refresh);
 
 refreshEventBus.on(() => {
   state.key++;

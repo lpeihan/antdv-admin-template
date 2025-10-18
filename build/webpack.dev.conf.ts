@@ -1,4 +1,5 @@
 import ProgressPlugin from 'progress-webpack-plugin';
+import { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 
 import { installMock } from '../mocks/index';
@@ -6,7 +7,7 @@ import { installMock } from '../mocks/index';
 import cssConf from './css.conf';
 import { webpackBaseConf } from './webpack.base.conf';
 
-export const webpackDevConf = merge(webpackBaseConf, cssConf, {
+export const webpackDevConf: Configuration = merge(webpackBaseConf, cssConf, {
   mode: 'development',
 
   devtool: 'eval-cheap-module-source-map',

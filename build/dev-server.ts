@@ -10,9 +10,6 @@ if (!devServerOptions) {
   throw new Error('DevServer options not found');
 }
 
-// @ts-ignore
-const protocol = devServerOptions.https ? 'https' : 'http';
-const host = devServerOptions.host;
 const port = devServerOptions.port;
 
 info('Starting development server...');
@@ -28,13 +25,12 @@ compiler.hooks.done.tap('serve', (stats) => {
   console.log();
   console.log();
   console.log(`App running at:`);
-  console.log(`  - Local:   ${chalk.cyan(`${protocol}://localhost:${port}`)}`);
-  console.log(`  - Network: ${chalk.cyan(`${protocol}://${getLocalIP()}:${port}`)}`);
+  console.log(`  - Local:   ${chalk.cyan(`http://localhost:${port}`)}`);
+  console.log(`  - Network: ${chalk.cyan(`http://${getLocalIP()}:${port}`)}`);
   console.log();
 });
 
-// @ts-ignore
-server.start(port, host).catch((err) => {
+server.start().catch((err) => {
   if (err) {
     console.error(err);
     process.exit(1);

@@ -36,7 +36,7 @@
 import type { FormInstance } from 'ant-design-vue';
 import { reactive, ref, useTemplateRef } from 'vue';
 
-import { showSuccessMessage, sleep } from '@/utils';
+import { showSuccessMessage } from '@/utils';
 
 const INITIAL_FORM_DATA = {
   oldPassword: '',
@@ -60,7 +60,7 @@ const handleOk = async () => {
   try {
     isConfirmLoading.value = true;
 
-    await sleep(3000);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     isOpen.value = false;
     showSuccessMessage();

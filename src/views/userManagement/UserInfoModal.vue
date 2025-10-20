@@ -37,7 +37,7 @@ import type { FormInstance } from 'ant-design-vue';
 import { computed, reactive, ref, useTemplateRef } from 'vue';
 
 import { USER_STATUS_OPTIONS, UserStatus } from '@/enums';
-import { showSuccessMessage, sleep } from '@/utils';
+import { showSuccessMessage } from '@/utils';
 
 const INITIAL_FORM_DATA = {
   name: '',
@@ -64,7 +64,7 @@ const handleOk = async () => {
   try {
     isConfirmLoading.value = true;
 
-    await sleep(3000);
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     isOpen.value = false;
     showSuccessMessage();

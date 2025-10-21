@@ -21,7 +21,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" ghost @click="handleAdd">
+          <a-button type="primary" ghost @click="handleCreate">
             <template #icon>
               <PlusOutlined />
             </template>
@@ -57,7 +57,7 @@
       </a-table>
     </a-card>
 
-    <UserInfoModal ref="userInfoModalRef" />
+    <UserCreateModal ref="userCreateModalRef" />
   </div>
 </template>
 
@@ -69,7 +69,7 @@ import { fetchUserListApi } from '@/api';
 import { USER_STATUS_MAP, USER_STATUS_OPTIONS } from '@/enums';
 import { useTable } from '@/hooks';
 
-import UserInfoModal from './UserInfoModal.vue';
+import UserCreateModal from './UserCreateModal.vue';
 
 const columns = [
   {
@@ -117,18 +117,18 @@ const columns = [
   },
 ];
 
-const userInfoModalRef = useTemplateRef('userInfoModalRef');
+const userCreateModalRef = useTemplateRef('userCreateModalRef');
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api: fetchUserListApi,
   defaultSearchParams: {},
 });
 
-const handleAdd = () => {
-  userInfoModalRef.value.openModal();
+const handleCreate = () => {
+  userCreateModalRef.value.openModal();
 };
 
 const handleEdit = (record) => {
-  userInfoModalRef.value.openModal(record);
+  userCreateModalRef.value.openModal(record);
 };
 </script>

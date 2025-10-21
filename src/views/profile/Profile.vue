@@ -19,7 +19,7 @@
       </a-form-item>
     </a-form>
 
-    <PasswordModal ref="passwordModalRef" />
+    <ProfileUpdateModal ref="profileUpdateModalRef" />
   </a-card>
 </template>
 <script setup lang="ts">
@@ -27,14 +27,14 @@ import { toRefs, useTemplateRef } from 'vue';
 
 import { useUserStore } from '@/stores';
 
-import PasswordModal from './PasswordModal.vue';
+import ProfileUpdateModal from './ProfileUpdateModal.vue';
 
 const userStore = useUserStore();
-const passwordModalRef = useTemplateRef('passwordModalRef');
+const profileUpdateModalRef = useTemplateRef('profileUpdateModalRef');
 
 const { userInfo } = toRefs(userStore);
 
 const handleUpdatePassword = () => {
-  passwordModalRef.value.openModal();
+  profileUpdateModalRef.value.openModal();
 };
 </script>

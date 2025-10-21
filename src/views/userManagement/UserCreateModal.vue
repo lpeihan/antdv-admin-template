@@ -1,15 +1,15 @@
 <template>
   <a-modal
-    v-model:open="isOpen"
+    v-model:open="open"
     :title="isEdit ? '编辑用户' : '新增用户'"
     :maskClosable="false"
-    :confirmLoading="isConfirmLoading"
+    :confirmLoading="confirmLoading"
     :width="600"
     @ok="handleOk"
   >
     <a-form
       ref="formRef"
-      :key="isOpen"
+      :key="open"
       :model="formData"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
@@ -48,28 +48,28 @@ const INITIAL_FORM_DATA = {
 
 const formRef = useTemplateRef<FormInstance>('formRef');
 const formData = reactive({ ...INITIAL_FORM_DATA });
-const isOpen = ref(false);
-const isConfirmLoading = ref(false);
+const open = ref(false);
+const confirmLoading = ref(false);
 
 const isEdit = computed(() => formData.id);
 
 const openModal = (record = INITIAL_FORM_DATA) => {
   Object.assign(formData, record);
-  isOpen.value = true;
+  open.value = true;
 };
 
 const handleOk = async () => {
   await formRef.value.validate();
 
   try {
-    isConfirmLoading.value = true;
+    confirmLoading.value = true;
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    isOpen.value = false;
+    open.value = false;
     showSuccessMessage();
   } finally {
-    isConfirmLoading.value = false;
+    confirmLoading.value = false;
   }
 };
 

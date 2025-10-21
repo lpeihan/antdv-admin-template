@@ -58,10 +58,10 @@ export const routes = [
         component: RouterView,
         children: [
           {
-            path: '/userManagement/userList',
-            name: 'userList',
+            path: '/userManagement/users',
+            name: 'users',
             meta: { title: '用户列表' },
-            component: () => import('@/views/userManagement/UserList.vue'),
+            component: () => import('@/views/userManagement/Users.vue'),
           },
         ],
       },

@@ -1,8 +1,13 @@
 export default {
   // common
   copied: '复制成功',
-  profile: '账户设置',
   success: '成功',
+  error: '失败',
+
+  // profile
+  profile: '账户设置',
+
+  // dashboard
   dashboard: '仪表盘',
 
   // login

@@ -1,8 +1,13 @@
 export default {
   // common
   copied: 'Copied',
-  profile: 'My Profile',
   success: 'Success',
+  error: 'Failed',
+
+  // profile
+  profile: 'My Profile',
+
+  // dashboard
   dashboard: 'Dashboard',
 
   // login

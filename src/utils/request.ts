@@ -1,8 +1,8 @@
-import { message } from 'ant-design-vue';
 import axios from 'axios';
 
 import { HttpCode } from '@/enums';
 import { useUserStore } from '@/stores';
+import { showErrorMessage } from '@/utils';
 
 export const request = axios.create({
   timeout: 20000,
@@ -31,12 +31,12 @@ request.interceptors.response.use(
       return Promise.resolve(data);
     }
 
-    message.error(data.message);
+    showErrorMessage(data.message);
 
     return Promise.reject(data);
   },
   (err) => {
-    message.error(err.message);
+    showErrorMessage(err.message);
 
     return Promise.reject(err);
   },

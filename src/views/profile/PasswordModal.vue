@@ -49,8 +49,7 @@ const formData = reactive({ ...INITIAL_FORM_DATA });
 const open = ref(false);
 const confirmLoading = ref(false);
 
-const openModal = () => {
-  Object.assign(formData, INITIAL_FORM_DATA);
+const showModal = () => {
   open.value = true;
 };
 
@@ -69,5 +68,5 @@ const handleOk = async () => {
   }
 };
 
-defineExpose({ openModal });
+defineExpose({ showModal });
 </script>

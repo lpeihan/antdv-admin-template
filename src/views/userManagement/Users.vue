@@ -125,10 +125,10 @@ const { tableProps, searchParams, handleSearch } = useTable({
 });
 
 const handleCreate = () => {
-  userCreateModalRef.value.openModal();
+  userCreateModalRef.value.showModal();
 };
 
 const handleEdit = (record) => {
-  userCreateModalRef.value.openModal(record);
+  userCreateModalRef.value.showModal(record);
 };
 </script>

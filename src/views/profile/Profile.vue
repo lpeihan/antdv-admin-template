@@ -35,6 +35,6 @@ const passwordModalRef = useTemplateRef('passwordModalRef');
 const { userInfo } = toRefs(userStore);
 
 const handleUpdatePassword = () => {
-  passwordModalRef.value.openModal();
+  passwordModalRef.value.showModal();
 };
 </script>

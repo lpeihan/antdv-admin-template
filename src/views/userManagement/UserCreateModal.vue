@@ -53,7 +53,7 @@ const confirmLoading = ref(false);
 
 const isEdit = computed(() => formData.id);
 
-const openModal = (record = INITIAL_FORM_DATA) => {
+const showModal = (record = INITIAL_FORM_DATA) => {
   Object.assign(formData, record);
   open.value = true;
 };
@@ -73,5 +73,5 @@ const handleOk = async () => {
   }
 };
 
-defineExpose({ openModal });
+defineExpose({ showModal });
 </script>

@@ -29,7 +29,7 @@ export const useUserStore = defineStore('user', {
       this.token = '';
       this.userInfo = null;
 
-      router.push('/user/login');
+      router.push('/auth/login');
     },
     hasRole(roles: RoleName[] = []) {
       if (!this.token) {

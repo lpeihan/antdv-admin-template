@@ -12,12 +12,12 @@ import { i18n } from '@/locales';
 
 export const routes = [
   {
-    path: '/user',
-    component: require('@/layouts/UserLayout.vue').default,
+    path: '/auth',
+    component: require('@/layouts/AuthLayout.vue').default,
     hideInMenu: true,
     children: [
       {
-        path: '/user/login',
+        path: '/auth/login',
         name: 'login',
         component: () => import('@/views/login/Login.vue'),
       },
@@ -52,16 +52,16 @@ export const routes = [
         ],
       },
       {
-        path: '/userManagement',
-        name: 'userManagement',
+        path: '/users',
+        name: 'users',
         meta: { icon: UserOutlined, title: '用户管理' },
         component: RouterView,
         children: [
           {
-            path: '/userManagement/users',
-            name: 'users',
+            path: '/users/list',
+            name: 'usersList',
             meta: { title: '用户列表' },
-            component: () => import('@/views/userManagement/Users.vue'),
+            component: () => import('@/views/users/Users.vue'),
           },
         ],
       },

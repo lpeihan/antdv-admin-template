@@ -10,13 +10,18 @@ import { STORAGE_KEY } from '@/constants';
 
 import zhCN from './zh-CN';
 
-const DEFAULT_LANG = 'zh-CN';
+enum Locale {
+  zhCN = 'zh-CN',
+  enUS = 'en-US',
+}
+
+const DEFAULT_LANG = Locale.zhCN;
 const localeStorage = useStorage(STORAGE_KEY.locale, DEFAULT_LANG);
 
 // https://github.com/lokalise/i18n-ally/tree/main/locales
 export const SUPPORTED_LOCALES = [
-  { name: '🇨🇳 简体中文', value: 'zh-CN' },
-  { name: '🇺🇸 English', value: 'en-US' },
+  { name: '🇨🇳 简体中文', value: Locale.zhCN },
+  { name: '🇺🇸 English', value: Locale.enUS },
   // { name: '🇨🇳 繁體中文', value: 'zh-TW' },
   // { name: '🇯🇵 日本語', value: 'ja' },
   // { name: '🇰🇷 한국어', value: 'ko' },
@@ -39,8 +44,8 @@ export function getAntdLocale() {
   const locale = getLocale();
 
   const antdLocales = {
-    'zh-CN': zhCN_antd,
-    en: enUS_antd,
+    [Locale.zhCN]: zhCN_antd,
+    [Locale.enUS]: enUS_antd,
   };
 
   return antdLocales[locale];
@@ -48,8 +53,8 @@ export function getAntdLocale() {
 
 export function getDayjsLocale(locale) {
   const dayjsLocales = {
-    'zh-CN': 'zh-cn',
-    en: 'en',
+    [Locale.zhCN]: 'zh-cn',
+    [Locale.enUS]: 'en',
   };
 
   return dayjsLocales[locale];

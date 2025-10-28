@@ -37,13 +37,13 @@ https://tailwind.nodejs.cn/docs/border-radius
 
 ```
 
-## .env.local
+## Create .env.local
 
 ```shell
-REMOTE_PASS=A49OXa#t4M!0
-PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-...
------END RSA PRIVATE KEY-----"
+LAB_HOST=47.242.63.249
+LAB_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----"
+PRODUCTION_HOST=47.242.63.249
+PRODUCTION_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----"
 ```
 
 ## Nginx

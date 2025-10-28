@@ -29,8 +29,8 @@ if [ "$ENV" = "lab" ]; then
     REMOTE_HOST="$LAB_HOST"
     PRIVATE_KEY="$LAB_PRIVATE_KEY"
 elif [ "$ENV" = "production" ]; then
-    REMOTE_HOST="$PROD_HOST"
-    PRIVATE_KEY="$PROD_PRIVATE_KEY"
+    REMOTE_HOST="$PRODUCTION_HOST"
+    PRIVATE_KEY="$PRODUCTION_PRIVATE_KEY"
 else
     log_error "[ERROR] UNKNOWN ENV: $ENV"
     exit 1

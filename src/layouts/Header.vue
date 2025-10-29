@@ -6,12 +6,17 @@
     }"
   >
     <div class="flex items-center gap-2">
-      <icon
-        :icon="props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
-        @click="props.handleCollapse"
-      />
+      <a-button type="text" shape="circle" @click="props.handleCollapse">
+        <template #icon>
+          <component :is="props.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined" />
+        </template>
+      </a-button>
 
-      <icon v-if="isPC" :icon="ReloadOutlined" @click="handleReload" />
+      <a-button v-if="isPC" type="text" shape="circle" @click="handleReload">
+        <template #icon>
+          <ReloadOutlined />
+        </template>
+      </a-button>
 
       <a-breadcrumb v-if="isPC" style="margin-left: 4px">
         <a-breadcrumb-item

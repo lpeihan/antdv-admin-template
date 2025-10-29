@@ -12,10 +12,18 @@
           />
         </div>
       </template>
-      <icon icon="palette" :style="{ color: themeStore.colorPrimary }" />
+      <a-button type="text" shape="circle" :style="{ color: themeStore.colorPrimary }">
+        <template #icon>
+          <svg-icon name="palette" class="align-[-0.2em]" />
+        </template>
+      </a-button>
     </a-popover>
 
-    <icon :icon="themeStore.isDarkTheme ? 'brightness' : 'moon'" @click="themeStore.toggleTheme" />
+    <a-button type="text" shape="circle" @click="themeStore.toggleTheme">
+      <template #icon>
+        <svg-icon :name="themeStore.isDarkTheme ? 'brightness' : 'moon'" class="align-[-0.2em]" />
+      </template>
+    </a-button>
 
     <a-dropdown>
       <template #overlay>
@@ -26,14 +34,16 @@
         </a-menu>
       </template>
 
-      <icon :icon="GlobalOutlined" />
+      <a-button type="text" shape="circle">
+        <template #icon><GlobalOutlined /></template>
+      </a-button>
     </a-dropdown>
 
-    <icon
-      v-if="isPC"
-      :icon="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined"
-      @click="toggle"
-    />
+    <a-button v-if="isPC" type="text" shape="circle" @click="toggle">
+      <template #icon>
+        <component :is="isFullscreen ? FullscreenExitOutlined : FullscreenOutlined" />
+      </template>
+    </a-button>
 
     <template v-if="userStore.userInfo">
       <a-dropdown>

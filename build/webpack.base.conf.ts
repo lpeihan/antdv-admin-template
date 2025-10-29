@@ -32,6 +32,13 @@ const htmlPlugins = Object.keys(entries).map(
 export const webpackBaseConf: Configuration = {
   context: process.cwd(),
 
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename],
+    },
+  },
+
   entry: entries,
 
   output: {
@@ -68,13 +75,26 @@ export const webpackBaseConf: Configuration = {
           // Don't transpile node_modules
           return /node_modules/.test(file);
         },
-        use: ['thread-loader', 'babel-loader'],
+        use: [
+          'thread-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
         use: [
           'thread-loader',
-          'babel-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
           {
             loader: 'ts-loader',
             options: {

@@ -6,12 +6,11 @@
         :key="svgName"
         type="text"
         shape="circle"
-        size="large"
         :title="svgName"
         @click="handleCopy(svgName)"
       >
         <template #icon>
-          <svg-icon :name="svgName" class="!size-[20px]" />
+          <svg-icon :name="svgName" />
         </template>
       </a-button>
     </div>

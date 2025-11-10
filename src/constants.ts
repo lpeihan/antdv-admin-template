@@ -8,4 +8,5 @@ export const STORAGE_KEY = {
 
 export const EVENT_BUS_KEY = {
   refresh: 'refresh',
+  showModal: 'showModal',
 };

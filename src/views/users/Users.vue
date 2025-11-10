@@ -56,18 +56,16 @@
         </template>
       </a-table>
     </a-card>
-
-    <UserCreateModal ref="userCreateModalRef" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons-vue';
-import { useTemplateRef } from 'vue';
 
 import { fetchUserListApi } from '@/api';
 import { USER_STATUS_MAP, USER_STATUS_OPTIONS } from '@/enums';
 import { useTable } from '@/hooks';
+import { showModal } from '@/utils';
 
 import UserCreateModal from './UserCreateModal.vue';
 
@@ -117,7 +115,6 @@ const columns = [
   },
 ];
 
-const userCreateModalRef = useTemplateRef('userCreateModalRef');
 const { tableProps, searchParams, handleSearch } = useTable({
   columns,
   api: fetchUserListApi,
@@ -125,10 +122,10 @@ const { tableProps, searchParams, handleSearch } = useTable({
 });
 
 const handleCreate = () => {
-  userCreateModalRef.value.showModal();
+  showModal(UserCreateModal);
 };
 
 const handleEdit = (record) => {
-  userCreateModalRef.value.showModal(record);
+  showModal(UserCreateModal, { record });
 };
 </script>

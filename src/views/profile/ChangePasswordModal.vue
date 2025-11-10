@@ -49,10 +49,6 @@ const formData = reactive({ ...INITIAL_FORM_DATA });
 const open = ref(false);
 const confirmLoading = ref(false);
 
-const showModal = () => {
-  open.value = true;
-};
-
 const handleOk = async () => {
   await formRef.value.validate();
 
@@ -68,5 +64,5 @@ const handleOk = async () => {
   }
 };
 
-defineExpose({ showModal });
+defineExpose({ showModal: () => (open.value = true) });
 </script>

@@ -9,7 +9,6 @@
   >
     <a-form
       ref="formRef"
-      :key="open"
       :model="formData"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
@@ -34,7 +33,7 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'ant-design-vue';
-import { computed, reactive, ref, useTemplateRef } from 'vue';
+import { reactive, ref, useTemplateRef } from 'vue';
 
 import { USER_STATUS_OPTIONS, UserStatus } from '@/enums';
 import { showSuccessMessage } from '@/utils';
@@ -46,17 +45,18 @@ const INITIAL_FORM_DATA = {
   status: UserStatus.Enabled,
 };
 
+const props = defineProps({
+  record: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formData = reactive({ ...INITIAL_FORM_DATA });
+const formData = reactive({ ...INITIAL_FORM_DATA, ...props.record });
 const open = ref(false);
 const confirmLoading = ref(false);
-
-const isEdit = computed(() => formData.id);
-
-const showModal = (record = INITIAL_FORM_DATA) => {
-  Object.assign(formData, record);
-  open.value = true;
-};
+const isEdit = formData.id;
 
 const handleOk = async () => {
   await formRef.value.validate();
@@ -73,5 +73,5 @@ const handleOk = async () => {
   }
 };
 
-defineExpose({ showModal });
+defineExpose({ showModal: () => (open.value = true) });
 </script>

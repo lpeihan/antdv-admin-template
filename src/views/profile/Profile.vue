@@ -18,23 +18,21 @@
         <a-button type="primary" size="small" @click="handleUpdatePassword">修改密码</a-button>
       </a-form-item>
     </a-form>
-
-    <ChangePasswordModal ref="changePasswordModalRef" />
   </a-card>
 </template>
 <script setup lang="ts">
-import { toRefs, useTemplateRef } from 'vue';
+import { toRefs } from 'vue';
 
 import { useUserStore } from '@/stores';
+import { showModal } from '@/utils';
 
 import ChangePasswordModal from './ChangePasswordModal.vue';
 
 const userStore = useUserStore();
-const changePasswordModalRef = useTemplateRef('changePasswordModalRef');
 
 const { userInfo } = toRefs(userStore);
 
 const handleUpdatePassword = () => {
-  changePasswordModalRef.value.showModal();
+  showModal(ChangePasswordModal);
 };
 </script>

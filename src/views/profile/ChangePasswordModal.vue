@@ -1,31 +1,31 @@
 <template>
   <a-modal
-    v-model:open="open"
+    v-model:open="state.open"
     title="修改密码"
     :maskClosable="false"
-    :confirmLoading="confirmLoading"
+    :confirmLoading="state.confirmLoading"
     :width="600"
     @ok="handleOk"
   >
     <a-form
       ref="formRef"
-      :model="formData"
+      :model="state.form"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
       labelAlign="left"
     >
       <a-form-item label="旧密码" name="oldPassword" :rules="[{ required: true, message: '' }]">
-        <a-input-password v-model:value="formData.oldPassword" />
+        <a-input-password v-model:value="state.form.oldPassword" />
       </a-form-item>
       <a-form-item label="新密码" name="newPassword" :rules="[{ required: true, message: '' }]">
-        <a-input-password v-model:value="formData.newPassword" />
+        <a-input-password v-model:value="state.form.newPassword" />
       </a-form-item>
       <a-form-item
         label="确认密码"
         name="confirmPassword"
         :rules="[{ required: true, message: '' }]"
       >
-        <a-input-password v-model:value="formData.confirmPassword" />
+        <a-input-password v-model:value="state.form.confirmPassword" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'ant-design-vue';
-import { reactive, ref, useTemplateRef } from 'vue';
+import { reactive, useTemplateRef } from 'vue';
 
 import { showSuccessMessage } from '@/utils';
 
@@ -44,24 +44,26 @@ const INITIAL_FORM_DATA = {
 };
 
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formData = reactive({ ...INITIAL_FORM_DATA });
-const open = ref(false);
-const confirmLoading = ref(false);
+const state = reactive({
+  form: INITIAL_FORM_DATA,
+  open: false,
+  confirmLoading: false,
+});
 
 const handleOk = async () => {
   await formRef.value.validate();
 
   try {
-    confirmLoading.value = true;
+    state.confirmLoading = true;
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    open.value = false;
+    state.open = false;
     showSuccessMessage();
   } finally {
-    confirmLoading.value = false;
+    state.confirmLoading = false;
   }
 };
 
-defineExpose({ showModal: () => (open.value = true) });
+defineExpose({ showModal: () => (state.open = true) });
 </script>

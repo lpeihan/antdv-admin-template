@@ -1,28 +1,28 @@
 <template>
   <a-modal
-    v-model:open="open"
+    v-model:open="state.open"
     :title="isEdit ? '编辑用户' : '新增用户'"
     :maskClosable="false"
-    :confirmLoading="confirmLoading"
+    :confirmLoading="state.confirmLoading"
     :width="600"
     @ok="handleOk"
   >
     <a-form
       ref="formRef"
-      :model="formData"
+      :model="state.form"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"
       labelAlign="left"
     >
       <a-form-item label="用户名" name="name" :rules="[{ required: true, message: '' }]">
-        <a-input v-model:value="formData.name" />
+        <a-input v-model:value="state.form.name" />
       </a-form-item>
       <a-form-item label="邮箱" name="email" :rules="[{ required: true, message: '' }]">
-        <a-input v-model:value="formData.email" />
+        <a-input v-model:value="state.form.email" />
       </a-form-item>
       <a-form-item label="状态" name="status" :rules="[{ required: true, message: '' }]">
         <a-select
-          v-model:value="formData.status"
+          v-model:value="state.form.status"
           placeholder="请选择状态"
           :options="USER_STATUS_OPTIONS"
         />
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'ant-design-vue';
-import { computed, reactive, ref, useTemplateRef } from 'vue';
+import { reactive, useTemplateRef } from 'vue';
 
 import { USER_STATUS_OPTIONS, UserStatus } from '@/enums';
 import { showSuccessMessage } from '@/utils';
@@ -52,27 +52,30 @@ const props = defineProps({
 const emit = defineEmits(['success']);
 
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formData = reactive(props.record ? { ...props.record } : INITIAL_FORM_DATA);
-const open = ref(false);
-const confirmLoading = ref(false);
 
-const isEdit = computed(() => !!formData.id);
+const state = reactive({
+  form: props.record ? { ...props.record } : INITIAL_FORM_DATA,
+  open: false,
+  confirmLoading: false,
+});
+
+const isEdit = !!state.form.id;
 
 const handleOk = async () => {
   await formRef.value.validate();
 
   try {
-    confirmLoading.value = true;
+    state.confirmLoading = true;
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    open.value = false;
+    state.open = false;
     showSuccessMessage();
     emit('success');
   } finally {
-    confirmLoading.value = false;
+    state.confirmLoading = false;
   }
 };
 
-defineExpose({ showModal: () => (open.value = true) });
+defineExpose({ showModal: () => (state.open = true) });
 </script>

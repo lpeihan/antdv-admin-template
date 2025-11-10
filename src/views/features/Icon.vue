@@ -25,6 +25,6 @@ import { copyToClipboard } from '@/utils';
 const SVG_ICONS_LIST = Object.keys(svgIcons);
 
 const handleCopy = (item) => {
-  copyToClipboard(`<svg-icon name="${item}" />`, '复制成功');
+  copyToClipboard(`<svg-icon name="${item}" />`);
 };
 </script>

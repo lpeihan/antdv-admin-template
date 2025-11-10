@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-table-page">
+  <div class="!space-y-[12px]">
     <a-card>
       <a-form layout="inline" :model="searchParams" class="basic-table-form" @finish="handleSearch">
         <a-form-item label="用户ID" name="id">

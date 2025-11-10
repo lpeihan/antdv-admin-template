@@ -12,16 +12,16 @@
           />
         </div>
       </template>
-      <a-button type="text" shape="circle" :style="{ color: themeStore.colorPrimary }">
+      <a-button type="text" shape="circle">
         <template #icon>
-          <svg-icon name="palette" class="align-[-0.2em]" />
+          <svg-icon name="palette" />
         </template>
       </a-button>
     </a-popover>
 
     <a-button type="text" shape="circle" @click="themeStore.toggleTheme">
       <template #icon>
-        <svg-icon :name="themeStore.isDarkTheme ? 'brightness' : 'moon'" class="align-[-0.2em]" />
+        <svg-icon :name="themeStore.isDarkTheme ? 'brightness' : 'moon'" />
       </template>
     </a-button>
 

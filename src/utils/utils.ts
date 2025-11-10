@@ -1,6 +1,12 @@
+import { useEventBus } from '@vueuse/core';
 import { message } from 'ant-design-vue';
 
+import { EVENT_BUS_KEY } from '@/constants';
 import { i18n } from '@/locales';
+
+export function showModal(component, props = {}) {
+  useEventBus(EVENT_BUS_KEY.showModal).emit(component, props);
+}
 
 export function showSuccessMessage(messageText = i18n.global.t('success')) {
   message.success(messageText);

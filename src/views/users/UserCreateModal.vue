@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import type { FormInstance } from 'ant-design-vue';
-import { reactive, ref, useTemplateRef } from 'vue';
+import { computed, reactive, ref, useTemplateRef } from 'vue';
 
 import { USER_STATUS_OPTIONS, UserStatus } from '@/enums';
 import { showSuccessMessage } from '@/utils';
@@ -46,17 +46,17 @@ const INITIAL_FORM_DATA = {
 };
 
 const props = defineProps({
-  record: {
-    type: Object,
-    default: () => ({}),
-  },
+  record: { type: Object },
 });
 
+const emit = defineEmits(['success']);
+
 const formRef = useTemplateRef<FormInstance>('formRef');
-const formData = reactive({ ...INITIAL_FORM_DATA, ...props.record });
+const formData = reactive(props.record ? { ...props.record } : INITIAL_FORM_DATA);
 const open = ref(false);
 const confirmLoading = ref(false);
-const isEdit = formData.id;
+
+const isEdit = computed(() => !!formData.id);
 
 const handleOk = async () => {
   await formRef.value.validate();
@@ -68,6 +68,7 @@ const handleOk = async () => {
 
     open.value = false;
     showSuccessMessage();
+    emit('success');
   } finally {
     confirmLoading.value = false;
   }

@@ -21,7 +21,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" ghost @click="handleCreate">
+          <a-button type="primary" ghost @click="handleCreateOrEdit(null)">
             <template #icon>
               <PlusOutlined />
             </template>
@@ -51,7 +51,7 @@
           </template>
 
           <template v-if="dataIndex === 'actions'">
-            <a-button type="link" @click="handleEdit(record)">编辑</a-button>
+            <a-button type="link" @click="handleCreateOrEdit(record)">编辑</a-button>
           </template>
         </template>
       </a-table>
@@ -115,17 +115,13 @@ const columns = [
   },
 ];
 
-const { tableProps, searchParams, handleSearch } = useTable({
+const { tableProps, searchParams, handleSearch, fetchList } = useTable({
   columns,
   api: fetchUserListApi,
   defaultSearchParams: {},
 });
 
-const handleCreate = () => {
-  showModal(UserCreateModal);
-};
-
-const handleEdit = (record) => {
-  showModal(UserCreateModal, { record });
+const handleCreateOrEdit = (record) => {
+  showModal(UserCreateModal, { record, onSuccess: fetchList });
 };
 </script>

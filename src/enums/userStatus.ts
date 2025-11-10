@@ -19,7 +19,9 @@ export const USER_STATUS_MAP = {
   },
 };
 
-export const USER_STATUS_OPTIONS = Object.entries(USER_STATUS_MAP).map(([value, meta]) => ({
-  label: meta.label,
-  value: Number(value),
-}));
+export const USER_STATUS_OPTIONS = [UserStatus.Enabled, UserStatus.Disabled, UserStatus.Frozen].map(
+  (value) => ({
+    label: USER_STATUS_MAP[value].label,
+    value,
+  }),
+);

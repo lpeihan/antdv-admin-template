@@ -9,7 +9,6 @@
   >
     <a-form
       ref="formRef"
-      :key="open"
       :model="formData"
       :label-col="{ style: { width: '100px' } }"
       class="!pt-[20px]"

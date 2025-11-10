@@ -10,7 +10,7 @@ export function showErrorMessage(messageText) {
   message.error(messageText);
 }
 
-export async function copyToClipboard(text, successText = i18n.global.t('success')) {
+export async function copyToClipboard(text, successText) {
   await navigator.clipboard.writeText(text);
   showSuccessMessage(successText);
 }

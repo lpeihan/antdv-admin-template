@@ -1,8 +1,10 @@
+import { VantResolver } from '@vant/auto-import-resolver';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import dayjs from 'dayjs';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import HTMLPlugin from 'html-webpack-plugin';
+import ComponentsPlugin from 'unplugin-vue-components/webpack';
 import { VueLoaderPlugin } from 'vue-loader';
 import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
 
@@ -210,9 +212,10 @@ export const webpackBaseConf: Configuration = {
       ),
     }),
 
-    // ComponentsPlugin({
-    //   dirs: [resolve('src/components')],
-    //   dts: false,
-    // }),
+    ComponentsPlugin({
+      // dirs: [resolve('src/components')],
+      dts: false,
+      resolvers: [VantResolver()],
+    }),
   ],
 };

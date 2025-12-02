@@ -1,6 +1,5 @@
 import { useSessionStorage } from '@vueuse/core';
 import { createPinia } from 'pinia';
-// @ts-ignore
 import VConsole from 'vconsole';
 import { createApp } from 'vue';
 

@@ -1,6 +1,6 @@
 <template>
   <van-popup v-model:show="state.show" round :close-on-click-overlay="false" closeable>
-    <div class="popup-content">Example</div>
+    <div class="h-[300px] w-[300px]">Example</div>
   </van-popup>
 </template>
 
@@ -22,10 +22,3 @@ defineExpose({
   close,
 });
 </script>
-
-<style lang="less" scoped>
-.popup-content {
-  width: 300px;
-  height: 300px;
-}
-</style>

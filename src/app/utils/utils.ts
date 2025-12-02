@@ -7,7 +7,7 @@ export async function copyToClipboard(text, successText = i18n.global.t('copied'
   showToast(successText);
 }
 
-export function getQueryString(name, url) {
+export function getQueryString(name, url?) {
   const res = (url || location.href).match(new RegExp('[?&]' + name + '=([^&#]+)', 'i'));
 
   if (res === null || res.length < 1) {

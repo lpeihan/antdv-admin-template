@@ -2,12 +2,18 @@
   <div>
     <TopBar title="My" :back="false" />
 
-    <van-button type="primary" @click="showExamplePopup">Primary</van-button>
-
     <BottomBar />
   </div>
 </template>
 
 <script setup lang="ts">
-import { showExamplePopup } from '@/app/popup';
+import { onMounted } from 'vue';
+
+import { useWeb3Store } from '@/app/stores/web3';
+
+const web3Store = useWeb3Store();
+
+onMounted(async () => {
+  await web3Store.connectWallet();
+});
 </script>

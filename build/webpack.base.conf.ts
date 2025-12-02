@@ -13,8 +13,8 @@ const outputFileName = `js/[name]${process.env.NODE_ENV === 'production' ? '.[co
 
 const envVars = getEnvVars(process.env.ENV);
 const entries = {
-  index: './src/main.ts',
-  // admin: './src/admin.js',
+  index: './src/app/main.ts',
+  admin: './src/admin/main.ts',
 };
 
 const htmlPlugins = Object.keys(entries).map(
@@ -119,13 +119,13 @@ export const webpackBaseConf: Configuration = {
         test: /\.(svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        exclude: [resolve('src/assets/svgIcons')],
+        exclude: [resolve('src/admin/assets/svgIcons'), resolve('src/app/assets/svgIcons')],
       },
 
       {
         test: /\.(svg)(\?.*)?$/,
         generator: { filename: 'img/[contenthash:8][ext][query]' },
-        include: [resolve('src/assets/svgIcons')],
+        include: [resolve('src/admin/assets/svgIcons'), resolve('src/app/assets/svgIcons')],
         use: [
           {
             loader: 'svg-sprite-loader',
@@ -177,7 +177,7 @@ export const webpackBaseConf: Configuration = {
           from: resolve('public'),
           toType: 'dir',
           globOptions: {
-            ignore: ['.DS_Store', '**/index.html'],
+            ignore: ['.DS_Store', '**/index.html', '**/admin.html'],
           },
           noErrorOnMissing: true,
         },

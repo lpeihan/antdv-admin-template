@@ -29,8 +29,18 @@ const genStyleRules = () => {
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      postcssOptions: {
-        config: resolve('postcss.config.mjs'),
+      postcssOptions(loaderContext) {
+        const resourcePath = loaderContext.resourcePath;
+
+        if (resourcePath.includes('/admin/')) {
+          return {
+            config: resolve('src/admin/postcss.config.mjs'),
+          };
+        }
+
+        return {
+          config: resolve('postcss.config.mjs'),
+        };
       },
     },
   };
@@ -55,7 +65,9 @@ const genStyleRules = () => {
       loaders.push({
         loader: 'style-resources-loader',
         options: {
-          patterns: [resolve('src/styles/mixins.less'), resolve('src/styles/vars.less')],
+          patterns: [
+            // resolve('src/styles/mixins.less'), resolve('src/styles/vars.less')
+          ],
         },
       });
     }
